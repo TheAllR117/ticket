@@ -1,0 +1,20 @@
+<ion-card  class="animated fadeIn action-dark">
+  <img (click)="abrirNoticia()" *ngIf="noticia.urlToImage" [src]="noticia?.urlToImage" onerror="this.onerror=null; this.src='http://semantic-ui.com/images/wireframe/image.png';">
+  <ion-card-header>
+    <ion-card-title (click)="abrirNoticia()" class="action-dark">
+      <span class="text-primary">{{ indice + 1 }}. </span>
+      {{ noticia.title }}
+    </ion-card-title>
+  </ion-card-header>
+  <!-- {{ noticia.description }} --> 
+  <ion-item class="action-dark" fill="clear">
+    <ion-card-subtitle>
+      <span class="noticia-source-name">{{ noticia.source.name }}</span>
+    </ion-card-subtitle>
+    <div class="noticia-more">
+      <ion-button fill="clear" (click)="lanzarMenu()" class="color-action-share">
+        <ion-icon name="more"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-item>
+</ion-card>

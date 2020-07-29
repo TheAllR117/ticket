@@ -1,0 +1,59 @@
+.ancho_fab{
+    width: 100%;
+}
+
+.ion-chip_1{
+    --background:var( --ion-color-light ) !important;
+    --color: var( --ion-color-medium ) !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-color: rgba(0, 0, 0, 0.32) !important;
+}
+
+.ion-chip_2{
+    --background: var( --ion-color-success ) !important;
+    --color: var( --ion-color-light ) !important;
+    box-shadow: 0 5px 12px 0 rgba(32, 21, 21, 0.55);
+}
+
+.titulos_card{
+    font-size: 13px;
+}
+
+.conte_text{
+    font-size: 16px;
+}
+
+.linea_de_lineas{
+    font-size: 20px;
+    text-align: left;
+    margin-left: -20%;
+}
+
+
+ion-slides {
+    height: auto;
+  }
+
+ion-card{
+    margin-top: 7px !important;
+    margin-bottom: 7px !important;
+}
+
+.chip_po{
+    position: absolute;
+    left: -6px;
+    right: -6px;
+}
+
+.fon_ico{
+    background-color: var( --ion-color-success ) !important;
+    border-radius: 50%;
+    color: #ffffff !important;
+}
+
+.fon_ico_selec{
+    background-color: var( --ion-color-light ) !important;
+    border-radius: 50%;
+    color: #000000 !important;
+}

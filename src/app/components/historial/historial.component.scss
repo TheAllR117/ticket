@@ -1,0 +1,34 @@
+.ancho_fab{
+    width: 100%;
+}
+
+ion-chip{
+    --background: #ffffff;
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-color: rgba(0, 0, 0, 0.32) !important;
+}
+
+.titulos_card{
+    font-size: 13px;
+}
+
+.conte_text{
+    font-size: 16px;
+}
+
+.linea_de_lineas{
+    font-size: 20px;
+    text-align: left;
+    margin-left: -20%;
+}
+
+
+ion-slides {
+    height: 100%;
+  }
+
+ion-card{
+    margin-top: 7px !important;
+    margin-bottom: 7px !important;
+}

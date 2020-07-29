@@ -1,0 +1,59 @@
+<ion-content>
+  <div class="header">
+    <div class="inner-header flex">
+      <ion-slides (ionSlideDidChange)="this.slideDidChange();">
+        <ion-slide >
+          <img class="logo" src="../../../assets/img/uno.png">
+        </ion-slide>
+        <ion-slide>
+          <img class="logo" src="../../../assets/img/dos.png">
+        </ion-slide>
+        <ion-slide>
+          <img class="logo" src="../../../assets/img/tres.png">
+        </ion-slide>
+      </ion-slides>
+    </div>
+    <div>
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(117, 185, 82,0.7)" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(117, 185, 82,0.5)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(117, 185, 82,0.3)" />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="#75b952" />
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="content flex">
+    <ion-grid fixed class="acomodar">
+      <ion-row class="espacio_row">
+        <ion-col size="2"></ion-col>
+        <ion-col size="8">
+          <ion-text class="color_titulos animate__animated animate__fadeIn">
+            <ion-label>{{ titulo }}</ion-label>
+          </ion-text>
+        </ion-col>
+        <ion-col size="2"></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="1"></ion-col>
+        <ion-col size="10">
+          <ion-text class="super_posicion animate__animated animate__fadeIn">
+            {{ texto }}
+          </ion-text>
+        </ion-col>
+        <ion-col size="1"></ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+    
+  <!-- fab placed to the (vertical) center and end -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" mode="ios" class="boton_flotante">
+    <ion-fab-button routerLink="/login" color="light" mode="ios">
+      <ion-icon name="arrow-forward" mode="ios"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
