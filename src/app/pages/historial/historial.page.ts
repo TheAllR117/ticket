@@ -30,6 +30,16 @@ export class HistorialPage implements OnInit {
   tranferP = false;
   abonosP = false;
 
+  // limitar calendarios
+  minGeneral = '2020-01-01';
+
+  calAbonos = {
+    fechaIni: '',
+    fechafin: ''
+  };
+
+  minAbonos = '2020-01-01';
+
   constructor(
     private modalCtrl: ModalController,
     private navCtrl: NavController,
@@ -88,5 +98,9 @@ export class HistorialPage implements OnInit {
     this.slides.slideTo(2);
   }
 
+  buscarFechaAbono() {
+    console.log(this.calAbonos.fechaIni);
+    console.log(this.calAbonos.fechafin);
+  }
 
 }

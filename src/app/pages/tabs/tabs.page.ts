@@ -14,6 +14,7 @@ import { observeOn } from 'rxjs/operators';
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss']
 })
+
 export class TabsPage {
   lottieConfig: any;
 
