@@ -1,0 +1,295 @@
+<ion-toolbar mode="md" color="success" class="altura_tolbar_modal aligh_text_modal">
+
+  <div class="body_modal">
+    <div class="arrow arrow--top">
+      <svg xmlns="http://www.w3.org/2000/svg" width="270.11" height="649.9" overflow="visible">
+        <style>.geo-arrow { fill: none;stroke: #fff;stroke-width: 2;stroke-miterlimit: 10 }</style>
+        <g class="item-to bounce-1">
+          <path class="geo-arrow draw-in" d="M135.06 142.564L267.995 275.5 135.06 408.434 2.125 275.499z" />
+        </g>
+        <circle class="geo-arrow item-to bounce-2" cx="194.65" cy="69.54" r="7.96" />
+        <circle class="geo-arrow draw-in" cx="194.65" cy="39.5" r="7.96" />
+        <circle class="geo-arrow item-to bounce-3" cx="194.65" cy="9.46" r="7.96" />
+        <g class="geo-arrow item-to bounce-2">
+          <path class="st0 draw-in" d="M181.21 619.5l13.27 27 13.27-27zM194.48 644.5v-552" />
+        </g>
+      </svg>
+    </div>
+    <div class="arrow arrow--bottom">
+      <svg xmlns="http://www.w3.org/2000/svg" width="31.35" height="649.9" overflow="visible">
+        <style> .geo-arrow { fill: none; stroke: #fff; stroke-width: 2; stroke-miterlimit: 10 }</style>
+        <g class="item-to bounce-1">
+          <circle class="geo-arrow item-to bounce-3" cx="15.5" cy="580.36" r="7.96" />
+          <circle class="geo-arrow draw-in" cx="15.5" cy="610.4" r="7.96" />
+          <circle class="geo-arrow item-to bounce-2" cx="15.5" cy="640.44" r="7.96" />
+          <g class="item-to bounce-2">
+            <path class="geo-arrow draw-in" d="M28.94 30.4l-13.26-27-13.27 27zM15.68 5.4v552" />
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div class="main">
+      <div class="main__text-wrapper">  
+        <svg xmlns="http://www.w3.org/2000/svg" class="dotted-circle" width="352" height="352" overflow="visible">
+          <circle cx="176" cy="176" r="174" fill="none" stroke="#fff" stroke-width="2" stroke-miterlimit="10" stroke-dasharray="12.921,11.9271"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  
+  <ion-buttons mode="md" slot="start" class="margin_negativo_modal">
+    <ion-button (click)="regresar()" class="margin_top_modal">
+      <ion-icon slot="icon-only"  mode="ios" name="arrow-back" color="light"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+  <ion-buttons mode="md" slot="end" class="margin_negativo_modal">
+    <ion-menu-button auto-hide="false" color="light"></ion-menu-button>
+  </ion-buttons>
+
+  <ion-title class="margin_top_modal margin_bottom_modal main__title" color="light">
+    <h1 class="h1_modal text_bold_modal">HISTORIAL</h1>
+  </ion-title>
+
+</ion-toolbar>
+
+<ion-content no-border>
+  <ion-fab no-border vertical="top" slot="fixed" edge class="animate__animated animate__fadeInDownBig ancho_fab">
+    <ion-row class="ancho_fab ion-justify-content-center" size="12">
+      <ion-col no-border class="ion-no-padding ion-text-center" size="4">
+        <ion-chip (click)="mostrarPagos()" [ngClass]="{'animate__animated animate__pulse ion-chip_2': pagosP === true, 'ion-chip_1': pagosP === false }" #chipPagos>
+          <ion-icon mode="md" [ngClass]="{'fon_ico_selec': pagosP === true, 'fon_ico': pagosP === false }" name="arrow-forward"></ion-icon>
+          <ion-label>Pagos</ion-label>
+        </ion-chip>
+      </ion-col>
+      <ion-col no-border class="ion-no-padding ion-justify-content-center ion-text-center" size="4">
+        <ion-chip class="chip_po" (click)="mostrarTrans()" [ngClass]="{'ion-chip_2 animate__animated animate__pulse': tranferP === true, 'ion-chip_1': tranferP === false }" #chipTrans>
+          <ion-icon [ngClass]="{'fon_ico_selec': tranferP === true, 'fon_ico': tranferP === false }" name="swap"></ion-icon>
+          <ion-label>Transferencias</ion-label>
+        </ion-chip>
+      </ion-col>
+      <ion-col no-border class="ion-no-padding ion-text-center" size="4">
+        <ion-chip (click)="mostrarAbonos()" [ngClass]="{'ion-chip_2 animate__animated animate__pulse': abonosP === true, 'ion-chip_1': abonosP === false }" #chipAbonos>
+          <ion-icon [ngClass]="{'fon_ico_selec': abonosP === true, 'fon_ico': abonosP === false }" name="refresh"></ion-icon>
+          <ion-label>Abonos</ion-label>
+        </ion-chip>
+      </ion-col>
+    </ion-row>
+  </ion-fab>
+
+  <ion-slides [options]="slideOpts" (ionSlideDidChange)="this.slideDidChange();" #sliderPrincipal class="ion-padding-top">
+    <ion-slide>
+      <ion-grid class="animate__animated animate__fadeIn ion-padding-top">
+        <ion-row  class="ion-justify-content-center">
+          <ion-col size="5">
+            <ion-item class="bordes_re_modal" lines="none">
+              <ion-datetime class="ion-no-padding" displayFormat="YYYY-MM-DD" [min]="minGeneral" placeholder="Fecha inicio"></ion-datetime>
+              <ion-icon class="ion-no-padding" slot="end" color="success" name="calendar"></ion-icon>
+            </ion-item>
+          </ion-col>
+          <ion-col size="1">
+            <ion-label>
+              <br>
+              a
+            </ion-label>
+          </ion-col>
+          <ion-col size="5">
+            <ion-item class="bordes_re_modal">
+              <ion-datetime class="ion-no-padding" displayFormat="YYYY-MM-DD" placeholder="Fecha final"></ion-datetime>
+              <ion-icon class="ion-no-padding" slot="end" color="success" name="calendar"></ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-list >
+          <ion-card  mode="ios" no-border class="ion-no-padding">
+            <ion-card-content no-border class="ion-no-padding" >
+              <ion-item-sliding no-border class="ion-no-padding" >
+                <ion-item no-border>
+                  <ion-grid no-border>
+                    <ion-row size="12" no-border class="ion-no-padding">
+                      <ion-col size="1">
+                        <ion-icon name="person" color="success"></ion-icon>
+                        <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas" color="success"></ion-icon>
+                      </ion-col>
+                      <ion-col size="6">
+                        <ion-label color="medium" class="titulos_card">Can. Pagada</ion-label>
+                        <ion-label class="conte_text ion-text-b" color="success">500 Gasopesos</ion-label>
+                        <ion-label color="medium" class="titulos_card">ID de venta</ion-label>
+                        <ion-label class="conte_text" >02594</ion-label>
+                        <ion-label color="medium" class="titulos_card">Estación</ion-label>
+                        <ion-label class="conte_text" >La Margarita</ion-label>
+                        <ion-label color="medium" class="titulos_card">Cant.</ion-label>
+                        <ion-label class="conte_text" >12 Lts</ion-label>
+                        <ion-label color="medium" class="titulos_card">Isala</ion-label>
+                        <ion-label class="conte_text" >04</ion-label>
+                      </ion-col>
+                      <ion-col size="5">
+                        <ion-label color="medium" class="titulos_card">Fecha</ion-label>
+                        <ion-label class="conte_text" >12/02/2020</ion-label>
+                        <ion-label color="medium" class="titulos_card">Hora</ion-label>
+                        <ion-label class="conte_text" >13:05:03</ion-label>
+                        <ion-label color="medium" class="titulos_card">Producto</ion-label>
+                        <ion-label class="conte_text" >Diesel</ion-label>
+                        <ion-label color="medium" class="titulos_card">Costo</ion-label>
+                        <ion-label class="conte_text" >100</ion-label>
+                        <ion-label color="medium" class="titulos_card">Bomba</ion-label>
+                        <ion-label class="conte_text" >03</ion-label>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-item>
+
+              </ion-item-sliding>
+            </ion-card-content>
+          </ion-card>
+          </ion-list>
+      </ion-grid>
+    </ion-slide>
+    <ion-slide>
+      <ion-grid class="animate__animated animate__fadeIn ion-padding-top">
+        <ion-row  class="ion-justify-content-center">
+          <ion-col size="5">
+            <ion-item class="bordes_re_modal" lines="none">
+              <ion-datetime class="ion-no-padding" displayFormat="YYYY-MM-DD" placeholder="Fecha inicio"></ion-datetime>
+              <ion-icon class="ion-no-padding" slot="end" color="success" name="calendar"></ion-icon>
+            </ion-item>
+          </ion-col>
+          <ion-col size="1">
+            <ion-label>
+              <br>
+              a
+            </ion-label>
+          </ion-col>
+          <ion-col size="5">
+            <ion-item class="bordes_re_modal">
+              <ion-datetime class="ion-no-padding" displayFormat="YYYY-MM-DD" [min]="minGeneral" placeholder="Fecha final"></ion-datetime>
+              <ion-icon class="ion-no-padding" slot="end" color="success" name="calendar"></ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="5">
+            <ion-button shape="round" fill="solid" color="success">
+              <ion-label class="ion-text-capitalize" color="light">consultar</ion-label>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+    
+        <ion-list >
+    
+          <ion-card  mode="ios" no-border class="ion-no-padding" *ngFor="let trans of share">
+            <ion-card-content no-border class="ion-no-padding" >
+              <ion-item-sliding no-border class="ion-no-padding" >
+                <ion-item no-border>
+                  <ion-grid no-border>
+                    <ion-row size="12" no-border class="ion-no-padding">
+                      <ion-col size="1">
+                        <ion-icon src="../../../assets/svg/station.svg" color="success"></ion-icon>
+                        <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas" color="success"></ion-icon>
+                        <ion-icon name="logo-usd" color="success"></ion-icon>
+                        <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas" color="success"></ion-icon>
+                        <ion-icon name="person" color="success"></ion-icon>
+                        <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas" color="success"></ion-icon>
+                      </ion-col>
+                      <ion-col size="6">
+                        <ion-label color="medium" class="titulos_card">Estación</ion-label>
+                        <ion-label class="conte_text" color="success" [innerHTML]="trans.station"></ion-label>
+    
+                        <ion-label color="medium" class="titulos_card">Can. Enviada</ion-label>
+                        <ion-label class="conte_text" [innerHTML]="trans.balance +' Gasopesos'"></ion-label>
+    
+                        <ion-label color="medium" class="titulos_card">Receptor</ion-label>
+                        <ion-label class="conte_text" [innerHTML]="trans.name"></ion-label>
+    
+                        <ion-label color="medium" class="titulos_card">Membresía</ion-label>
+                        <ion-label class="conte_text" [innerHTML]="trans.membership" ></ion-label>
+    
+                      </ion-col>
+                      <ion-col size="1">
+                        <ion-icon name="calendar" color="success"></ion-icon>
+                        <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas" color="success"></ion-icon>
+                      </ion-col>
+                      <ion-col size="4">
+                        <ion-label color="medium" class="titulos_card">Fecha</ion-label>
+                        <ion-label class="conte_text" [innerHTML]="trans.date"></ion-label>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-item>
+    
+              </ion-item-sliding>
+            </ion-card-content>
+          </ion-card>
+          </ion-list>
+      </ion-grid>
+    </ion-slide>
+
+    <ion-slide no-border >
+      <form #fSendAb="ngForm"  no-border class="ion-no-padding">
+        <ion-grid class="animate__animated animate__fadeIn ion-padding-top">
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="5">
+              <ion-item class="bordes_re_modal" lines="none">
+                <ion-datetime class="ion-no-padding" displayFormat="YYYY-MM-DD" [min]="minGeneral" [max]="minAbonos" placeholder="Fecha inicio"></ion-datetime>
+                <ion-icon class="ion-no-padding" slot="end" color="success" name="calendar"></ion-icon>
+              </ion-item>
+            </ion-col>
+            <ion-col size="1">
+              <ion-label>
+                <br>
+                a
+              </ion-label>
+            </ion-col>
+            <ion-col size="5">
+              <ion-item class="bordes_re_modal">
+                <ion-datetime class="ion-no-padding" displayFormat="YYYY-MM-DD" placeholder="Fecha final"></ion-datetime>
+                <ion-icon class="ion-no-padding" slot="end" color="success" name="calendar"></ion-icon>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+  
+          <ion-row>
+            <ion-col size="5">
+              <ion-button shape="round" fill="solid" color="success">
+                <ion-label class="ion-text-capitalize" color="light">consultar</ion-label>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+      
+          <ion-list>
+      
+            <ion-card  mode="ios" no-border class="ion-no-padding" *ngFor="let abono of balance">
+              <ion-card-content no-border class="ion-no-padding" >
+                <ion-item-sliding no-border class="ion-no-padding" >
+                  <ion-item no-border>
+                    <ion-grid no-border>
+                      <ion-row size="12" no-border class="ion-no-padding">
+                        <ion-col size="1">
+                          <ion-icon name="cash" color="success"></ion-icon>
+                          <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas" color="success"></ion-icon>
+                        </ion-col>
+                        <ion-col size="11">
+                          <ion-label color="medium" class="titulos_card">Can. Abonada</ion-label>
+                          <ion-label class="conte_text" [innerHTML]="abono.balance"></ion-label>
+                          <ion-label color="medium" class="titulos_card">Descargar Comprobante</ion-label>
+                          <ion-label class="conte_text" ></ion-label>
+                          <ion-label color="medium" class="titulos_card">Fecha de solicitud</ion-label>
+                          <ion-label class="conte_text" [innerHTML]="abono.date"></ion-label>
+                          <ion-label color="medium" class="titulos_card">Fecha de abono</ion-label>
+                          <ion-label class="conte_text" [innerHTML]="abono.date"></ion-label>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-item>
+      
+                </ion-item-sliding>
+              </ion-card-content>
+            </ion-card>
+            </ion-list>
+        </ion-grid>
+      </form>
+    </ion-slide>
+  </ion-slides>
+
+</ion-content>

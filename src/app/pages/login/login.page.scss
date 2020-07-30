@@ -1,0 +1,276 @@
+
+.mainSlide, .mainSlide ion-slide {
+    width: 100%;
+    height: 100%;
+}
+
+.titulo{
+  font-size: 40px;
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 5%;
+}
+
+img {
+    width: 120px;
+}
+
+.pick-avatar {
+    width: 80px;
+    opacity: 0.3;
+}
+
+.pick-avatar-seleccionado {
+    transition: opacity 0.5s linear;
+    opacity: 1 !important;
+}
+
+.tamano_text{
+    font-size: 20px;
+}
+
+
+  
+  .box {
+    width: 100%;
+    height: 100%;
+    // border-radius: 5px;
+    box-shadow: 0 2px 30px rgba(black, .2);
+    background: #00833e;
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+  }
+  
+  .wave {
+    opacity: .4;
+    position: fixed;
+    background: #75b952;
+    width: 1500px;
+    height: 1300px;
+    margin-left: -150px;
+    margin-top: -250px;
+    transform-origin: 50% 48%;
+    border-radius: 43%;
+    //transform: rotate(90deg);
+    animation: drift 10000ms infinite linear;
+  }
+
+  
+  
+  .wave.-three {
+    animation: drift 9800ms infinite linear;
+  }
+  
+  .wave.-two {
+    animation: drift 9600ms infinite linear;
+    opacity: .1;
+    background: yellow;
+  }
+  
+  .box:after {
+    content: '';
+    display: block;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(#e8a, 1), rgba(#def, 0) 80%, rgba(white, .5));
+    z-index: 11;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .sin_fondo{
+    background-color:rgba(0,0,0,0);
+    --opacity: 0.9;
+  }
+  
+  .title {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    line-height: 300px;
+    text-align: center;
+    transform: translate3d(0, 0, 0);
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: .4em;
+    font-size: 24px;
+    text-shadow: 0 1px 0 rgba(black, .1);
+    text-indent: .3em;
+  }
+  @keyframes drift {
+    from { transform: rotate(0deg); }
+    from { transform: rotate(360deg); }
+  }
+
+
+
+  span, ion-input {
+	
+	border:1px solid rgba(255,255,255,.808);
+	//font-size:20px;
+	padding:.25em .5em .3125em;
+	color:rgba(255, 255, 255, 0.808);
+	border-radius:1.10em;
+	background:transparent;
+	transition:all .100s;
+	
+	&:focus{
+		outline:none;
+		color:rgba(255,255,255,.75);
+    border-color:rgba(255,255,255,.75);
+    border-radius:1.10em;
+	}
+	
+	&.keyup {
+		color:white;
+		border-color:white;
+		text-shadow:0 0 .125em white;
+    box-shadow:0 0 .25em white,inset 0 0 .25em white;
+    border-radius:1.10em;
+  }
+}
+
+.sc-ion-input-md-h{
+  --background-color: transparent;
+  --outline:none;
+  --color:rgba(255,255,255,.75);
+  --border-color:rgba(255,255,255,.75);
+  --border-radius:1.10em !important;
+}
+
+
+canvas {
+	position:absolute;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	pointer-events:none;
+}
+
+ion-input {
+	font-family: "Arial Rounded MT Bold","Helvetica Rounded",Arial,sans-serif;
+}
+
+$placeholder-color:rgba(255,255,255,.5);
+
+::-webkit-input-placeholder {
+	color:$placeholder-color;
+	text-shadow:0 0 .125em transparent;
+	transition:all .25s;
+}
+ion-input:focus::-webkit-input-placeholder {
+	opacity:.5;
+}
+
+::-moz-placeholder {
+	color:$placeholder-color;
+	text-shadow:0 0 .125em transparent;
+	transition:all .25s;
+}
+input:focus::-moz-placeholder {
+	opacity:.5;
+}
+
+:-ms-input-placeholder {
+	color:$placeholder-color;
+	text-shadow:0 0 .125em transparent;
+	transition:all .25s;
+}
+ion-input:focus:-ms-input-placeholder {
+	opacity:.5;
+}
+
+.margin_top{
+  margin-top: 5%;
+}
+
+.shadow-red{
+  // box-shadow: 0px 14px 25px rgba(182, 30, 30, 0.59);
+  border-radius: 25px;
+}
+
+.seg_pos{
+  position: fixed;
+  z-index: 1000;
+  margin-top: 8%;
+  width: 50%;
+  margin-left: 38%;
+}
+
+.color_seg{
+  color: white;
+}
+
+.color_cha{
+  --color-checked: #FFEB3B !important;
+}
+
+@media screen and (max-height: 699px) and (min-height: 568px) {
+
+  .wave {
+    top: -90%;
+    left: -270%;
+  }
+
+  .titulo{
+    font-size: 30px;
+  }
+
+}
+
+@media screen and (max-height: 900px) and (min-height: 700px) {
+  .wave {
+    top: -40%;
+    left: -200%;
+  }
+}
+
+/*@media screen and (max-height: 823px) {
+  .wave {
+    top: -35%;
+    left: -195%;
+  }
+
+  .titulo{
+    font-size: 30px;
+  }
+  
+}
+
+@media screen and (max-height: 736px) {
+  .wave {
+    top: -55%;
+    left: -245%;
+  }
+
+  .titulo{
+    font-size: 30px;
+  }
+  
+}
+@media screen and (max-height: 667px) {
+  .wave {
+    top: -60%;
+    left: -245%;
+  }
+
+  .titulo{
+    font-size: 30px;
+  }
+}
+@media screen and (max-height: 568px) {
+  .wave {
+    top: -90%;
+    left: -270%;
+  }
+
+  .titulo{
+    font-size: 30px;
+  }
+}*/

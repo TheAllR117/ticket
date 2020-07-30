@@ -1,0 +1,111 @@
+<ion-toolbar mode="md" color="success" class="altura_tolbar_modal aligh_text_modal">
+
+  <div class="body_modal">
+    <div class="arrow arrow--top">
+      <svg xmlns="http://www.w3.org/2000/svg" width="270.11" height="649.9" overflow="visible">
+        <style>.geo-arrow { fill: none;stroke: #fff;stroke-width: 2;stroke-miterlimit: 10 }</style>
+        <g class="item-to bounce-1">
+          <path class="geo-arrow draw-in" d="M135.06 142.564L267.995 275.5 135.06 408.434 2.125 275.499z" />
+        </g>
+        <circle class="geo-arrow item-to bounce-2" cx="194.65" cy="69.54" r="7.96" />
+        <circle class="geo-arrow draw-in" cx="194.65" cy="39.5" r="7.96" />
+        <circle class="geo-arrow item-to bounce-3" cx="194.65" cy="9.46" r="7.96" />
+        <g class="geo-arrow item-to bounce-2">
+          <path class="st0 draw-in" d="M181.21 619.5l13.27 27 13.27-27zM194.48 644.5v-552" />
+        </g>
+      </svg>
+    </div>
+    <div class="arrow arrow--bottom">
+      <svg xmlns="http://www.w3.org/2000/svg" width="31.35" height="649.9" overflow="visible">
+        <style> .geo-arrow { fill: none; stroke: #fff; stroke-width: 2; stroke-miterlimit: 10 }</style>
+        <g class="item-to bounce-1">
+          <circle class="geo-arrow item-to bounce-3" cx="15.5" cy="580.36" r="7.96" />
+          <circle class="geo-arrow draw-in" cx="15.5" cy="610.4" r="7.96" />
+          <circle class="geo-arrow item-to bounce-2" cx="15.5" cy="640.44" r="7.96" />
+          <g class="item-to bounce-2">
+            <path class="geo-arrow draw-in" d="M28.94 30.4l-13.26-27-13.27 27zM15.68 5.4v552" />
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div class="main">
+      <div class="main__text-wrapper">  
+        <svg xmlns="http://www.w3.org/2000/svg" class="dotted-circle" width="352" height="352" overflow="visible">
+          <circle cx="176" cy="176" r="174" fill="none" stroke="#fff" stroke-width="2" stroke-miterlimit="10" stroke-dasharray="12.921,11.9271"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  
+  <ion-buttons mode="md" slot="start" class="margin_negativo_modal">
+    <ion-button class="margin_top_modal" (click)="regresar('main/tabs/tab1')">
+      <ion-icon slot="icon-only"  mode="ios" name="arrow-back" color="light"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+  <ion-buttons mode="md" slot="end" class="margin_negativo_modal">
+    <ion-menu-button auto-hide="false" color="light"></ion-menu-button>
+  </ion-buttons>
+
+  <ion-title class="margin_top_modal margin_bottom_modal main__title animate__animated animate__fadeIn" color="light">
+    <h1 class="h1_modal text_bold_modal" [innerHTML]="total +'<br>GASOPESOS'"></h1>
+  </ion-title>
+
+</ion-toolbar>
+
+<ion-content no-border>
+
+  <ion-row class="ion-padding-top animate__animated animate__fadeIn" *ngIf="animacion">
+    <ion-col class="ion-text-center ion-padding-top" size="10" offset="1">
+      <ion-label class="texto_bold">No cuentas con Gasopesos en tu cuenta.</ion-label>
+    </ion-col>
+  </ion-row>
+
+  <lottie-animation-view *ngIf="animacion" [options]="lottieConfig" class="ion-padding-top margin_top_2_modal animate__animated animate__fadeIn" (animCreated)="handleAnimation($event)">
+  </lottie-animation-view>
+
+  <ion-list >
+    <ion-card mode="ios" no-border class="ion-no-padding animate__animated animate__fadeIn" *ngFor="let payment of payments">
+      <ion-card-content no-border class="ion-no-padding">
+        <ion-item-sliding no-border class="ion-no-padding">
+          <ion-item no-border lines="none">
+            <ion-grid no-border>
+              <ion-row size="12" no-border class="ion-no-padding">
+                <ion-col size="1" class="ion-justify-content-center ion-text-center">
+                  <ion-icon src="../../../assets/svg/station.svg" color="success" class="opacity_text"></ion-icon>
+                  <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas opacity_text" color="success"></ion-icon>
+                  <ion-icon name="cash" color="success" class="opacity_text"></ion-icon>
+                  <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas opacity_text" color="success"></ion-icon>
+                </ion-col>
+                <ion-col size="11">
+                  <ion-label color="success" class="titulos_card opacity_text">Estación</ion-label>
+                  <ion-label color="success" class="texto_bold linea_de_lineas" [innerHTML]="payment.station.name"></ion-label>
+                  <ion-label color="success" class="titulos_card opacity_text">Cant. Actual</ion-label>
+                  <ion-label class="texto_bold linea_de_lineas" [innerHTML]="payment.balance + ' Gasopesos'"></ion-label>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="6">
+                  <ion-button shape="round" expand="block" color="success" size="default" (click)="mostarAbonar(payment.id)">
+                    <ion-label color="light" class="ion-text-capitalize">
+                      Usar
+                    </ion-label>
+                  </ion-button>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-button shape="round" expand="block" color="success" size="default" routerLink="/compartir-saldo">
+                    <ion-label color="light" class="ion-text-capitalize">
+                      Enviar
+                    </ion-label>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+  
+        </ion-item-sliding>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  
+</ion-content>
