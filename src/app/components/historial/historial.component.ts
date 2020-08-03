@@ -22,13 +22,13 @@ export class HistorialComponent implements OnInit {
   constructor(private modalCtrl: ModalController, private navCtrl: NavController, private usuarioService: UsuarioService) { }
 
   ngOnInit() {
-    this.usuarioService.historialAbonos('balance').subscribe( resp => {
+    this.usuarioService.historialAbonos('balance', '', '').subscribe( resp => {
       if (resp.ok) {
         this.balance = resp.balances;
       }
     });
 
-    this.usuarioService.historialAbonos('share').subscribe( resp => {
+    this.usuarioService.historialAbonos('share', '', '').subscribe( resp => {
       if (resp.ok) {
         this.share = resp.balances;
       }

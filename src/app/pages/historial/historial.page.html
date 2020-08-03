@@ -148,31 +148,50 @@
     </ion-slide>
     <ion-slide>
       <ion-grid class="animate__animated animate__fadeIn ion-padding-top">
-        <ion-row  class="ion-justify-content-center">
-          <ion-col size="5">
-            <ion-item class="bordes_re_modal" lines="none">
-              <ion-datetime class="ion-no-padding" displayFormat="YYYY-MM-DD" placeholder="Fecha inicio"></ion-datetime>
-              <ion-icon class="ion-no-padding" slot="end" color="success" name="calendar"></ion-icon>
-            </ion-item>
-          </ion-col>
-          <ion-col size="1">
-            <ion-label>
-              <br>
-              a
-            </ion-label>
-          </ion-col>
-          <ion-col size="5">
-            <ion-item class="bordes_re_modal">
-              <ion-datetime class="ion-no-padding" displayFormat="YYYY-MM-DD" [min]="minGeneral" placeholder="Fecha final"></ion-datetime>
-              <ion-icon class="ion-no-padding" slot="end" color="success" name="calendar"></ion-icon>
-            </ion-item>
+        <form #fSendAb="ngForm"  no-border class="ion-no-padding" *ngIf="ocultarFechaTrans">
+          <ion-row class="ion-justify-content-center" >
+            <ion-col size="5">
+              <ion-item class="bordes_re_modal" lines="none">
+                <ion-datetime class="ion-no-padding" [(ngModel)]="calAbonos.fechaIni" name="fechaIni" displayFormat="YYYY-MM-DD" [min]="minGeneral" [max]="fechaActu" placeholder="Fecha inicio" (ionChange)="vaciarFecha()"></ion-datetime>
+                <ion-icon class="ion-no-padding" slot="end" color="success" name="calendar"></ion-icon>
+              </ion-item>
+            </ion-col>
+            <ion-col size="1">
+              <ion-label>
+                <br>
+                a
+              </ion-label>
+            </ion-col>
+            <ion-col size="5">
+              <ion-item class="bordes_re_modal">
+                <ion-datetime class="ion-no-padding" [(ngModel)]="calAbonos.fechafin" name="fechafin" displayFormat="YYYY-MM-DD" [min]="calAbonos.fechaIni" [max]="fechaActu" [disabled]="calAbonos.fechaIni === '' "  placeholder="Fecha final"></ion-datetime>
+                <ion-icon class="ion-no-padding" slot="end" color="success" name="calendar"></ion-icon>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+  
+          <ion-row>
+            <ion-col size="5">
+              <ion-button shape="round" fill="solid" color="success" [disabled]="calAbonos.fechaIni === '' || calAbonos.fechafin === ''" (click)="buscarAbono()">
+                <ion-label class="ion-text-capitalize" color="light">consultar</ion-label>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+
+        <ion-row *ngIf="spiner" size="12" class="ion-justify-content-center">
+          <ion-col size="12">
+            <ion-spinner color="success"></ion-spinner>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col size="5">
-            <ion-button shape="round" fill="solid" color="success">
-              <ion-label class="ion-text-capitalize" color="light">consultar</ion-label>
-            </ion-button>
+
+        <ion-row *ngIf="animacionTrans" size="12" class="ion-justify-content-center">
+          <ion-col size="12">
+            <lottie-animation-view [options]="lottieConfigTra"  (animCreated)="handleAnimation($event)">
+            </lottie-animation-view>
+          </ion-col>
+          <ion-col>
+            <ion-label class="conte_text texto_bold">Por el momento <br>no hay transferencias realizadas.</ion-label>
           </ion-col>
         </ion-row>
     
@@ -226,12 +245,13 @@
     </ion-slide>
 
     <ion-slide no-border >
-      <form #fSendAb="ngForm"  no-border class="ion-no-padding">
-        <ion-grid class="animate__animated animate__fadeIn ion-padding-top">
-          <ion-row class="ion-justify-content-center">
+      <ion-grid class="animate__animated animate__fadeIn ion-padding-top">
+
+        <form #fSendAb="ngForm"  no-border class="ion-no-padding" *ngIf="ocultarFecha">
+          <ion-row class="ion-justify-content-center" >
             <ion-col size="5">
               <ion-item class="bordes_re_modal" lines="none">
-                <ion-datetime class="ion-no-padding" displayFormat="YYYY-MM-DD" [min]="minGeneral" [max]="minAbonos" placeholder="Fecha inicio"></ion-datetime>
+                <ion-datetime class="ion-no-padding" [(ngModel)]="calAbonos.fechaIni" name="fechaIni" displayFormat="YYYY-MM-DD" [min]="minGeneral" [max]="fechaActu" placeholder="Fecha inicio" (ionChange)="vaciarFecha()"></ion-datetime>
                 <ion-icon class="ion-no-padding" slot="end" color="success" name="calendar"></ion-icon>
               </ion-item>
             </ion-col>
@@ -243,7 +263,7 @@
             </ion-col>
             <ion-col size="5">
               <ion-item class="bordes_re_modal">
-                <ion-datetime class="ion-no-padding" displayFormat="YYYY-MM-DD" placeholder="Fecha final"></ion-datetime>
+                <ion-datetime class="ion-no-padding" [(ngModel)]="calAbonos.fechafin" name="fechafin" displayFormat="YYYY-MM-DD" [min]="calAbonos.fechaIni" [max]="fechaActu" [disabled]="calAbonos.fechaIni === '' "  placeholder="Fecha final"></ion-datetime>
                 <ion-icon class="ion-no-padding" slot="end" color="success" name="calendar"></ion-icon>
               </ion-item>
             </ion-col>
@@ -251,44 +271,86 @@
   
           <ion-row>
             <ion-col size="5">
-              <ion-button shape="round" fill="solid" color="success">
+              <ion-button shape="round" fill="solid" color="success" [disabled]="calAbonos.fechaIni === '' || calAbonos.fechafin === ''" (click)="buscarAbono()">
                 <ion-label class="ion-text-capitalize" color="light">consultar</ion-label>
               </ion-button>
             </ion-col>
           </ion-row>
+        </form>
+
+        <ion-row *ngIf="spiner" size="12" class="ion-justify-content-center">
+          <ion-col size="12">
+            <ion-spinner color="success"></ion-spinner>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="animacionAbonos" size="12" class="ion-justify-content-center">
+          <ion-col size="12">
+            <lottie-animation-view [options]="lottieConfig"  (animCreated)="handleAnimation($event)">
+            </lottie-animation-view>
+          </ion-col>
+          <ion-col>
+            <ion-label class="conte_text texto_bold">No hay abonos realizados.</ion-label>
+          </ion-col>
+        </ion-row>
       
-          <ion-list>
-      
-            <ion-card  mode="ios" no-border class="ion-no-padding" *ngFor="let abono of balance">
-              <ion-card-content no-border class="ion-no-padding" >
-                <ion-item-sliding no-border class="ion-no-padding" >
-                  <ion-item no-border>
-                    <ion-grid no-border>
-                      <ion-row size="12" no-border class="ion-no-padding">
-                        <ion-col size="1">
-                          <ion-icon name="cash" color="success"></ion-icon>
-                          <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas" color="success"></ion-icon>
-                        </ion-col>
-                        <ion-col size="11">
-                          <ion-label color="medium" class="titulos_card">Can. Abonada</ion-label>
-                          <ion-label class="conte_text" [innerHTML]="abono.balance"></ion-label>
-                          <ion-label color="medium" class="titulos_card">Descargar Comprobante</ion-label>
-                          <ion-label class="conte_text" ></ion-label>
-                          <ion-label color="medium" class="titulos_card">Fecha de solicitud</ion-label>
-                          <ion-label class="conte_text" [innerHTML]="abono.date"></ion-label>
-                          <ion-label color="medium" class="titulos_card">Fecha de abono</ion-label>
-                          <ion-label class="conte_text" [innerHTML]="abono.date"></ion-label>
-                        </ion-col>
-                      </ion-row>
-                    </ion-grid>
-                  </ion-item>
-      
-                </ion-item-sliding>
-              </ion-card-content>
-            </ion-card>
-            </ion-list>
-        </ion-grid>
-      </form>
+        <ion-list *ngIf="cardAbonos">
+          <ion-card  mode="ios" class="ion-no-padding ion-margin-top" *ngFor="let abono of balance">
+            <ion-card-content no-border class="ion-no-padding" >     
+              <ion-item no-border lines="none">
+                <ion-grid no-border>
+
+                  <ion-row no-border class="ion-no-padding ion-no-margin">
+                    <ion-col size="1" class="ion-justify-content-center ion-text-center ion-no-padding ion-no-margin">
+                      <ion-icon name="cash" color="success" class="ion-no-padding opacity_text" no-border></ion-icon>
+                      <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas ion-no-padding opacity_text" color="success"></ion-icon>
+                    </ion-col>
+                    <ion-col size="11" class="ion-no-padding ion-no-margin">
+                      <ion-label color="medium" class="titulos_card">Can. Abonada</ion-label>
+                      <ion-label class="conte_text texto_bold" [innerHTML]="abono.balance"></ion-label>
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-row>
+                    <ion-col size="1" class="ion-justify-content-center ion-text-center ion-no-padding ion-no-margin">
+                      <ion-icon name="document" color="success" class="ion-no-padding opacity_text" no-border></ion-icon>
+                      <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas ion-no-padding opacity_text" color="success"></ion-icon>
+                    </ion-col>
+                    <ion-col size="11" class="ion-no-padding ion-no-margin">
+                      <ion-label color="medium" class="titulos_card">Descargar Comprobante</ion-label>
+                      <ion-label class="conte_text">File.jpg</ion-label>
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-row>
+                    <ion-col size="1" class="ion-justify-content-center ion-text-center ion-no-padding ion-no-margin">
+                      <ion-icon name="calendar" color="success" class="ion-no-padding opacity_text" no-border></ion-icon>
+                      <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas ion-no-padding opacity_text" color="success"></ion-icon>
+                    </ion-col>
+                    <ion-col size="11" class="ion-no-padding ion-no-margin">
+                      <ion-label color="medium" class="titulos_card">Fecha de solicitud</ion-label>
+                      <ion-label class="conte_text" [innerHTML]="abono.date"></ion-label>
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-row>
+                    <ion-col size="1" class="ion-justify-content-center ion-text-center ion-no-padding ion-no-margin">
+                      <ion-icon name="calendar" color="success" class="ion-no-padding opacity_text" no-border></ion-icon>
+                      <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas ion-no-padding opacity_text" color="success"></ion-icon>
+                    </ion-col>
+                    <ion-col size="11" class="ion-no-padding ion-no-margin">
+                      <ion-label color="medium" class="titulos_card">Fecha de abono</ion-label>
+                      <ion-label class="conte_text" [innerHTML]="abono.date"></ion-label>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-item>
+            </ion-card-content>
+          </ion-card>
+
+        </ion-list>
+        
+      </ion-grid>
     </ion-slide>
   </ion-slides>
 

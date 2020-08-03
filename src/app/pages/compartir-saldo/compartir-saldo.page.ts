@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController, NavController } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalController, NavController, IonList } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
 import { Contact, Contacts } from '../../interfaces/interfaces';
 import { LottieAnimationViewModule } from 'ng-lottie';
-import { AlertController } from '@ionic/angular';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { EnviarCantidaComponent } from '../../components/enviar-cantida/enviar-cantida.component';
 import { Tab1Page } from '../tab1/tab1.page';
@@ -15,6 +14,9 @@ import { PostsService } from '../../services/posts.service';
   styleUrls: ['./compartir-saldo.page.scss'],
 })
 export class CompartirSaldoPage implements OnInit {
+
+  @ViewChild('contactosListaAd', {static: false}) listaB: IonList;
+  @ViewChild('contactosLista', {static: false}) lista: IonList;
 
   contact: Contact;
   contacts: Contacts[] = [];
@@ -32,7 +34,6 @@ export class CompartirSaldoPage implements OnInit {
   constructor(
     private modalCtrl: ModalController,
     private usuarioService: UsuarioService,
-    private alertController: AlertController,
     private socialSharing: SocialSharing,
     private navCtrl: NavController,
     private postsService: PostsService
@@ -69,17 +70,6 @@ export class CompartirSaldoPage implements OnInit {
   compartirInvitacion() {
     this.socialSharing.share(
       'Puedes descargar la aplicación a través del siguiente enlace:', 'Eucomb', null, 'https://www.levelup.com/noticias');
-  }
-
-  async presentAlert(header: string, message: string) {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header,
-      message,
-      buttons: ['OK']
-    });
-
-    await alert.present();
   }
 
   regresar() {
@@ -120,7 +110,34 @@ export class CompartirSaldoPage implements OnInit {
           this.contacts = respuesta.contacts;
         });
       } else {
-        this.presentAlert('Error al agregar al usuario', resp.message);
+        this.postsService.mostrarPop('14331-error', 'Error al agregar al usuario', resp.message, 1950);
+      }
+      this.listaB.closeSlidingItems();
+    });
+  }
+
+  // tslint:disable-next-line: variable-name
+  detele_user(id_contact: string) {
+    this.usuarioService.eliminar_contacto(id_contact).subscribe( resp => {
+      if (resp.ok) {
+        this.mostrarContactos = false;
+        this.contacts = [];
+        this.usuarioService.lista_de_contactos().subscribe( respuesta => {
+          // this.contacts = respuesta.contacts;
+          if (respuesta.ok) {
+            // tslint:disable-next-line: no-string-literal
+            if (respuesta['message'] === 'No tienes contactos agregados') {
+              this.mostrarContactos = true;
+            } else {
+              this.mostrarContactos = false;
+            }
+            this.contacts = respuesta.contacts;
+          } else {
+            this.mostrarContactos = true;
+          }
+        });
+      } else {
+        this.postsService.mostrarPop('14331-error', 'Error al eliminar al usuario', resp.message, 1950);
       }
     });
   }

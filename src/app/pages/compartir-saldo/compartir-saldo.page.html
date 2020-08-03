@@ -64,7 +64,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-list *ngIf="mostraList === true" class="animate__animated animate__fadeIn">
+  <ion-list #contactosListaAd *ngIf="mostraList === true" class="animate__animated animate__fadeIn">
     <ion-list-header class="margin_top_2_modal">
       Resultados de la busqueda
     </ion-list-header>
@@ -146,7 +146,7 @@
     Usuarios guardados
   </ion-list-header>
   
-  <ion-list *ngFor="let contac of contacts">
+  <ion-list #contactosListaAd *ngFor="let contac of contacts">
     <ion-card mode="ios" no-border class="ion-no-padding">
       <ion-card-content no-border class="ion-no-padding">
         <ion-item-sliding no-border class="ion-no-padding">
@@ -176,13 +176,13 @@
           </ion-item>
   
           <ion-item-options side="start">
-            <ion-item-option color="danger">
+            <ion-item-option color="danger" (click)="detele_user(contac.id)">
               <ion-icon slot="icon-only" name="trash" color="light"></ion-icon>
             </ion-item-option>
           </ion-item-options>
   
           <ion-item-options side="end">
-            <ion-item-option color="danger">
+            <ion-item-option color="danger" (click)="detele_user(contac.id)">
               <ion-icon slot="icon-only" name="trash" color="light"></ion-icon>
             </ion-item-option>
           </ion-item-options>
