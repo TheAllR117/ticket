@@ -227,6 +227,29 @@ export class UsuarioService {
     return this.http.post<respuestaAdd>(`${URLP}/balance/contact/add`, data, options);
   }
 
+  // tslint:disable-next-line: variable-name
+  eliminar_contacto(id_contact: string) {
+    this.cargarToken();
+    const data = { };
+    const headers = new HttpHeaders({
+      // tslint:disable-next-line: object-literal-key-quotes
+      'Authorization': 'Bearer ' + this.token,
+    });
+
+    const params = new HttpParams({
+      fromObject: {
+        id_contact,
+      }
+    });
+
+    const options = {
+      headers,
+      params
+    };
+
+    return this.http.post<respuestaAdd>(`${URLP}/balance/contact/delete`, data, options);
+  }
+
   obtener_puntos_por_estacion() {
     this.cargarToken();
     const headers = new HttpHeaders({
@@ -261,7 +284,7 @@ export class UsuarioService {
     return this.http.post<RepuestaEnvio>(`${URLP}/balance/contact/sendbalance`, data, options);
   }
 
-  historialAbonos(type: string) {
+  historialAbonos(type: string, start: string, end: string) {
     this.cargarToken();
     const data = { };
     const headers = new HttpHeaders({
@@ -271,7 +294,9 @@ export class UsuarioService {
 
     const params = new HttpParams({
       fromObject: {
-        type
+        type,
+        start,
+        end
       }
     });
 

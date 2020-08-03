@@ -25,20 +25,13 @@
 }
 
 .linea_de_lineas{
-    font-size: 20px;
-    text-align: left;
-    margin-left: -20%;
+    font-size: 15px;
 }
 
 
 ion-slides {
     height: auto;
   }
-
-ion-card{
-    margin-top: 7px !important;
-    margin-bottom: 7px !important;
-}
 
 .chip_po{
     position: absolute;
@@ -56,4 +49,8 @@ ion-card{
     background-color: var( --ion-color-light ) !important;
     border-radius: 50%;
     color: #000000 !important;
+}
+
+.texto_bold{
+    font-weight: bold;
 }
