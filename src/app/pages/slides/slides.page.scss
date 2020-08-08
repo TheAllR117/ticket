@@ -1,24 +1,10 @@
 
-main{
-  background-color: #30790A !important;
-}
-
-body {
-  margin:0;
-  background-color: #30790A !important;
-}
-
-
 .header {
   position:relative;
   text-align:center;
   background:  #30790A;
 }
 .logo {
-  //width:100%;
-  //height: 100%;
-  //fill:white;
-  // padding-right:15px;
   display:inline-block;
   vertical-align: middle;
 }
@@ -43,9 +29,6 @@ body {
 
 }
 
-.acomodar{
-  margin-top: -50%;
-}
 .waves {
   position:relative;
   z-index: 1;
@@ -56,9 +39,12 @@ body {
   
 }
 
-.boton_flotante {
-  margin-right: 3%;
-  margin-bottom: 3%;
+.tamanoFab{
+  width: 100%;
+}
+
+.tamanoFlechas{
+  font-size: 30px;
 }
 
 .color_titulos{
@@ -69,17 +55,15 @@ body {
   z-index: 1000;
 }
 
-.espacio_row{
-  margin-top: 11.5%;
-  z-index: 10000;
+ion-radio{
+  --color: white;
+  width: 15px;
+  height: 15px;
+  margin-top: 9px;
 }
 
 .content {
-  position:relative;
-  height:55%;
-  text-align:center;
-  // background-color: #30790A;
-  background: linear-gradient(0deg, #00833e, #75b952);
+  --background: linear-gradient(0deg, #00833e, #75b952, #75b952, #75b952);
 }
 
 :focus {
@@ -116,7 +100,7 @@ body {
   }
 }
 
-@media screen and (max-height: 666px) and (min-height: 568px) {
+/*@media screen and (max-height: 666px) and (min-height: 568px) {
   .color_titulos{
     font-size: 20px;
   }
@@ -133,6 +117,89 @@ body {
   .super_posicion{
     font-size:18px;
   }
+}*/
+
+
+@media screen and (min-device-width: 550dpi) {
+  .color_titulos{
+    font-size: 30px;
+  }
+  .super_posicion{
+    font-size:25px;
+    letter-spacing: 1px;
+  }
+
+  img{
+    margin-top: 0%;
+  }
+}
+@media only screen and (min-device-width: 414px) and (orientation: portrait) { 
+  .color_titulos{
+    font-size: 25px;
+  }
+  .super_posicion{
+    font-size:20px;
+    letter-spacing: 1px;
+  }
+
+  img{
+    margin-top: 0%;
+  }
 }
 
+@media only screen and (min-device-width: 411px) and (orientation: portrait) { 
+  .color_titulos{
+    font-size: 25px;
+  }
+  .super_posicion{
+    font-size:20px;
+    letter-spacing: 1px;
+  }
+
+  img{
+    margin-top: 0%;
+  }
+}
+
+
+@media screen and (max-width: 375px) {
+
+  .color_titulos{
+    font-size: 20px;
+  }
+  .super_posicion{
+    font-size:15px;
+    letter-spacing: 1px;
+  }
+
+  img{
+    margin-top: -10%;
+  }
+ 
+}
+@media screen and (max-width: 360px) {
+  .color_titulos{
+    font-size: 20px;
+  }
+  .super_posicion{
+    font-size:15px;
+    letter-spacing: 1px;
+  }
+
+  img{
+    margin-top: -15%;
+  }
+}
+@media screen and (max-width: 320px) {
+  .color_titulos{
+    font-size: 18px;
+  }
+  .super_posicion{
+    font-size:13px;
+    letter-spacing: 0px;
+  }
+  img{
+    margin-top: -15%;
+  }
+}
 

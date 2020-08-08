@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { IonSlides, NavController, MenuController } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
 import { UiServicesService } from '../../services/ui-services.service';
 import { LoadingController } from '@ionic/angular';
 import { PostsService } from '../../services/posts.service';
+import { User, UserRegis } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-login',
@@ -13,51 +14,29 @@ import { PostsService } from '../../services/posts.service';
 })
 export class LoginPage implements OnInit {
   @ViewChild('sliderPrincipal', {static: true}) slides: IonSlides;
-  avatars = [
-    {
-      img: 'av-1.png',
-      seleccionado: true
-    },
-    {
-      img: 'av-2.png',
-      seleccionado: false
-    },
-    {
-      img: 'av-3.png',
-      seleccionado: false
-    },
-    {
-      img: 'av-4.png',
-      seleccionado: false
-    },
-    {
-      img: 'av-5.png',
-      seleccionado: false
-    },
-    {
-      img: 'av-6.png',
-      seleccionado: false
-    },
-    {
-      img: 'av-7.png',
-      seleccionado: false
-    },
-    {
-      img: 'av-8.png',
-      seleccionado: false
-    },
-];
+  @ViewChild('sliderSecundario', {static: true}) slidesSe: IonSlides;
+  @ViewChild('passwordEyeRegister', {read: ElementRef, static: true}) passwordEye: ElementRef;
 
-avatarSlide = {
-  slidesPerView: 3.5
-};
+  datosP: any;
+  datosC: any;
+  datosV: any;
 
-loginUser = {
-  email: '',
-  password: ''
-};
+  datosPC: any;
+  datosCC: any;
+  datosVC: any;
 
-loading: any;
+  loginUser = {
+    email: '',
+    password: ''
+  };
+
+  registerUser: UserRegis = {
+
+  };
+
+  loading: any;
+
+  passwordTypeInput  =  'password';
 
   constructor(
     private usuarioService: UsuarioService,
@@ -67,7 +46,16 @@ loading: any;
     private postsService: PostsService) { }
 
   ngOnInit() {
+    this.datosP = true;
+    this.datosC = false;
+    this.datosV = false;
+
+    this.datosPC = false;
+    this.datosCC = false;
+    this.datosVC = false;
+
     this.slides.lockSwipes(true);
+    this.slidesSe.lockSwipes(true);
     this.menuCtrl.enable (false);
   }
 
@@ -92,13 +80,24 @@ loading: any;
 
   }
 
-  registro( fRegistro: NgForm ) {
-    console.log( fRegistro.valid);
-  }
+  async registro( fRegistro: NgForm ) {
+    this.postsService.presentLoading('Espere por favor...');
 
-  seleccionarAvatar(avatar) {
-    this.avatars.forEach(av => av.seleccionado = false);
-    avatar.seleccionado = true;
+    if (fRegistro.invalid) {
+      this.loading.dismiss(); return;
+    }
+
+    const validoR = await this.usuarioService.registro(this.registerUser);
+    if (validoR) {
+      // navegar al tab
+      this.postsService.loading.dismiss();
+      this.navCtrl.navigateRoot('/main/tabs/tab1', { animated: true });
+    } else {
+      // mostrar alerta de usuario y contraseña no correcto
+      this.postsService.loading.dismiss();
+      // this.uiService.alertaInformativa('Credenciales incorrectas');
+      this.postsService.mostrarPop('14331-error', 'Error al completar el registro', 'Verifica los datos', 1950);
+    }
   }
 
   mostrarRegistro() {
@@ -112,4 +111,65 @@ loading: any;
     this.slides.slideTo(1);
     this.slides.lockSwipes(true);
   }
+
+  mostrarDPersonales() {
+    this.datosP = true;
+    this.datosPC = false;
+
+    this.datosC = false;
+    this.datosCC = false;
+
+    this.slidesSe.lockSwipes(false);
+    this.slidesSe.slideTo(0);
+    this.slidesSe.lockSwipes(true);
+  }
+
+  mostrarDContacto() {
+    this.datosP = false;
+    this.datosPC = true;
+
+    this.datosC = true;
+    this.datosCC = false;
+
+    this.datosV = false;
+    this.datosVC = false;
+
+    this.slidesSe.lockSwipes(false);
+    this.slidesSe.slideTo(1);
+    this.slidesSe.lockSwipes(true);
+  }
+
+  mostrarDVehiculo() {
+    this.datosP = false;
+    this.datosPC = true;
+
+    this.datosC = false;
+    this.datosCC = true;
+
+    this.datosV = true;
+    this.datosVC = false;
+
+    this.slidesSe.lockSwipes(false);
+    this.slidesSe.slideTo(2);
+    this.slidesSe.lockSwipes(true);
+  }
+
+  // Esta función verifica si el tipo de campo es texto lo cambia a password y viceversa,
+  // además verificara el icono si es 'eye-off' lo cambiara a 'eye' y viceversa
+  togglePasswordMode() {
+    // cambiar tipo input
+    this.passwordTypeInput = this.passwordTypeInput === 'text' ? 'password' : 'text';
+    // obtener el input
+    const nativeEl = this.passwordEye.nativeElement.querySelector('input');
+    // (click)="togglePasswordMode()"
+    // obtener el indice de la posición del texto actual en el input
+    const inputSelection = nativeEl.selectionStart;
+    // ejecuto el focus al input
+    nativeEl.focus();
+    // espero un milisegundo y actualizo la posición del indice del texto
+    setTimeout(() => {
+        nativeEl.setSelectionRange(inputSelection, inputSelection);
+    }, 1);
+
+    }
 }

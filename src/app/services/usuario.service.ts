@@ -13,7 +13,7 @@ import {
   RepuestaEnvio } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
-import { RespuestaUser, respuestaHistorial, respuestaTransferenciasR, respuestaQrAbono } from '../interfaces/interfaces';
+import { RespuestaUser, respuestaHistorial, respuestaTransferenciasR, respuestaQrAbono, UserRegis } from '../interfaces/interfaces';
 
 const URL = environment.url;
 const URLP = environment.urlP;
@@ -71,6 +71,23 @@ export class UsuarioService {
           this.navCtrl.navigateRoot('/login', { animated: true });
           resolve(true);
         } else {
+          resolve(false);
+        }
+      });
+    });
+  }
+
+  registro(user: UserRegis) {
+    return new Promise(resolve => {
+      this.http.post(`${URLP}/register`, user).subscribe( async resp => {
+        // tslint:disable-next-line: no-string-literal
+        if ( resp[ 'ok' ]) {
+          // tslint:disable-next-line: no-string-literal
+          await this.guardarToken( resp['token'] );
+          resolve(true);
+        } else {
+          this.token = null;
+          this.storage.clear();
           resolve(false);
         }
       });

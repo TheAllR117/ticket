@@ -33,7 +33,19 @@ export interface Post {
   usuario?: Usuario;
   created?: string;
 }
-
+export interface UserRegis {
+  name?: string;
+  first_surname?: string;
+  second_surname?: any;
+  email?: string;
+  sex?: string;
+  phone?: any;
+  password?: string;
+  address?: string;
+  birthdate?: string;
+  number_plate?: string;
+  type_car?: string;
+}
 export interface Usuario {
   avatar?: string;
   _id?: string;
@@ -61,6 +73,11 @@ export interface User {
   email?: string;
   sex?: string;
   phone?: any;
+  password?: string;
+  address?: string;
+  birthdate?: string;
+  number_plate?: string;
+  type_car?: string;
   client?: Client;
 }
 
