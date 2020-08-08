@@ -55,6 +55,9 @@ ion-popover {
 .tab-selected{
   color: var( --ion-color-success ) !important;
 }
+ion-picker {
+  touch-action: none;
+}
 /* estilos modal*/
 
   

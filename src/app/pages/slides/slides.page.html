@@ -1,59 +1,104 @@
-<ion-content>
-  <div class="header">
-    <div class="inner-header flex">
-      <ion-slides (ionSlideDidChange)="this.slideDidChange();">
-        <ion-slide >
-          <img class="logo" src="../../../assets/img/uno.png">
-        </ion-slide>
-        <ion-slide>
-          <img class="logo" src="../../../assets/img/dos.png">
-        </ion-slide>
-        <ion-slide>
-          <img class="logo" src="../../../assets/img/tres.png">
-        </ion-slide>
-      </ion-slides>
-    </div>
-    <div>
-      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-        <defs>
-          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-        </defs>
-        <g class="parallax">
-          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(117, 185, 82,0.7)" />
-          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(117, 185, 82,0.5)" />
-          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(117, 185, 82,0.3)" />
-          <use xlink:href="#gentle-wave" x="48" y="7" fill="#75b952" />
-        </g>
-      </svg>
-    </div>
-  </div>
-  <div class="content flex">
-    <ion-grid fixed class="acomodar">
-      <ion-row class="espacio_row">
-        <ion-col size="2"></ion-col>
-        <ion-col size="8">
-          <ion-text class="color_titulos animate__animated animate__fadeIn">
-            <ion-label>{{ titulo }}</ion-label>
-          </ion-text>
-        </ion-col>
-        <ion-col size="2"></ion-col>
-      </ion-row>
+<ion-content class="content">
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col size="12" class="ion-no-padding">
+        <ion-slides (ionSlideDidChange)="slideDidChange()">
+          <ion-slide >
+            <img class="logo" src="../../../assets/img/uno.png">
+          </ion-slide>
+          <ion-slide>
+            <img class="logo" src="../../../assets/img/dos.png">
+          </ion-slide>
+          <ion-slide>
+            <img class="logo" src="../../../assets/img/tres.png">
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="ion-no-padding">
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(117, 185, 82,0.7)" />
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(117, 185, 82,0.5)" />
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(117, 185, 82,0.3)" />
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="#75b952" />
+      </g>
+    </svg>
+  </ion-grid>
+  <ion-grid fixed class="ion-text-center ion-padding-bottom">
+    <ion-row class="ion-padding-top ion-padding-bottom">
+      <ion-col size="12" >
+        <ion-slides #sliderSecundario (ionSlideDidChange)="slideDidChange1()">
+          <ion-slide >
+            <ion-row class="ion-text-center">
+              <ion-col size="10" offset="1" class="ion-padding-top ion-padding-bottom">      
+                <ion-label class="color_titulos">
+                  REALIZA ABONOS A TU CUENTA
+                </ion-label>
+              </ion-col>
+              <ion-col size="10" offset="1">
+                <ion-label class="super_posicion">
+                  Asiste a la estación de tu preferencia, realiza tu abono y sube tu comprobante para acumular saldo a tu cuenta.
+                </ion-label>
+              </ion-col>
+            </ion-row>
+          </ion-slide>
+          <ion-slide>
+            <ion-row>
+              <ion-col size="10" offset="1" class="ion-padding-top ion-padding-bottom">
+                <ion-label class="color_titulos">
+                  ENVIA Y RECIBE SALDO
+                </ion-label>
+              </ion-col>
+              <ion-col size="10" offset="1" >
+                <ion-label class="super_posicion">
+                  Selecciona "Enviar saldo" después ingresa el número de membresía de tu amigo, después escribe la cantidad que deseas enviar y presiona “Enviar”.
+                </ion-label>
+              </ion-col>
+            </ion-row>
+          </ion-slide>
+          <ion-slide>
+            <ion-row>
+              <ion-col size="10" offset="1" class="ion-padding-top ion-padding-bottom">
+                  <ion-label class="color_titulos">
+                    PAGA CON TU APP
+                  </ion-label>
+              </ion-col>
+              <ion-col size="10" offset="1" >
+                <ion-label class="super_posicion">
+                  Asiste a la estación, realiza tu carga y paga con tus puntos, además por cada compra recibes beneficios.
+                </ion-label>
+              </ion-col>
+            </ion-row>
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <ion-fab vertical="bottom" slot="fixed" mode="ios" class="ion-no-margin ion-padding-bottom tamanoFab ion-justify-content-center ion-text-center">
+    <ion-grid fixed class="ion-text-center ">
       <ion-row>
-        <ion-col size="1"></ion-col>
-        <ion-col size="10">
-          <ion-text class="super_posicion animate__animated animate__fadeIn">
-            {{ texto }}
-          </ion-text>
+        <ion-col size="2">
+          <ion-icon name="arrow-back" mode="ios" color="light" class="tamanoFlechas" (click)="regresar()"></ion-icon>
         </ion-col>
-        <ion-col size="1"></ion-col>
+        <ion-col size="8">
+          <ion-radio-group [value]="radioIndex" color="light" mode="md">
+            <ion-radio mode="md" color="light" value="0" (click)="activo(0)"></ion-radio>
+            <ion-radio mode="md" class="ion-margin-start ion-margin-end" color="light" value="1" (click)="activo(1)"></ion-radio>
+            <ion-radio mode="md" color="light" value="2" (click)="activo(2)"></ion-radio>
+          </ion-radio-group>
+        </ion-col>
+        <ion-col size="2">
+          <ion-icon name="arrow-forward" mode="ios" color="light" class="tamanoFlechas" (click)="siguiente()"></ion-icon>
+        </ion-col>
       </ion-row>
     </ion-grid>
-  </div>
-    
-  <!-- fab placed to the (vertical) center and end -->
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" mode="ios" class="boton_flotante">
-    <ion-fab-button routerLink="/login" color="light" mode="ios">
-      <ion-icon name="arrow-forward" mode="ios"></ion-icon>
-    </ion-fab-button>
+    <ion-button class="ion-no-margin ion-text-capitalize" size="small" color="light" shape="round" fill="outline" routerLink="/login">Omitir</ion-button>
   </ion-fab>
 </ion-content>
+

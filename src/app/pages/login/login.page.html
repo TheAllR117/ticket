@@ -6,80 +6,206 @@
 
     <ion-segment mode="md" class="seg_pos" value="Ingresar">
       <ion-segment-button mode="md" value="Ingresar" class="color_cha" (click)="mostrarRegistro()">
-        <ion-label class="color_seg">Ingresar</ion-label>
+        <ion-label color="light">Ingresar</ion-label>
       </ion-segment-button>
       <ion-segment-button mode="md" value="Registrase" class="color_cha" (click)="mostrarLogin()">
-        <ion-label class="color_seg">Registrarse</ion-label>
+        <ion-label color="light">Registrarse</ion-label>
       </ion-segment-button>
     </ion-segment>
 
     <ion-slides class="mainSlide" #sliderPrincipal>
       <ion-slide>
-        <form (ngSubmit)="login( fLogin )" #fLogin="ngForm">
-          <ion-grid fixed>
-            <ion-row>
-              <ion-col size="12" class="titulo">
-                <ion-label color="light">¡Hola!<br>Bienvenido</ion-label>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <ion-input name="email" type="email" placeholder="Email" [(ngModel)]="loginUser.email" required></ion-input>
-              </ion-col>
-            </ion-row>
-            <ion-row class="margin_top">
-              <ion-col>
-                <ion-input name="password" type="password" placeholder="Contraseña"  [(ngModel)]="loginUser.password" required></ion-input>
-              </ion-col>
-            </ion-row>
-            <ion-row class="margin_top">
-              <ion-col>
-              </ion-col>
-              <ion-col>
-                <ion-button type="submit" shape="round" expand="full" color="danger">
-                  Entrar <ion-icon name="log-in"></ion-icon>
-                </ion-button>
-              </ion-col>
-            </ion-row>
+
+        
+          <ion-grid>
+            <form (ngSubmit)="login( fLogin )" #fLogin="ngForm">
+              <ion-row>
+                <ion-col size="8" offset="2" class="titulo">
+                  <ion-label color="light">¡Hola!<br>Bienvenido</ion-label>
+                </ion-col>
+              </ion-row>
+              <ion-row class="ion-padding-bottom">
+                <ion-col size="8" offset="2">
+                  <ion-input name="email" type="email" placeholder="Email" [(ngModel)]="loginUser.email" required></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row class="ion-padding-bottom">
+                <ion-col size="8" offset="2" class="col-static">
+                  <ion-input class="input-cover" name="password" #passwordEyeRegister  [type]="passwordTypeInput" placeholder="Contraseña"  [(ngModel)]="loginUser.password" required></ion-input>
+                  <ion-icon color="light" [name]="(passwordTypeInput === 'text')?'eye-off':'eye'" class="eye-icon" item-right (click)="togglePasswordMode()"></ion-icon>
+                </ion-col>
+              </ion-row>
+              <ion-row >
+                <ion-col size="5"></ion-col>
+                <ion-col size="5">
+                  <ion-button type="submit" shape="round" expand="full" color="danger">
+                    Entrar <ion-icon name="log-in"></ion-icon>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </form>
+            
           </ion-grid>
-        </form>
+
       </ion-slide>
       <ion-slide>
-        <form (ngSubmit)="registro(fRegistro)" #fRegistro="ngForm">
-          <ion-grid fixed>
+        <ion-grid fixed>
+          <form (ngSubmit)="registro(fRegistro)" #fRegistro="ngForm">
             <ion-row>
-              <ion-col size="12" class="titulo">
-                <ion-label color="light">¡Registrate!</ion-label>
+              <ion-col size="8" offset="2" class="titulo">
+                <ion-label color="light">¡Únete!</ion-label>
               </ion-col>
             </ion-row>
             <ion-row>
-              <ion-col>
-                <ion-input name="email" type="email" placeholder="email" required></ion-input>
+              <ion-col size="12">
+                <div class="progress-wrap">
+                  <div class="progress-inner">
+                    <ol class="progress-steps">
+                      <li [ngClass]="{'is-active': datosP === true, 'is-complete': datosPC === true}"  data-step="1">
+                        <span>Datos Personales</span>
+                      </li>
+                      <li [ngClass]="{'is-active': datosC === true, 'is-complete': datosCC === true}" data-step="2">
+                        <span>Datos de Contacto</span>
+                      </li>
+                      <li [ngClass]="{'is-active': datosV === true, 'is-complete': datosVC === true}" class="progress__last" data-step="3">
+                        <span>Vehiculo</span>
+                      </li>
+                    </ol>
+                  </div>
+                </div>
               </ion-col>
             </ion-row>
-            <ion-row class="margin_top">
-              <ion-col>
-                <ion-input name="name" type="text" placeholder="nombre" required></ion-input>
-              </ion-col>
-            </ion-row>
-            <ion-row class="margin_top">
-              <ion-col>
-                <ion-input name="password" type="password" placeholder="contraseña" required></ion-input>
-              </ion-col>
-            </ion-row>
-            <ion-row class="margin_top">
-              <ion-col>
-              </ion-col>
-              <ion-col>
-                <ion-button type="submit" shape="round" expand="full" color="danger">
-                  Registrarte
-                </ion-button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-          
-        </form>
+            <ion-row>
+              <ion-col size="10" offset="1" >
+                <ion-slides #sliderSecundario>
+  
+                  <ion-slide>
+                    <ion-grid fixed>
+                      <ion-row >
+                        <ion-col size="10" offset="1" >
+                          <ion-input name="name" type="text" [(ngModel)]="registerUser.name" placeholder="NOMBRE (S)" autocomplete="off" required></ion-input>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row >
+                        <ion-col size="10" offset="1" >
+                          <ion-input name="first_surname" type="text" [(ngModel)]="registerUser.first_surname" placeholder="APELLIDO PATERNO" autocomplete="off" required></ion-input>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row >
+                        <ion-col size="10" offset="1" >
+                          <ion-input name="second_surname" type="text" [(ngModel)]="registerUser.second_surname" placeholder="APELLIDO MATERNO" autocomplete="off" required></ion-input>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col size="10" offset="1" >
+                          <ion-input name="email" type="email" placeholder="email" [(ngModel)]="registerUser.email" required></ion-input>
+                        </ion-col>
+                      </ion-row>  
+                      <ion-row>
+                        <ion-col size="10" offset="1" >
+                          <ion-input name="password" type="password" placeholder="contraseña" [(ngModel)]="registerUser.password" required></ion-input>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row class="margin_top ion-justify-content-end">
+                        <ion-col class="ion-justify-content-end">
+                          <ion-button shape="round" color="danger" (click)="mostrarDContacto()">
+                            <ion-icon name="arrow-forward" mode="ios"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-slide>
 
+                  <ion-slide>
+                    <ion-grid fixed>
+                      <ion-row >
+                        <ion-col size="10" offset="1" >
+                          <ion-input name="phone" type="tel" [(ngModel)]="registerUser.phone" placeholder="TELÉFONO" autocomplete="off" required></ion-input>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row >
+                        <ion-col size="10" offset="1" >
+                          <ion-input name="address" type="text" [(ngModel)]="registerUser.address" placeholder="DIRECCIÓN" autocomplete="off" required></ion-input>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row >
+                        <ion-col size="10" offset="1" >
+                          <ion-item class="bordes_re_modal" lines="none">
+                            <ion-datetime class="ion-no-padding" color="medium" [(ngModel)]="registerUser.birthdate" name="birthdate" displayFormat="DD-MM-YYYY" placeholder="FECHA DE NACIMIENTO" autocomplete="off" required></ion-datetime>
+                          </ion-item>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col size="10" offset="1" >
+                          <ion-item class="bordes_re_modal">
+                            <ion-label color="success">
+                              SEXO
+                            </ion-label>
+                            <ion-select name="sex" [(ngModel)]="registerUser.sex"  interface="action-sheet">
+                              <ion-select-option>H</ion-select-option>
+                              <ion-select-option>M</ion-select-option>
+                            </ion-select>
+                          </ion-item>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row class="margin_top ion-justify-content-end">
+                        <ion-col class="ion-justify-content-end">
+                          <ion-button shape="round" color="danger" (click)="mostrarDPersonales()">
+                            <ion-icon name="arrow-back" mode="ios"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                        <ion-col class="ion-justify-content-end">
+                          <ion-button shape="round" color="danger" (click)="mostrarDVehiculo()">
+                            <ion-icon name="arrow-forward" mode="ios"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-slide>
+
+                  <ion-slide>
+                    <ion-grid fixed>
+                      <ion-row >
+                        <ion-col size="10" offset="1" >
+                          <ion-input name="number_plate" type="text" [(ngModel)]="registerUser.number_plate" placeholder="PLACAS" autocomplete="off" required></ion-input>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row >
+                        <ion-col size="10" offset="1" >
+                          <ion-item class="bordes_re_modal">
+                            <ion-label color="success">
+                              TIPO DE VEHÍCULO
+                            </ion-label>
+                            <ion-select name="type_car" [(ngModel)]="registerUser.type_car"  interface="action-sheet">
+                              <ion-select-option>Transporte</ion-select-option>
+                              <ion-select-option>Carga</ion-select-option>
+                              <ion-select-option>Personal</ion-select-option>
+                            </ion-select>
+                          </ion-item>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row class="margin_top ion-justify-content-end">
+                        <ion-col class="ion-justify-content-end">
+                          <ion-button shape="round" color="danger" (click)="mostrarDContacto()">
+                            <ion-icon name="arrow-back" mode="ios"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                        <ion-col class="ion-justify-content-end">
+                          <ion-button type="submit" shape="round" color="danger">
+                            Registrarse
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-slide>
+          
+                </ion-slides>
+                
+              </ion-col>
+            </ion-row>
+          </form>
+          
+        </ion-grid>
         
       </ion-slide>
     </ion-slides>

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonSlides, MenuController } from '@ionic/angular';
+import { IonSlides, MenuController, IonRadioGroup } from '@ionic/angular';
 
 @Component({
   selector: 'app-slides',
@@ -13,8 +13,12 @@ export class SlidesPage implements OnInit {
   texto = 'Asiste a la estación de tu preferencia, realiza tu abono y sube tu comprobante para acumular saldo a tu cuenta.';
   constructor(public menuCtrl: MenuController) { }
 
-  @ViewChild (IonSlides, { static: true }) protected slider: IonSlides;
-  protected sliderIndex = 0;
+  @ViewChild (IonSlides, { static: true }) slider: IonSlides;
+  @ViewChild('sliderSecundario', {static: true}) slidesSe: IonSlides;
+  @ViewChild (IonRadioGroup, { static: true }) radio: IonRadioGroup;
+  sliderIndex = 0;
+  sliderIndex1 = 0;
+  radioIndex = '0';
 
   ngOnInit() {
     this.menuCtrl.enable (false);
@@ -22,19 +26,39 @@ export class SlidesPage implements OnInit {
 
   protected async slideDidChange(): Promise<void> {
     this.sliderIndex = await this.slider.getActiveIndex();
-    console.log(this.sliderIndex );
-    if (this.sliderIndex === 0) {
-      this.titulo = 'REALIZA ABONOS A TU CUENTA';
-      // tslint:disable-next-line: max-line-length
-      this.texto = 'Asiste a la estación de tu preferencia, realiza tu abono y sube tu comprobante para acumular saldo a tu cuenta.';
-    } else if ( this.sliderIndex === 1) {
-      this.titulo = 'ENVIA Y RECIBE SALDO';
-      // tslint:disable-next-line: max-line-length
-      this.texto = 'Selecciona "Enviar saldo" después ingresa el número de membresía de tu amigo, después escribe la cantidad que deseas enviar y presiona “Enviar”.';
-    } else if ( this.sliderIndex === 2 ) {
-      this.titulo = 'PAGA CON TU APP';
-      this.texto = 'Asiste a la estación, realiza tu carga y paga con tus puntos, además por cada compra recibes beneficios.';
-    }
+    // console.log(this.radio.value);
+    this.radio.value = this.sliderIndex.toString();
+    this.slidesSe.slideTo(this.sliderIndex);
     return Promise.resolve();
+  }
+
+  protected async slideDidChange1(): Promise<void> {
+    this.sliderIndex1 = await this.slidesSe.getActiveIndex();
+    this.radio.value = this.sliderIndex1.toString();
+    this.slider.slideTo(this.sliderIndex1);
+    return Promise.resolve();
+  }
+
+  activo(slide: number) {
+    this.slider.slideTo(slide);
+    this.slidesSe.slideTo(slide);
+  }
+
+  async regresar() {
+    this.sliderIndex = await this.slider.getActiveIndex();
+    this.sliderIndex1 = await this.slidesSe.getActiveIndex();
+    if (this.sliderIndex > 0 && this.sliderIndex1 > 0) {
+      this.slider.slideTo(this.sliderIndex - 1);
+      this.slidesSe.slideTo(this.sliderIndex - 1);
+    }
+  }
+
+  async siguiente() {
+    this.sliderIndex = await this.slider.getActiveIndex();
+    this.sliderIndex1 = await this.slidesSe.getActiveIndex();
+    if (this.sliderIndex < 2) {
+      this.slider.slideTo(this.sliderIndex + 1);
+      this.slidesSe.slideTo(this.sliderIndex + 1);
+    }
   }
 }
