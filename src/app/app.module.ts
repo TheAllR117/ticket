@@ -26,7 +26,7 @@ import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { FormsModule } from '@angular/forms';
 
 import { QRCodeModule } from 'angularx-qrcode';
-
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -51,6 +51,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     InAppBrowser,
     SocialSharing,
     ToastController,
+    OneSignal,
     // tslint:disable-next-line: deprecation
     FileTransfer,
     Camera,

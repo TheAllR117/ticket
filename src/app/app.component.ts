@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { LottieSplashScreen } from '@ionic-native/lottie-splash-screen/ngx';
+import { PushService } from './services/push.service';
 
 
 @Component({
@@ -16,13 +17,15 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private lottieSplashScreen: LottieSplashScreen
+    private lottieSplashScreen: LottieSplashScreen,
+    private pushService: PushService
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
+      this.pushService.configuracionInicial();
       // this.statusBar.backgroundColorByHexString('#75b952');
       setTimeout(() => {
         this.lottieSplashScreen.hide();
