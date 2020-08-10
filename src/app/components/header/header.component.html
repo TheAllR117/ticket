@@ -3,6 +3,9 @@
     <ion-title class="ion-text-capitalize">
       {{titulo}}
     </ion-title>
+    <ion-buttons slot="end" class="ion-margin-end" (click)="navRouting('notificaciones')">
+      <ion-icon  color="danger" name="notifications"></ion-icon>
+    </ion-buttons>
     <ion-buttons slot="end">
       <ion-menu-button color="success" menu="primerMenu"></ion-menu-button>
     </ion-buttons>

@@ -44,6 +44,11 @@ const routes: Routes = [
     canLoad: [UsuarioGuard]
   },
   {
+    path: 'notificaciones',
+    loadChildren: () => import('./pages/notificaciones/notificaciones.module').then( m => m.NotificacionesPageModule),
+    canLoad: [UsuarioGuard]
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'main/tabs/tab1'
