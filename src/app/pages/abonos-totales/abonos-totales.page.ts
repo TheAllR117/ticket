@@ -47,6 +47,7 @@ export class AbonosTotalesPage implements OnInit {
             this.total = this.total + i.balance;
           }
           this.payments = respuesta.payments;
+
         } else {
           this.animacion = true;
         }
@@ -54,7 +55,6 @@ export class AbonosTotalesPage implements OnInit {
     }
 
     regresar(ruta: string) {
-      // this.navCtrl.navigateBack(ruta);
       this.navCtrl.back({ animated: true });
     }
 

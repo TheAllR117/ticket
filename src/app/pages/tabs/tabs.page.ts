@@ -21,7 +21,7 @@ export class TabsPage {
   constructor(private usuarioService: UsuarioService, private events: Events) {
     LottieAnimationViewModule.forRoot();
     this.lottieConfig = {
-      path: '../../../assets/animation/lf30_editor_7HuC2C.json',
+      path: '../../../assets/animation/lf30_editor_5gTE8E.json',
       autoplay: true,
       loopt: true
     };

@@ -43,7 +43,7 @@ export class PushService {
 
     this.oneSignal.handleNotificationOpened().subscribe((noti) => {
       // do something when a notification is opened
-      console.log('Notificación recibida', noti);
+      // console.log('Notificación recibida', noti);
     });
 
     // obtener id del suscriptor

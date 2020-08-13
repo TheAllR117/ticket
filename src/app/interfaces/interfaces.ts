@@ -33,6 +33,13 @@ export interface Post {
   usuario?: Usuario;
   created?: string;
 }
+
+// respuesta ok con token
+export interface RespuestaOkToken {
+  ok: boolean;
+  token: string;
+}
+
 export interface UserRegis {
   name?: string;
   first_surname?: string;
@@ -275,3 +282,4 @@ export interface StationQR {
   name?: string;
   number_station?: number;
 }
+
