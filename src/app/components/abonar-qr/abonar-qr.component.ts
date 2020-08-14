@@ -5,6 +5,7 @@ import { StationQR } from '../../interfaces/interfaces';
 import { PushService } from '../../services/push.service';
 import { OSNotificationPayload } from '@ionic-native/onesignal/ngx';
 import { ConfirmarPagoComponent } from '../confirmar-pago/confirmar-pago.component';
+import { async } from '@angular/core/testing';
 
 
 @Component({
@@ -31,17 +32,36 @@ export class AbonarQrComponent implements OnInit {
   ngOnInit() {
     this.usuarioService.informacionQrAbono(this.id_payment).subscribe( respuesta => {
       if (respuesta.ok) {
-        // tslint:disable-next-line: max-line-length
-        this.resp = 'membership=' + respuesta.membership + '&id_payment=' + respuesta.station.id + '&include_player_ids=' + this.pushServices.userId;
+
+        this.resp = JSON.stringify({
+          membership: respuesta.membership,
+          id_station: respuesta.station.id,
+          include_player_ids: this.pushServices.userId
+        });
+
       } else {
         this.modalCtrl.dismiss();
       }
     });
 
-    this.pushServices.pushListener.subscribe(noti => {
-      // console.log(noti.additionalData.prices);
-      // tslint:disable-next-line: no-string-literal
-      this.mostrarPop(noti.additionalData.prices, noti.additionalData.producto, noti.additionalData.cantidad, noti.additionalData.estacion);
+    this.pushServices.pushListener.subscribe(async noti => {
+
+      console.log(noti.additionalData);
+
+      await this.mostrarPop(
+        noti.additionalData.price,
+        noti.additionalData.id_gasoline,
+        noti.additionalData.liters,
+        noti.additionalData.id_station,
+        noti.additionalData.tr_membership,
+        this.pushServices.userId,
+        noti.additionalData.ids_dispatcher,
+        noti.additionalData.estacion,
+        noti.additionalData.gasoline,
+        noti.additionalData.id_schedule,
+        noti.additionalData.id_dispatcher,
+        noti.additionalData.id_time);
+
       this.applicationRef.tick();
     });
   }
@@ -50,7 +70,29 @@ export class AbonarQrComponent implements OnInit {
     this.modalCtrl.dismiss();
   }
 
-  async mostrarPop(prices: string, producto: string, cantidad: string, estacion: string) {
+
+  async mostrarPop(
+    price: string,
+    // tslint:disable-next-line: variable-name
+    id_gasoline: string,
+    liters: string,
+    // tslint:disable-next-line: variable-name
+    id_station: string,
+    // tslint:disable-next-line: variable-name
+    tr_membership: string,
+    // tslint:disable-next-line: variable-name
+    ids_client: string,
+    // tslint:disable-next-line: variable-name
+    ids_dispatcher: string,
+    estacion: string,
+    gasoline: string,
+    // tslint:disable-next-line: variable-name
+    id_schedule: string,
+    // tslint:disable-next-line: variable-name
+    id_dispatcher: string,
+    // tslint:disable-next-line: variable-name
+    id_time: string
+    ) {
     const popover = await this.popoverCtrl.create({
       component: ConfirmarPagoComponent,
       animated: true,
@@ -58,10 +100,18 @@ export class AbonarQrComponent implements OnInit {
       showBackdrop: true,
       backdropDismiss: false,
       componentProps: {
-        prices,
-        producto,
-        cantidad,
-        estacion
+        price,
+        id_gasoline,
+        liters,
+        id_station,
+        tr_membership,
+        ids_client,
+        ids_dispatcher,
+        estacion,
+        gasoline,
+        id_schedule,
+        id_dispatcher,
+        id_time
       }
     });
 

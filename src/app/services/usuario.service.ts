@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
 import {
+  RespuestaOkToken,
   User,
   Station,
   respuestaStation,
@@ -10,7 +11,7 @@ import {
   RespuetasList,
   respuestaAdd,
   RepuestaPuntos,
-  RepuestaEnvio } from '../interfaces/interfaces';
+  RepuestaEnvio} from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { RespuestaUser, respuestaHistorial, respuestaTransferenciasR, respuestaQrAbono, UserRegis } from '../interfaces/interfaces';
@@ -39,11 +40,9 @@ export class UsuarioService {
   login( email: string, password: string) {
     const data = { email, password };
     return new Promise( resolve => {
-      this.http.post(`${URLP}/login`, data).subscribe( async resp => {
-        // tslint:disable-next-line: no-string-literal
-        if ( resp[ 'ok' ]) {
-          // tslint:disable-next-line: no-string-literal
-          await this.guardarToken( resp['token'] );
+      this.http.post<RespuestaOkToken>(`${URLP}/login`, data).subscribe( async resp => {
+        if ( resp.ok) {
+          await this.guardarToken( resp.token );
           resolve(true);
         } else {
           this.token = null;
@@ -79,11 +78,9 @@ export class UsuarioService {
 
   registro(user: UserRegis) {
     return new Promise(resolve => {
-      this.http.post(`${URLP}/register`, user).subscribe( async resp => {
-        // tslint:disable-next-line: no-string-literal
-        if ( resp[ 'ok' ]) {
-          // tslint:disable-next-line: no-string-literal
-          await this.guardarToken( resp['token'] );
+      this.http.post<RespuestaOkToken>(`${URLP}/register`, user).subscribe( async resp => {
+        if ( resp.ok) {
+          await this.guardarToken( resp.token );
           resolve(true);
         } else {
           this.token = null;
@@ -337,7 +334,7 @@ export class UsuarioService {
   // tslint:disable-next-line: variable-name
   informacionQrAbono(id_payment: string) {
     this.cargarToken();
-    const data = { };
+
     const headers = new HttpHeaders({
       // tslint:disable-next-line: object-literal-key-quotes
       'Authorization': 'Bearer ' + this.token,
@@ -357,5 +354,60 @@ export class UsuarioService {
     return this.http.get<respuestaQrAbono>(`${URLP}/balance/use`, options);
 
   }
+
+
+  confirmarCancelarPago(
+    // tslint:disable-next-line: variable-name
+    ids_dispatcher: string,
+    // tslint:disable-next-line: variable-name
+    ids_client: string,
+    // tslint:disable-next-line: variable-name
+    tr_membership: string,
+    // tslint:disable-next-line: variable-name
+    id_station: string,
+    price: string,
+    liters: string,
+    // tslint:disable-next-line: variable-name
+    id_dispatcher: string,
+    // tslint:disable-next-line: variable-name
+    id_gasoline: string,
+    // tslint:disable-next-line: variable-name
+    id_schedule: string,
+    authorization: string,
+    // tslint:disable-next-line: variable-name
+    id_time: string
+    ) {
+
+    this.cargarToken();
+    const data = { };
+    const headers = new HttpHeaders({
+      // tslint:disable-next-line: object-literal-key-quotes
+      'Authorization': 'Bearer ' + this.token,
+    });
+
+    const params = new HttpParams({
+      fromObject: {
+        ids_dispatcher,
+        ids_client,
+        tr_membership,
+        id_station,
+        price,
+        liters,
+        id_dispatcher,
+        id_gasoline,
+        id_schedule,
+        authorization
+      }
+    });
+
+    const options = {
+      headers,
+      params
+    };
+
+    return this.http.post(`${URLP}/balance/makepayment`, data, options);
+
+  }
+
 
 }
