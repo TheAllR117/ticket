@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { OneSignal, OSNotification, OSNotificationPayload } from '@ionic-native/onesignal/ngx';
 import { Storage } from '@ionic/storage';
+import { async } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,10 @@ export class PushService {
   notificacionPagos: OSNotificationPayload[] = [];
 
   pushListener = new EventEmitter<OSNotificationPayload>();
+
+  idNotificacion = '';
+
+  public abrirPop: any;
 
   constructor(private oneSignal: OneSignal, private storage: Storage) {
     this.cargarMensajes();
@@ -28,14 +33,14 @@ export class PushService {
 
     this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
 
-    this.oneSignal.handleNotificationReceived().subscribe((noti) => {
+    this.oneSignal.handleNotificationReceived().subscribe(async (noti) => {
     // do something when notification is received
     // console.log('Notificación recibida', noti);
     if (noti.payload.additionalData) {
-      this.confirmacionPago(noti);
+      await this.confirmacionPago(noti);
       console.log('Notificación de pago');
     } else {
-      this.notificacionRecibida(noti);
+      await this.notificacionRecibida(noti);
       console.log('Notificación normal');
     }
 
@@ -70,7 +75,17 @@ export class PushService {
 
   async confirmacionPago(noti: OSNotification) {
     const payloadPagos = noti.payload;
-    this.pushListener.emit(payloadPagos);
+    if (this.idNotificacion === '') {
+      this.idNotificacion = payloadPagos.notificationID;
+      console.log('One', payloadPagos.notificationID);
+      console.log('mio', this.idNotificacion);
+      this.pushListener.emit(payloadPagos);
+    } else if (this.idNotificacion === payloadPagos.notificationID) {
+      console.log('Notificación repetida');
+    } else {
+      this.idNotificacion = '';
+    }
+
   }
 
   guardarMensajes() {

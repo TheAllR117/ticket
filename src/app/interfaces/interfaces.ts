@@ -86,6 +86,7 @@ export interface User {
   number_plate?: string;
   type_car?: string;
   client?: Client;
+  data_car?: Data_car;
 }
 
 export interface Client {
@@ -93,10 +94,18 @@ export interface Client {
   membership?: string;
   current_balance?: number;
   shared_balance?: number;
+  total_shared_balance?: number;
   points?: number;
   image_qr?: string;
   birthdate?: string;
 }
+
+// tslint:disable-next-line: class-name
+export interface Data_car {
+  number_plate?: string;
+  type_car?: string;
+}
+
 
 
 // tslint:disable-next-line: class-name
@@ -227,6 +236,7 @@ export interface RepuestaEnvio {
 export interface respuestaHistorial {
   ok?: boolean;
   balances?: Balance[];
+  payments?: Payments[];
 }
 
 export interface Balance {
@@ -235,8 +245,46 @@ export interface Balance {
   name?: string;
   station?: string;
   date?: string;
+  hour?: string;
+  liters?: number;
+  gasoline?: string;
 }
 
+export interface Payments {
+  balance?: string;
+  membership?: string;
+  name?: string;
+  station?: string;
+  date?: string;
+  hour?: string;
+  liters?: number;
+  gasoline?: string;
+}
+
+// perfil
+
+export interface RespuestaPerfil {
+  ok: boolean;
+  user: UserP;
+}
+
+export interface UserP {
+  id: number;
+  name: string;
+  first_surname: string;
+  second_surname?: any;
+  phone?: any;
+  address?: any;
+  email: string;
+  sex: string;
+  birthdate: string;
+  data_car: Datacar;
+}
+
+export interface Datacar {
+  number_plate: string;
+  type_car: string;
+}
 
 // transferencias recibidas
 
@@ -281,5 +329,13 @@ export interface StationQR {
   id?: number;
   name?: string;
   number_station?: number;
+}
+
+// tslint:disable-next-line: class-name
+export interface respuestaQrCompartido {
+  ok: boolean;
+  tr_membership: string;
+  membership: string;
+  station: StationQR;
 }
 

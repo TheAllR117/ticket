@@ -104,7 +104,7 @@
 
       <ion-row class="margin_top_modal">
         <ion-col size="4" offset="4" class="aligh_text_modal animate__animated animate__fadeInUpBig">
-          <ion-button shape="round" expand="block" color="success" size="default" (click)="crear_abono()">
+          <ion-button shape="round" expand="block" color="success" size="default" [disabled]="abonoUser.id_station === null || abonoUser.deposit < 100" (click)="crear_abono()">
             <ion-label color="light">
               Solicitar
             </ion-label>

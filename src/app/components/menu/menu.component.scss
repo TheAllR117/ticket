@@ -1,11 +1,26 @@
 ion-header{
-    height: 10% !important;
+    height: 20% !important;
 }
 
 ion-toolbar{
     height: 100% !important;
+    --background: linear-gradient(90deg, #30790A, #75B952);
 }
 
 ion-title{
     margin-top: 14% !important;
+}
+
+.titulo{
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.nombre{
+    font-weight: bold;
+    font-size: 1.8em;
+}
+
+.tamano_logo{
+    font-size: 15vh;
 }

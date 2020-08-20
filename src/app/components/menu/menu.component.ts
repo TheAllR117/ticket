@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ApplicationRef } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, NavController } from '@ionic/angular';
 import { PostsService } from '../../services/posts.service';
+import { User } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-menu',
@@ -10,9 +11,19 @@ import { PostsService } from '../../services/posts.service';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private usuarioService: UsuarioService, private loadingController: LoadingController, private postsService: PostsService) { }
+  user: User = {};
+  noMenu: any;
 
-  ngOnInit() {}
+  constructor(
+    private usuarioService: UsuarioService,
+    private loadingController: LoadingController,
+    private postsService: PostsService,
+    private applicationRef: ApplicationRef,
+    private navCtrl: NavController) { }
+
+  async ngOnInit() {
+    await this.cargarUser();
+  }
 
   async logout() {
     this.postsService.presentLoading('Cerrando sesión, espere por favor...');
@@ -23,6 +34,22 @@ export class MenuComponent implements OnInit {
     } else {
       this.postsService.loading.dismiss();
     }
+  }
+
+  cargarUser() {
+    this.usuarioService.initUser.subscribe(noti => {
+      this.user = this.usuarioService.getUsuario();
+      if (noti) {
+        this.noMenu = true;
+      } else {
+        this.noMenu = false;
+      }
+      this.applicationRef.tick();
+    });
+  }
+
+  navRouting(ruta: string) {
+    this.navCtrl.navigateForward(ruta);
   }
 
 }

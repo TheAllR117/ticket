@@ -4,6 +4,8 @@ import { PaymentR } from '../../interfaces/interfaces';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { Location } from '@angular/common';
 import { LottieAnimationViewModule } from 'ng-lottie';
+import { CompartidoQrComponent } from '../../components/compartido-qr/compartido-qr.component';
+
 
 @Component({
   selector: 'app-transferencias-totales',
@@ -65,15 +67,30 @@ export class TransferenciasTotalesPage implements OnInit {
   stop() {
     this.anim.stop();
   }
+
   play() {
     this.anim.play();
   }
+
   pause() {
     this.anim.pause();
   }
+
   setSpeed(speed: number) {
     this.animationSpeed = speed;
     this.anim.setSpeed(speed);
+  }
+
+  // tslint:disable-next-line: variable-name
+  async mostarCompartir(id_payment: string) {
+    const modal = await this.modalCtrl.create({
+      component: CompartidoQrComponent,
+      componentProps: {
+        id_payment
+      }
+    });
+
+    modal.present();
   }
 
 }

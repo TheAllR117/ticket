@@ -1,14 +1,16 @@
 <app-header titulo=""></app-header>
 <ion-content>
 
-    <ion-grid>
-      <ion-row class="animacion_fondo ion-text-center">
+    <ion-grid class="acomodar_animacion">
+      <ion-row class="ion-text-center">
         <ion-col size="10" offset="1">
           <lottie-animation-view [options]="lottieConfig" (animCreated)="handleAnimation($event)">
           </lottie-animation-view>
         </ion-col>
-        <ion-col *ngIf="animacion" size="10" offset="1">
-          <h1>Proximamente</h1>
+      </ion-row>
+      <ion-row class="ion-text-center">
+        <ion-col size="10" offset="1">
+          <h1>Próximamente</h1>
         </ion-col>
       </ion-row>
     </ion-grid>

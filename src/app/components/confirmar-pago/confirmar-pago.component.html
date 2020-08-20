@@ -1,8 +1,8 @@
 <ion-header no-border>
   <ion-toolbar>
-    <ion-title class="ion-text-center ion-padding ion-margin" >
-      <h1>CONFIRME SU PAGO</h1>
-      <h1 class="ion-no-margin ion-margin-end ion-margin-start"  [innerHTML]="'$' + price"></h1>
+    <ion-title class="ion-text-center ion-no-margin ion-margin-bottom ion-margin-top">
+      <h1 class="tamanoTitulo">CONFIRME SU PAGO</h1>
+      <h1 class="ion-no-margin ion-margin-end ion-margin-start tamanoTitulo"  [innerHTML]="'$' + price"></h1>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -70,16 +70,16 @@
 </ion-content>
 
 <ion-footer no-border class="ion-margin-top">
-  <ion-row class="ion-justify-content-center">
-    <ion-col size="4" class="ion-text-center">
+  <ion-row class="ion-justify-content-center ion-margin-top ion-margin-bottom">
+    <ion-col size="4" class="ion-text-center ion-margin-end">
       <ion-button shape="round" expand="block" color="success" (click)="onClick()">
         <ion-label color="light" class="ion-text-capitalize">
           Aceptar
         </ion-label>
       </ion-button>
     </ion-col>
-    <ion-col size="4" class="ion-text-center">
-      <ion-button shape="round" expand="block" color="danger" >
+    <ion-col size="4" class="ion-text-center ion-margin-start">
+      <ion-button shape="round" expand="block" color="danger" (click)="cancelar()">
         <ion-label color="light" class="ion-text-capitalize">
           Cancelar
         </ion-label>
