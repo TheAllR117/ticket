@@ -15,6 +15,8 @@ export class HistorialPage implements OnInit {
 
   balance: Balance[] = [];
   share: Balance[] = [];
+  received: Balance[] = [];
+  payment: Balance[] = [];
 
   // configuraciones del slide
   slideOpts = {
@@ -30,17 +32,31 @@ export class HistorialPage implements OnInit {
   // variables para ocultar y mostrar componentes de la pagina
   spiner = false;
   cardAbonos = true;
+  cardPagos = true;
   animacionAbonos = false;
   animacionTrans = false;
+  animacionPagos = false;
   ocultarFecha = true;
   ocultarFechaTrans = true;
+  ocultarBotonEnvioTranferencias: any;
 
   // limitar calendarios
   minGeneral = '2020-01-01';
   fechaActu = new Date().toISOString();
 
-  // formulario abonos
+  // formularios
+
+  calPagos = {
+    fechaIni: '',
+    fechafin: ''
+  };
+
   calAbonos = {
+    fechaIni: '',
+    fechafin: ''
+  };
+
+  calTransfer = {
     fechaIni: '',
     fechafin: ''
   };
@@ -74,22 +90,37 @@ export class HistorialPage implements OnInit {
 
   ngOnInit() {
 
-    this.usuarioService.historialAbonos('balance', '', '').subscribe( resp => {
+    this.ocultarBotonEnvioTranferencias = true;
+
+    this.usuarioService.historialAbonos('payment', this.fechaActu.split('T')[0], this.fechaActu.split('T')[0]).subscribe( resp => {
+      if (resp.ok) {
+        this.payment = resp.payments;
+      } else {
+        this.animacionPagos = true;
+        this.cardPagos = false;
+      }
+    });
+
+    this.usuarioService.historialAbonos('balance', this.fechaActu.split('T')[0], this.fechaActu.split('T')[0]).subscribe( resp => {
       if (resp.ok) {
         this.balance = resp.balances;
       } else {
         this.cardAbonos = false;
         this.animacionAbonos = true;
-        this.ocultarFecha = false;
       }
     });
 
-    this.usuarioService.historialAbonos('share', '', '').subscribe( resp => {
+    this.usuarioService.historialAbonos('share', this.fechaActu.split('T')[0], this.fechaActu.split('T')[0]).subscribe( resp => {
       if (resp.ok) {
         this.share = resp.balances;
       } else {
-        this.ocultarFechaTrans = false;
         this.animacionTrans = true;
+      }
+    });
+
+    this.usuarioService.historialAbonos('received', this.fechaActu.split('T')[0], this.fechaActu.split('T')[0]).subscribe( resp => {
+      if (resp.ok) {
+        this.received = resp.balances;
       }
     });
   }
@@ -100,6 +131,29 @@ export class HistorialPage implements OnInit {
 
   handleAnimation(anim: any) {
     this.anim = anim;
+  }
+
+  buscarPago() {
+    this.cardPagos = false;
+    this.payment = [];
+    this.spiner = true;
+    this.usuarioService.historialAbonos(
+        'payment',
+        this.calPagos.fechaIni.split('T')[0],
+        this.calPagos.fechafin.split('T')[0]
+      ).subscribe( resp => {
+        if (resp.ok) {
+          this.payment = resp.payments;
+          this.spiner = false;
+          this.cardPagos = true;
+          this.animacionPagos = false;
+        } else {
+          this.animacionPagos = true;
+          this.cardPagos = false;
+          this.spiner = false;
+          this.cardPagos = false;
+        }
+    });
   }
 
   buscarAbono() {
@@ -124,8 +178,48 @@ export class HistorialPage implements OnInit {
     });
   }
 
+  buscarTranferencia() {
+
+    this.ocultarBotonEnvioTranferencias = !this.ocultarBotonEnvioTranferencias;
+    this.received = [];
+    this.share = [];
+
+    this.spiner = true;
+
+    this.usuarioService.historialAbonos(
+        'share',
+        this.calTransfer.fechaIni.split('T')[0],
+        this.calTransfer.fechafin.split('T')[0]
+      ).subscribe( resp => {
+      if (resp.ok) {
+        this.share = resp.balances;
+        this.spiner = false;
+        this.ocultarBotonEnvioTranferencias = !this.ocultarBotonEnvioTranferencias;
+        this.animacionTrans = false;
+      } else {
+        this.spiner = false;
+        this.ocultarBotonEnvioTranferencias = !this.ocultarBotonEnvioTranferencias;
+        this.animacionTrans = true;
+      }
+    });
+
+    this.usuarioService.historialAbonos(
+      'received',
+      this.calTransfer.fechaIni.split('T')[0],
+      this.calTransfer.fechafin.split('T')[0]
+    ).subscribe( resp => {
+    if (resp.ok) {
+      this.received = resp.balances;
+
+    } else {
+
+    }
+  });
+  }
+
   vaciarFecha() {
     this.calAbonos.fechafin = '';
+    this.calTransfer.fechafin = '';
   }
 
   protected async slideDidChange(): Promise<void> {
@@ -158,6 +252,10 @@ export class HistorialPage implements OnInit {
 
   mostrarAbonos() {
     this.slides.slideTo(2);
+  }
+
+  cambiarEntreEnviosPercepciones() {
+    this.ocultarBotonEnvioTranferencias = !this.ocultarBotonEnvioTranferencias;
   }
 
 }

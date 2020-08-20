@@ -49,6 +49,11 @@ const routes: Routes = [
     canLoad: [UsuarioGuard]
   },
   {
+    path: 'perfil',
+    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule),
+    canLoad: [UsuarioGuard]
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'main/tabs/tab1'

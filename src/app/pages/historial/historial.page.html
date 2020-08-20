@@ -54,36 +54,42 @@
 </ion-toolbar>
 
 <ion-content no-border>
-  <ion-fab no-border vertical="top" slot="fixed" edge class="animate__animated animate__fadeInDownBig ancho_fab">
-    <ion-row class="ancho_fab ion-justify-content-center" size="12">
-      <ion-col no-border class="ion-no-padding ion-text-center" size="4">
+  
+  <ion-fab vertical="top" slot="fixed" edge class="ion-no-margin animate__animated animate__fadeInDownBig ancho_fab">
+    <ion-row class="ion-justify-content-center ion-no-margin ion-no-padding" size="12">
+
+      <ion-col no-border class="ion-no-margin ion-text-center" size="4">
         <ion-chip (click)="mostrarPagos()" [ngClass]="{'animate__animated animate__pulse ion-chip_2': pagosP === true, 'ion-chip_1': pagosP === false }" #chipPagos>
           <ion-icon mode="md" [ngClass]="{'fon_ico_selec': pagosP === true, 'fon_ico': pagosP === false }" name="arrow-forward"></ion-icon>
           <ion-label>Pagos</ion-label>
         </ion-chip>
       </ion-col>
-      <ion-col no-border class="ion-no-padding ion-justify-content-center ion-text-center" size="4">
+
+      <ion-col no-border class="ion-no-margin ion-justify-content-center ion-text-center" size="4">
         <ion-chip class="chip_po" (click)="mostrarTrans()" [ngClass]="{'ion-chip_2 animate__animated animate__pulse': tranferP === true, 'ion-chip_1': tranferP === false }" #chipTrans>
           <ion-icon [ngClass]="{'fon_ico_selec': tranferP === true, 'fon_ico': tranferP === false }" name="swap"></ion-icon>
           <ion-label>Transferencias</ion-label>
         </ion-chip>
       </ion-col>
-      <ion-col no-border class="ion-no-padding ion-text-center" size="4">
+
+      <ion-col no-border class="ion-no-margin ion-justify-content-center ion-text-center" size="4">
         <ion-chip (click)="mostrarAbonos()" [ngClass]="{'ion-chip_2 animate__animated animate__pulse': abonosP === true, 'ion-chip_1': abonosP === false }" #chipAbonos>
           <ion-icon [ngClass]="{'fon_ico_selec': abonosP === true, 'fon_ico': abonosP === false }" name="refresh"></ion-icon>
           <ion-label>Abonos</ion-label>
         </ion-chip>
       </ion-col>
     </ion-row>
+
   </ion-fab>
 
   <ion-slides [options]="slideOpts" (ionSlideDidChange)="this.slideDidChange();" #sliderPrincipal class="ion-padding-top">
     <ion-slide>
       <ion-grid class="animate__animated animate__fadeIn ion-padding-top">
-        <ion-row  class="ion-justify-content-center">
+
+        <ion-row class="ion-justify-content-center" >
           <ion-col size="5">
             <ion-item class="bordes_re_modal" lines="none">
-              <ion-datetime class="ion-no-padding" displayFormat="YYYY-MM-DD" [min]="minGeneral" placeholder="Fecha inicio"></ion-datetime>
+              <ion-datetime class="ion-no-padding" [(ngModel)]="calPagos.fechaIni" name="fechaIni" displayFormat="YYYY-MM-DD" [min]="minGeneral" [max]="fechaActu" placeholder="Fecha inicio" (ionChange)="vaciarFecha()"></ion-datetime>
               <ion-icon class="ion-no-padding" slot="end" color="success" name="calendar"></ion-icon>
             </ion-item>
           </ion-col>
@@ -95,16 +101,40 @@
           </ion-col>
           <ion-col size="5">
             <ion-item class="bordes_re_modal">
-              <ion-datetime class="ion-no-padding" displayFormat="YYYY-MM-DD" placeholder="Fecha final"></ion-datetime>
+              <ion-datetime class="ion-no-padding" [(ngModel)]="calPagos.fechafin" name="fechafin" displayFormat="YYYY-MM-DD" [min]="calPagos.fechaIni" [max]="fechaActu" [disabled]="calPagos.fechaIni === '' "  placeholder="Fecha final"></ion-datetime>
               <ion-icon class="ion-no-padding" slot="end" color="success" name="calendar"></ion-icon>
             </ion-item>
           </ion-col>
         </ion-row>
 
-        <ion-list >
-          <ion-card  mode="ios" no-border class="ion-no-padding">
+        <ion-row>
+          <ion-col size="5">
+            <ion-button shape="round" fill="solid" color="success" [disabled]="calPagos.fechaIni === '' || calPagos.fechafin === ''" (click)="buscarPago()">
+              <ion-label class="ion-text-capitalize" color="light">consultar</ion-label>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="spiner" size="12" class="ion-justify-content-center">
+          <ion-col size="12">
+            <ion-spinner color="success"></ion-spinner>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="animacionPagos" size="12" class="ion-justify-content-center">
+          <ion-col size="12">
+            <lottie-animation-view [options]="lottieConfigTra"  (animCreated)="handleAnimation($event)">
+            </lottie-animation-view>
+          </ion-col>
+          <ion-col>
+            <ion-label class="conte_text texto_bold">Por el momento <br>no has relizados pagos.</ion-label>
+          </ion-col>
+        </ion-row>
+
+        <ion-list *ngIf="cardPagos">
+          <ion-card  mode="ios" no-border class="ion-no-padding" *ngFor="let pago of payment">
             <ion-card-content no-border class="ion-no-padding" >
-              <ion-item-sliding no-border class="ion-no-padding" >
+              <ion-item-sliding no-border class="ion-no-padding" lines="none">
                 <ion-item no-border>
                   <ion-grid no-border>
                     <ion-row size="12" no-border class="ion-no-padding">
@@ -114,27 +144,27 @@
                       </ion-col>
                       <ion-col size="6">
                         <ion-label color="medium" class="titulos_card">Can. Pagada</ion-label>
-                        <ion-label class="conte_text ion-text-b" color="success">500 Gasopesos</ion-label>
+                        <ion-label class="conte_text ion-text-b" color="success" [innerHTML]="pago.balance + ' Gasopesos'"></ion-label>
                         <ion-label color="medium" class="titulos_card">ID de venta</ion-label>
-                        <ion-label class="conte_text" >02594</ion-label>
+                        <ion-label class="conte_text">NO</ion-label>
                         <ion-label color="medium" class="titulos_card">Estación</ion-label>
-                        <ion-label class="conte_text" >La Margarita</ion-label>
-                        <ion-label color="medium" class="titulos_card">Cant.</ion-label>
-                        <ion-label class="conte_text" >12 Lts</ion-label>
+                        <ion-label class="conte_text" [innerHTML]="pago.station"></ion-label>
+                        <ion-label color="medium" class="titulos_card">Litros.</ion-label>
+                        <ion-label class="conte_text" [innerHTML]="pago.liters"></ion-label>
                         <ion-label color="medium" class="titulos_card">Isala</ion-label>
-                        <ion-label class="conte_text" >04</ion-label>
+                        <ion-label class="conte_text" >NO</ion-label>
                       </ion-col>
                       <ion-col size="5">
                         <ion-label color="medium" class="titulos_card">Fecha</ion-label>
-                        <ion-label class="conte_text" >12/02/2020</ion-label>
+                        <ion-label class="conte_text" [innerHTML]="pago.date"></ion-label>
                         <ion-label color="medium" class="titulos_card">Hora</ion-label>
-                        <ion-label class="conte_text" >13:05:03</ion-label>
+                        <ion-label class="conte_text" [innerHTML]="pago.hour"></ion-label>
                         <ion-label color="medium" class="titulos_card">Producto</ion-label>
-                        <ion-label class="conte_text" >Diesel</ion-label>
+                        <ion-label class="conte_text" [innerHTML]="pago.gasoline"></ion-label>
                         <ion-label color="medium" class="titulos_card">Costo</ion-label>
-                        <ion-label class="conte_text" >100</ion-label>
+                        <ion-label class="conte_text" [innerHTML]="pago.balance"></ion-label>
                         <ion-label color="medium" class="titulos_card">Bomba</ion-label>
-                        <ion-label class="conte_text" >03</ion-label>
+                        <ion-label class="conte_text" >NO</ion-label>
                       </ion-col>
                     </ion-row>
                   </ion-grid>
@@ -146,13 +176,16 @@
           </ion-list>
       </ion-grid>
     </ion-slide>
+
+    <!--slide envio de saldo y trnaferencias recibidas-->
+
     <ion-slide>
       <ion-grid class="animate__animated animate__fadeIn ion-padding-top">
-        <form #fSendAb="ngForm"  no-border class="ion-no-padding" *ngIf="ocultarFechaTrans">
+        <form #fSendAb="ngForm"  no-border class="ion-no-padding">
           <ion-row class="ion-justify-content-center" >
             <ion-col size="5">
               <ion-item class="bordes_re_modal" lines="none">
-                <ion-datetime class="ion-no-padding" [(ngModel)]="calAbonos.fechaIni" name="fechaIni" displayFormat="YYYY-MM-DD" [min]="minGeneral" [max]="fechaActu" placeholder="Fecha inicio" (ionChange)="vaciarFecha()"></ion-datetime>
+                <ion-datetime class="ion-no-padding" [(ngModel)]="calTransfer.fechaIni" name="fechaIni" displayFormat="YYYY-MM-DD" [min]="minGeneral" [max]="fechaActu" placeholder="Fecha inicio" (ionChange)="vaciarFecha()"></ion-datetime>
                 <ion-icon class="ion-no-padding" slot="end" color="success" name="calendar"></ion-icon>
               </ion-item>
             </ion-col>
@@ -164,7 +197,7 @@
             </ion-col>
             <ion-col size="5">
               <ion-item class="bordes_re_modal">
-                <ion-datetime class="ion-no-padding" [(ngModel)]="calAbonos.fechafin" name="fechafin" displayFormat="YYYY-MM-DD" [min]="calAbonos.fechaIni" [max]="fechaActu" [disabled]="calAbonos.fechaIni === '' "  placeholder="Fecha final"></ion-datetime>
+                <ion-datetime class="ion-no-padding" [(ngModel)]="calTransfer.fechafin" name="fechafin" displayFormat="YYYY-MM-DD" [min]="calTransfer.fechaIni" [max]="fechaActu" [disabled]="calTransfer.fechaIni === '' "  placeholder="Fecha final"></ion-datetime>
                 <ion-icon class="ion-no-padding" slot="end" color="success" name="calendar"></ion-icon>
               </ion-item>
             </ion-col>
@@ -172,8 +205,21 @@
   
           <ion-row>
             <ion-col size="5">
-              <ion-button shape="round" fill="solid" color="success" [disabled]="calAbonos.fechaIni === '' || calAbonos.fechafin === ''" (click)="buscarAbono()">
+              <ion-button shape="round" fill="solid" color="success" [disabled]="calTransfer.fechaIni === '' || calTransfer.fechafin === ''" (click)="buscarTranferencia()">
                 <ion-label class="ion-text-capitalize" color="light">consultar</ion-label>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="ion-justify-content-center ion-margin-top">
+            <ion-col size="5" class="ion-margin-end">
+              <ion-button expand="full" size="small" shape="round" fill="solid" color="success" [disabled]="ocultarBotonEnvioTranferencias" (click)="cambiarEntreEnviosPercepciones()">
+                <ion-label class="ion-text-capitalize" color="light">Envios</ion-label>
+              </ion-button>
+            </ion-col>
+            <ion-col size="5" class="ion-margin-start">
+              <ion-button expand="full" size="small" shape="round" fill="solid" color="success" [disabled]="!ocultarBotonEnvioTranferencias" (click)="cambiarEntreEnviosPercepciones()">
+                <ion-label class="ion-text-capitalize" color="light">Percepciones</ion-label>
               </ion-button>
             </ion-col>
           </ion-row>
@@ -195,11 +241,11 @@
           </ion-col>
         </ion-row>
     
-        <ion-list >
+        <ion-list *ngIf="ocultarBotonEnvioTranferencias" class="animate__animated animate__fadeIn">
     
           <ion-card  mode="ios" no-border class="ion-no-padding" *ngFor="let trans of share">
             <ion-card-content no-border class="ion-no-padding" >
-              <ion-item-sliding no-border class="ion-no-padding" >
+              <ion-item-sliding no-border class="ion-no-padding" lines="none">
                 <ion-item no-border>
                   <ion-grid no-border>
                     <ion-row size="12" no-border class="ion-no-padding">
@@ -240,14 +286,62 @@
               </ion-item-sliding>
             </ion-card-content>
           </ion-card>
+        </ion-list>
+
+        <ion-list *ngIf="!ocultarBotonEnvioTranferencias" class="animate__animated animate__fadeIn">
+    
+          <ion-card  mode="ios" no-border class="ion-no-padding" *ngFor="let recibidas of received">
+            <ion-card-content no-border class="ion-no-padding" >
+              <ion-item-sliding no-border class="ion-no-padding" lines="none">
+                <ion-item no-border>
+                  <ion-grid no-border>
+                    <ion-row size="12" no-border class="ion-no-padding">
+                      <ion-col size="1">
+                        <ion-icon src="../../../assets/svg/station.svg" color="success"></ion-icon>
+                        <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas" color="success"></ion-icon>
+                        <ion-icon name="logo-usd" color="success"></ion-icon>
+                        <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas" color="success"></ion-icon>
+                        <ion-icon name="person" color="success"></ion-icon>
+                        <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas" color="success"></ion-icon>
+                      </ion-col>
+                      <ion-col size="6">
+                        <ion-label color="medium" class="titulos_card">Estación</ion-label>
+                        <ion-label class="conte_text" color="success" [innerHTML]="recibidas.station"></ion-label>
+    
+                        <ion-label color="medium" class="titulos_card">Can. Enviada</ion-label>
+                        <ion-label class="conte_text" [innerHTML]="recibidas.balance +' Gasopesos'"></ion-label>
+    
+                        <ion-label color="medium" class="titulos_card">Emisor</ion-label>
+                        <ion-label class="conte_text" [innerHTML]="recibidas.name"></ion-label>
+    
+                        <ion-label color="medium" class="titulos_card">Membresía</ion-label>
+                        <ion-label class="conte_text" [innerHTML]="recibidas.membership" ></ion-label>
+    
+                      </ion-col>
+                      <ion-col size="1">
+                        <ion-icon name="calendar" color="success"></ion-icon>
+                        <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas" color="success"></ion-icon>
+                      </ion-col>
+                      <ion-col size="4">
+                        <ion-label color="medium" class="titulos_card">Fecha</ion-label>
+                        <ion-label class="conte_text" [innerHTML]="recibidas.date"></ion-label>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-item>
+    
+              </ion-item-sliding>
+            </ion-card-content>
+          </ion-card>
           </ion-list>
+
       </ion-grid>
     </ion-slide>
 
     <ion-slide no-border >
       <ion-grid class="animate__animated animate__fadeIn ion-padding-top">
 
-        <form #fSendAb="ngForm"  no-border class="ion-no-padding" *ngIf="ocultarFecha">
+        <form #fSendAb="ngForm"  no-border class="ion-no-padding">
           <ion-row class="ion-justify-content-center" >
             <ion-col size="5">
               <ion-item class="bordes_re_modal" lines="none">

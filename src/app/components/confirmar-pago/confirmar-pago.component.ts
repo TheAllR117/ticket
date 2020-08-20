@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
+import { PushService } from '../../services/push.service';
 
 @Component({
   selector: 'app-confirmar-pago',
@@ -31,27 +32,24 @@ export class ConfirmarPagoComponent implements OnInit {
   // tslint:disable-next-line: variable-name
   @Input() id_time;
 
-  constructor(private popoverCtrl: PopoverController, private usuarioService: UsuarioService) { }
+  membersh = '';
+
+  constructor(private popoverCtrl: PopoverController, private usuarioService: UsuarioService, public pushServices: PushService) { }
 
   ngOnInit() {}
 
   onClick() {
-    /*console.log(this.ids_dispatcher,
-      this.ids_client,
-      '',
-      this.id_station.toString(),
-      this.price,
-      this.liters,
-      this.id_dispatcher,
-      this.id_gasoline,
-      this.id_schedule,
-      'true',
-      this.id_time);*/
+    console.log(this.tr_membership);
+    if (this.tr_membership === null) {
+      this.membersh = '';
+    } else {
+      this.membersh = this.tr_membership;
+    }
 
     this.usuarioService.confirmarCancelarPago(
       this.ids_dispatcher.toString(),
       this.ids_client.toString(),
-      '',
+      this.membersh.toString(),
       this.id_station.toString(),
       this.price.toString(),
       this.liters.toString(),
@@ -62,7 +60,32 @@ export class ConfirmarPagoComponent implements OnInit {
       this.id_time.toString()).subscribe(resp => {
         console.log(resp);
       });
+    this.pushServices.abrirPop = true;
+    this.popoverCtrl.dismiss();
+  }
 
+  cancelar() {
+    console.log(this.tr_membership);
+    if (this.tr_membership === null) {
+      this.membersh = '';
+    } else {
+      this.membersh = this.membership;
+    }
+    this.usuarioService.confirmarCancelarPago(
+      this.ids_dispatcher.toString(),
+      this.ids_client.toString(),
+      this.membersh.toString(),
+      this.id_station.toString(),
+      this.price.toString(),
+      this.liters.toString(),
+      this.id_dispatcher.toString(),
+      this.id_gasoline.toString(),
+      this.id_schedule.toString(),
+      'false',
+      this.id_time.toString()).subscribe(resp => {
+        console.log(resp);
+      });
+    this.pushServices.abrirPop = true;
     this.popoverCtrl.dismiss();
   }
 

@@ -1,41 +1,38 @@
 import { Component, OnInit, Input, ApplicationRef } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
-import { StationQR } from '../../interfaces/interfaces';
 import { PushService } from '../../services/push.service';
 import { OSNotificationPayload } from '@ionic-native/onesignal/ngx';
 import { ConfirmarPagoComponent } from '../confirmar-pago/confirmar-pago.component';
 
-
 @Component({
-  selector: 'app-abonar-qr',
-  templateUrl: './abonar-qr.component.html',
-  styleUrls: ['./abonar-qr.component.scss'],
+  selector: 'app-compartido-qr',
+  templateUrl: './compartido-qr.component.html',
+  styleUrls: ['./compartido-qr.component.scss'],
 })
-export class AbonarQrComponent implements OnInit {
+export class CompartidoQrComponent implements OnInit {
+
   // tslint:disable-next-line: variable-name
   @Input() id_payment;
 
-  station: StationQR[] = [];
   resp: any;
-
-  notificaciones: OSNotificationPayload[] = [];
 
   constructor(
     private modalCtrl: ModalController,
     private usuarioService: UsuarioService,
     public pushServices: PushService,
     private applicationRef: ApplicationRef,
-    private popoverCtrl: PopoverController) {}
+    private popoverCtrl: PopoverController
+  ) { }
 
   ngOnInit() {
     this.pushServices.abrirPop = true;
 
-    this.usuarioService.informacionQrAbono(this.id_payment).subscribe( respuesta => {
+    this.usuarioService.informacionQrAbonoCompartido(this.id_payment).subscribe( respuesta => {
       if (respuesta.ok) {
-
         this.resp = JSON.stringify({
           membership: respuesta.membership,
+          tr_membership: respuesta.tr_membership,
           id_station: respuesta.station.id,
           include_player_ids: this.pushServices.userId
         });
@@ -47,10 +44,10 @@ export class AbonarQrComponent implements OnInit {
 
     this.pushServices.pushListener.subscribe(async noti => {
 
-      console.log(noti.additionalData);
-
       if ( this.pushServices.abrirPop === true) {
+        console.log(noti.additionalData);
         this.pushServices.abrirPop = false;
+
         await this.mostrarPop(
           noti.additionalData.price,
           noti.additionalData.id_gasoline,
@@ -68,12 +65,12 @@ export class AbonarQrComponent implements OnInit {
 
       this.applicationRef.tick();
     });
+
   }
 
   regresar() {
     this.modalCtrl.dismiss();
   }
-
 
   async mostrarPop(
     price: string,

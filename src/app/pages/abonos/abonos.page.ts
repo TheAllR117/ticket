@@ -18,7 +18,7 @@ export class AbonosPage implements OnInit {
   stations: Station[] = [];
   imageDat = '';
   abonoUser = {
-    deposit: '100',
+    deposit: 100,
     id_station: null
   };
   barPro = 0;
@@ -43,13 +43,13 @@ export class AbonosPage implements OnInit {
     const valido = await this.usuarioService.realizar_abono(this.imageDat, this.abonoUser.id_station, this.abonoUser.deposit );
     if (valido) {
         this.tempImages = [];
-        this.abonoUser.id_station = '';
-        this.abonoUser.deposit = '';
+        this.abonoUser.id_station = null;
+        this.abonoUser.deposit = 100;
         this.postsService.loading.dismiss();
         this.postsService.mostrarPop('21349-tick-green', 'Solicitud de Abono', 'Abono solicitado correctamente.', 2500);
       } else {
         this.postsService.loading.dismiss();
-        this.postsService.mostrarPop('14331-error', 'Solicitud de Abono', 'Ha occurrido un error.', 1900);
+        this.postsService.mostrarPop('14331-error', 'Solicitud de Abono', 'Ha ocurrido un error.', 1900);
       }
   }
 
@@ -95,6 +95,5 @@ export class AbonosPage implements OnInit {
       this.postsService.presentToast('Error al cargar la imagen.');
      });
   }
-
 
 }

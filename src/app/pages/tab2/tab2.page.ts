@@ -9,7 +9,6 @@ import { LottieAnimationViewModule } from 'ng-lottie';
 })
 export class Tab2Page implements OnInit {
 
-  animacion = false;
   // tslint:disable-next-line: ban-types
   public lottieConfig: Object;
   private anim: any;
@@ -17,16 +16,15 @@ export class Tab2Page implements OnInit {
   private animationSpeed: number = 1;
 
   constructor() {
-  }
-
-  ngOnInit() {
     LottieAnimationViewModule.forRoot();
     this.lottieConfig = {
       path: '../../../assets/animation/26531-construction-in-process.json',
       autoplay: true,
       loopt: true
     };
-    this.animacion = true;
+  }
+
+  ngOnInit() {
   }
 
   handleAnimation(anim: any) {

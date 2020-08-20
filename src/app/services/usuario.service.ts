@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
@@ -14,7 +14,14 @@ import {
   RepuestaEnvio} from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
-import { RespuestaUser, respuestaHistorial, respuestaTransferenciasR, respuestaQrAbono, UserRegis } from '../interfaces/interfaces';
+import { RespuestaPerfil } from '../interfaces/interfaces';
+import {
+  RespuestaUser,
+  respuestaHistorial,
+  respuestaTransferenciasR,
+  respuestaQrAbono,
+  UserRegis,
+  respuestaQrCompartido } from '../interfaces/interfaces';
 
 const URL = environment.url;
 const URLP = environment.urlP;
@@ -28,6 +35,7 @@ export class UsuarioService {
   private stations: Station[] = [];
   private respuestaAbono: {} = {};
   public progress = 0;
+  initUser = new EventEmitter<boolean>();
 
   constructor(
     private http: HttpClient,
@@ -67,6 +75,7 @@ export class UsuarioService {
           this.token = null;
           this.user = null;
           this.storage.clear();
+          this.initUser.emit(false);
           this.navCtrl.navigateRoot('/login', { animated: true });
           resolve(true);
         } else {
@@ -128,8 +137,10 @@ export class UsuarioService {
       this.http.get<RespuestaUser>(`${URLP}/main`, {headers}).subscribe( resp => {
         if ( resp.ok ) {
           this.user = resp.user;
+          this.initUser.emit(true);
           resolve(true);
         } else {
+          this.initUser.emit(false);
           this.navCtrl.navigateRoot('/login', { animated: true });
           resolve(false);
         }
@@ -146,7 +157,7 @@ export class UsuarioService {
     return this.http.get<respuestaStation>(`${URLP}/balance`, {headers});
   }
 
-  async realizar_abono(img: string, idstation: string, deposit: string): Promise<boolean>  {
+  async realizar_abono(img: string, idstation: string, deposit: number): Promise<boolean>  {
     await this.cargarToken();
     return new Promise<boolean>(resolve => {
       const options: FileUploadOptions = {
@@ -355,6 +366,30 @@ export class UsuarioService {
 
   }
 
+  // tslint:disable-next-line: variable-name
+  informacionQrAbonoCompartido(id_payment: string) {
+    this.cargarToken();
+
+    const headers = new HttpHeaders({
+      // tslint:disable-next-line: object-literal-key-quotes
+      'Authorization': 'Bearer ' + this.token,
+    });
+
+    const params = new HttpParams({
+      fromObject: {
+        id_payment
+      }
+    });
+
+    const options = {
+      headers,
+      params
+    };
+
+    return this.http.get<respuestaQrCompartido>(`${URLP}/balance/getlistreceived/use`, options);
+
+  }
+
 
   confirmarCancelarPago(
     // tslint:disable-next-line: variable-name
@@ -396,7 +431,8 @@ export class UsuarioService {
         id_dispatcher,
         id_gasoline,
         id_schedule,
-        authorization
+        authorization,
+        id_time
       }
     });
 
@@ -406,6 +442,52 @@ export class UsuarioService {
     };
 
     return this.http.post(`${URLP}/balance/makepayment`, data, options);
+
+  }
+
+
+  perfil() {
+    this.cargarToken();
+    const headers = new HttpHeaders({
+      // tslint:disable-next-line: object-literal-key-quotes
+      'Authorization': 'Bearer ' + this.token,
+    });
+    return this.http.get<RespuestaPerfil>(`${URLP}/profile`, {headers});
+  }
+
+  editarPerfil(
+    name: string,
+    // tslint:disable-next-line: variable-name
+    first_surname: string, second_surname: string,
+    phone: string,
+    password: string,
+    address: string,
+    email: string,
+    sex: string,
+    birthdate: string,
+    // tslint:disable-next-line: variable-name
+    number_plate: string, type_car: string
+    ) {
+
+      this.cargarToken();
+      const data = { };
+      const headers = new HttpHeaders({
+        // tslint:disable-next-line: object-literal-key-quotes
+        'Authorization': 'Bearer ' + this.token,
+      });
+
+      const params = new HttpParams({
+        fromObject: {
+          name, first_surname, second_surname, phone, password, address, email, sex, birthdate, number_plate, type_car
+        }
+      });
+
+      const options = {
+        headers,
+        params
+      };
+
+      return this.http.post(`${URLP}/profile/update`, data, options);
 
   }
 
