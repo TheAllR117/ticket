@@ -36,6 +36,7 @@ export class AbonarQrComponent implements OnInit {
 
         this.resp = JSON.stringify({
           membership: respuesta.membership,
+          tr_membership: '',
           id_station: respuesta.station.id,
           include_player_ids: this.pushServices.userId
         });
