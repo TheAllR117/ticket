@@ -74,17 +74,15 @@ ion-card-content{
   height: 100%;
 }
 
+.card-content-ios{
+  padding-top: 3% !important;
+  padding-bottom: 3% !important;
+}
+
 .bajar_cards{
   margin-top: 32%;
 }
 
-/*.quitar_margin_top{
-  margin-top: -9%;
-}
-
-.quitar_margin_top2{
-  margin-top: -6%;
-}*/
 
 .poner_margin_botton{
   margin-bottom: 30%;
@@ -123,9 +121,6 @@ ion-slide {
 
 .iconos_cuadrados{
   font-size: 350%;
-  // margin-top: 15%;
-  // margin-left: 24%;
-  //margin-right: 24%;
 }
 
 .pos_boton{
@@ -156,8 +151,6 @@ ion-slide {
   left: -10%;
   width: 120%;
   height: 120%;
-  /*margin-left: -50px;
-  margin-top: -130px;*/
   transform-origin: 50% 50%;
   border-radius: 43%;
   animation: drift 13000ms infinite linear;
@@ -206,12 +199,6 @@ ion-slide {
   from { transform: rotate(360deg); }
 }
 
-/*@media screen and (max-width: 1028px) {}
-@media screen and (max-width: 1024px) {}
-@media screen and (max-width: 800px) {}
-@media screen and (max-width: 640px) {
-
-}*/
 
 @media screen and (max-width: 375px) {
   .primerTitulo{
@@ -243,10 +230,6 @@ ion-slide {
     font-size: 250%;
   }
 
-  /*.animacion_fondo{
-    width: 90%;
-    margin-left: 5%;
-  }*/
 }
 @media screen and (max-width: 360px) {
   .primerTitulo{
@@ -278,10 +261,6 @@ ion-slide {
     font-size: 250%;
   }
 
-  /*.animacion_fondo{
-    width: 90%;
-    margin-left: 5%;
-  }*/
 }
 @media screen and (max-width: 320px) {
   .primerTitulo{
@@ -319,52 +298,6 @@ ion-slide {
   }
 }
 
-
-/*@media (max-width: 320px) {
-  .primerTitulo{
-    font-size: 16px;
-  }
-  
-  .primerTitulo_2{
-    font-size: 16px;
-  }
-  
-  .segundoTitulo{
-    font-size: 24px;
-
-  }
-  
-  .tercerTitulo{
-    font-size: 12px;
-  }
-  
-  .cuartoTitulo{
-    font-size: 17px;
-  }
-}
-
-@media (max-width: 360px) {
-  .primerTitulo{
-    font-size: 16px;
-  }
-  
-  .primerTitulo_2{
-    font-size: 16px;
-  }
-  
-  .segundoTitulo{
-    font-size: 24px;
-
-  }
-  
-  .tercerTitulo{
-    font-size: 12px;
-  }
-  
-  .cuartoTitulo{
-    font-size: 17px;
-  }
-}*/
 
 .conten{
   position: absolute;

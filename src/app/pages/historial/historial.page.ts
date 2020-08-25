@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { IonSlides, ModalController, NavController, IonChip } from '@ionic/angular';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonSlides, NavController } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
 import { Balance } from '../../interfaces/interfaces';
 import { LottieAnimationViewModule } from 'ng-lottie';
@@ -23,7 +22,7 @@ export class HistorialPage implements OnInit {
     slidesPerView: 1
   };
 
-  // variables para cambiar entre chips y slides
+  // variables para cambiar entre  slides con los chips.
   sliderIndex: number;
   pagosP = true;
   tranferP = false;
@@ -66,11 +65,8 @@ export class HistorialPage implements OnInit {
    // tslint:disable-next-line: ban-types
    public lottieConfigTra: Object;
    private anim: any;
-   // tslint:disable-next-line: no-inferrable-types
-   private animationSpeed: number = 1;
 
   constructor(
-    private modalCtrl: ModalController,
     private navCtrl: NavController,
     private usuarioService: UsuarioService,
     ) {
@@ -81,11 +77,6 @@ export class HistorialPage implements OnInit {
         loopt: true
       };
 
-      this.lottieConfigTra = {
-        path: '../../../assets/animation/10271-money-transfer.json',
-        autoplay: true,
-        loopt: true
-      };
     }
 
   ngOnInit() {
@@ -222,7 +213,7 @@ export class HistorialPage implements OnInit {
     this.calTransfer.fechafin = '';
   }
 
-  protected async slideDidChange(): Promise<void> {
+  async slideDidChange() {
 
     this.sliderIndex = await this.slides.getActiveIndex();
 
@@ -239,7 +230,7 @@ export class HistorialPage implements OnInit {
       this.tranferP = false;
       this.abonosP = true;
     }
-    return Promise.resolve();
+
   }
 
   mostrarPagos() {

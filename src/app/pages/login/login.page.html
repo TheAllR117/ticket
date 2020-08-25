@@ -3,13 +3,13 @@
     <div class='wave -one'></div>
     <div class='wave -two'></div>
     <div class='wave -three'></div>
-
-    <ion-segment mode="md" class="seg_pos" value="Ingresar">
-      <ion-segment-button mode="md" value="Ingresar" class="color_cha" (click)="mostrarRegistro()">
-        <ion-label color="light">Ingresar</ion-label>
+    
+    <ion-segment mode="md" class="seg_pos ion-margin-top" value="Ingresar">
+      <ion-segment-button mode="md" value="Ingresar" class="color_cha ion-no-margin ion-margin-top" (click)="mostrarRegistro()">
+        <ion-label color="light" class="ion-no-margin">Ingresar</ion-label>
       </ion-segment-button>
-      <ion-segment-button mode="md" value="Registrase" class="color_cha" (click)="mostrarLogin()">
-        <ion-label color="light">Registrarse</ion-label>
+      <ion-segment-button mode="md" value="Registrase" class="color_cha ion-no-margin ion-margin-top" (click)="mostrarLogin()">
+        <ion-label color="light" class="ion-no-margin">Registrarse</ion-label>
       </ion-segment-button>
     </ion-segment>
 
@@ -38,8 +38,8 @@
               <ion-row >
                 <ion-col size="5"></ion-col>
                 <ion-col size="5">
-                  <ion-button type="submit" shape="round" expand="full" color="danger">
-                    Entrar <ion-icon name="log-in"></ion-icon>
+                  <ion-button type="submit" shape="round" expand="full" color="danger" class="ion-text-capitalize">
+                    Entrar <ion-icon name="log-in-outline"></ion-icon>
                   </ion-button>
                 </ion-col>
               </ion-row>
@@ -83,27 +83,27 @@
                     <ion-grid fixed>
                       <ion-row >
                         <ion-col size="10" offset="1" >
-                          <ion-input name="name" type="text" [(ngModel)]="registerUser.name" placeholder="NOMBRE (S)" autocomplete="off" required></ion-input>
+                          <ion-input name="name" type="text" [(ngModel)]="registerUser.name" placeholder="Nombre (S)" autocomplete="off" required></ion-input>
                         </ion-col>
                       </ion-row>
                       <ion-row >
                         <ion-col size="10" offset="1" >
-                          <ion-input name="first_surname" type="text" [(ngModel)]="registerUser.first_surname" placeholder="APELLIDO PATERNO" autocomplete="off" required></ion-input>
+                          <ion-input name="first_surname" type="text" [(ngModel)]="registerUser.first_surname" placeholder="Apellido paterno" autocomplete="off" required></ion-input>
                         </ion-col>
                       </ion-row>
                       <ion-row >
                         <ion-col size="10" offset="1" >
-                          <ion-input name="second_surname" type="text" [(ngModel)]="registerUser.second_surname" placeholder="APELLIDO MATERNO" autocomplete="off" required></ion-input>
+                          <ion-input name="second_surname" type="text" [(ngModel)]="registerUser.second_surname" placeholder="Apellido Materno" autocomplete="off" required></ion-input>
                         </ion-col>
                       </ion-row>
                       <ion-row>
                         <ion-col size="10" offset="1" >
-                          <ion-input name="email" type="email" placeholder="email" [(ngModel)]="registerUser.email" required></ion-input>
+                          <ion-input name="email" type="email" placeholder="Email" [(ngModel)]="registerUser.email" required></ion-input>
                         </ion-col>
                       </ion-row>  
                       <ion-row>
                         <ion-col size="10" offset="1" >
-                          <ion-input name="password" type="password" placeholder="contraseña" [(ngModel)]="registerUser.password" required></ion-input>
+                          <ion-input name="password" type="password" placeholder="Contraseña" [(ngModel)]="registerUser.password" required></ion-input>
                         </ion-col>
                       </ion-row>
                       <ion-row class="margin_top ion-justify-content-end">
@@ -120,30 +120,31 @@
                     <ion-grid fixed>
                       <ion-row >
                         <ion-col size="10" offset="1" >
-                          <ion-input name="phone" type="tel" [(ngModel)]="registerUser.phone" placeholder="TELÉFONO" autocomplete="off" required></ion-input>
+                          <ion-input name="phone" type="tel" [(ngModel)]="registerUser.phone" placeholder="Teléfono" autocomplete="off" required></ion-input>
                         </ion-col>
                       </ion-row>
                       <ion-row >
                         <ion-col size="10" offset="1" >
-                          <ion-input name="address" type="text" [(ngModel)]="registerUser.address" placeholder="DIRECCIÓN" autocomplete="off" required></ion-input>
+                          <ion-input name="address" type="text" [(ngModel)]="registerUser.address" placeholder="Dirección" autocomplete="off" required></ion-input>
                         </ion-col>
                       </ion-row>
                       <ion-row >
                         <ion-col size="10" offset="1" >
                           <ion-item class="bordes_re_modal" lines="none">
-                            <ion-datetime class="ion-no-padding" color="medium" [(ngModel)]="registerUser.birthdate" name="birthdate" displayFormat="DD-MM-YYYY" placeholder="FECHA DE NACIMIENTO" autocomplete="off" required></ion-datetime>
+                            <ion-label>Fecha de nacimiento</ion-label>
+                            <ion-datetime class="ion-no-padding" [(ngModel)]="registerUser.birthdate" name="birthdate" displayFormat="DD-MM-YYYY" autocomplete="off" required></ion-datetime>
                           </ion-item>
                         </ion-col>
                       </ion-row>
                       <ion-row>
                         <ion-col size="10" offset="1" >
-                          <ion-item class="bordes_re_modal">
-                            <ion-label color="success">
-                              SEXO
+                          <ion-item class="bordes_re_modal ion-text-capitalize ">
+                            <ion-label class="ion-text-capitalize" >
+                              Sexo
                             </ion-label>
                             <ion-select name="sex" [(ngModel)]="registerUser.sex"  interface="action-sheet">
-                              <ion-select-option>H</ion-select-option>
-                              <ion-select-option>M</ion-select-option>
+                              <ion-select-option value="H">Hombre</ion-select-option>
+                              <ion-select-option value="H">Mujer</ion-select-option>
                             </ion-select>
                           </ion-item>
                         </ion-col>
@@ -167,14 +168,14 @@
                     <ion-grid fixed>
                       <ion-row >
                         <ion-col size="10" offset="1" >
-                          <ion-input name="number_plate" type="text" [(ngModel)]="registerUser.number_plate" placeholder="PLACAS" autocomplete="off" required></ion-input>
+                          <ion-input name="number_plate" type="text" [(ngModel)]="registerUser.number_plate" placeholder="Placas" autocomplete="off" required></ion-input>
                         </ion-col>
                       </ion-row>
                       <ion-row >
                         <ion-col size="10" offset="1" >
                           <ion-item class="bordes_re_modal">
-                            <ion-label color="success">
-                              TIPO DE VEHÍCULO
+                            <ion-label>
+                              Tipo de vehículo
                             </ion-label>
                             <ion-select name="type_car" [(ngModel)]="registerUser.type_car"  interface="action-sheet">
                               <ion-select-option>Transporte</ion-select-option>
