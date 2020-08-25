@@ -8,11 +8,6 @@ import { IonSlides, MenuController, IonRadioGroup } from '@ionic/angular';
 })
 export class SlidesPage implements OnInit {
 
-  // tslint:disable-next-line: max-line-length
-  titulo = 'REALIZA ABONOS A TU CUENTA';
-  texto = 'Asiste a la estación de tu preferencia, realiza tu abono y sube tu comprobante para acumular saldo a tu cuenta.';
-  constructor(public menuCtrl: MenuController) { }
-
   @ViewChild (IonSlides, { static: true }) slider: IonSlides;
   @ViewChild('sliderSecundario', {static: true}) slidesSe: IonSlides;
   @ViewChild (IonRadioGroup, { static: true }) radio: IonRadioGroup;
@@ -20,23 +15,39 @@ export class SlidesPage implements OnInit {
   sliderIndex1 = 0;
   radioIndex = '0';
 
+  activarOdesactivar1: any;
+  activarOdesactivar2: any;
+
+  constructor(public menuCtrl: MenuController) { }
+
   ngOnInit() {
+    this.activarOdesactivar1 = false;
+    this.activarOdesactivar2 = true;
     this.menuCtrl.enable (false);
   }
 
-  protected async slideDidChange(): Promise<void> {
+  async slideDidChange() {
     this.sliderIndex = await this.slider.getActiveIndex();
-    // console.log(this.radio.value);
+
+    if (this.sliderIndex === 0) {
+      this.activarOdesactivar1 = false;
+      this.activarOdesactivar2 = true;
+    } else if (this.sliderIndex === 1) {
+      this.activarOdesactivar1 = true;
+      this.activarOdesactivar2 = true;
+    } else {
+      this.activarOdesactivar1 = true;
+      this.activarOdesactivar2 = false;
+    }
+
     this.radio.value = this.sliderIndex.toString();
     this.slidesSe.slideTo(this.sliderIndex);
-    return Promise.resolve();
   }
 
-  protected async slideDidChange1(): Promise<void> {
+  async slideDidChange1() {
     this.sliderIndex1 = await this.slidesSe.getActiveIndex();
     this.radio.value = this.sliderIndex1.toString();
     this.slider.slideTo(this.sliderIndex1);
-    return Promise.resolve();
   }
 
   activo(slide: number) {

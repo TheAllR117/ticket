@@ -39,7 +39,7 @@
   
   <ion-buttons mode="md" slot="start" class="margin_negativo_modal">
     <ion-button (click)="regresar()" class="margin_top_modal">
-      <ion-icon slot="icon-only"  mode="ios" name="arrow-back" color="light"></ion-icon>
+      <ion-icon slot="icon-only"  mode="ios" name="chevron-back-outline" color="light"></ion-icon>
     </ion-button>
   </ion-buttons>
 
@@ -57,9 +57,9 @@
 <ion-content no-border>
 
   <ion-list >
-    <ion-list-header>
+    <!--ion-list-header>
       <ion-label [innerHTML]="pushServices.userId"></ion-label>
-    </ion-list-header>
+    </ion-list-header-->
     <ion-card mode="ios" no-border class="ion-no-padding animate__animated animate__fadeIn" *ngFor="let push of pushServices.mensajes">
       <ion-card-content no-border class="ion-no-padding">
         <ion-item-sliding no-border class="ion-no-padding">

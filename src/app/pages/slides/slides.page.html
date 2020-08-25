@@ -83,8 +83,8 @@
   <ion-fab vertical="bottom" slot="fixed" mode="ios" class="ion-no-margin ion-padding-bottom tamanoFab ion-justify-content-center ion-text-center">
     <ion-grid fixed class="ion-text-center ">
       <ion-row>
-        <ion-col size="2">
-          <ion-icon name="arrow-back" mode="ios" color="light" class="tamanoFlechas" (click)="regresar()"></ion-icon>
+        <ion-col size="2" >
+          <ion-icon *ngIf="activarOdesactivar1" name="chevron-back-outline" mode="ios" color="light" class="tamanoFlechas" (click)="regresar()"></ion-icon>
         </ion-col>
         <ion-col size="8">
           <ion-radio-group [value]="radioIndex" color="light" mode="md">
@@ -94,7 +94,7 @@
           </ion-radio-group>
         </ion-col>
         <ion-col size="2">
-          <ion-icon name="arrow-forward" mode="ios" color="light" class="tamanoFlechas" (click)="siguiente()"></ion-icon>
+          <ion-icon *ngIf="activarOdesactivar2" name="chevron-forward-outline" mode="ios" color="light" class="tamanoFlechas" (click)="siguiente()"></ion-icon>
         </ion-col>
       </ion-row>
     </ion-grid>

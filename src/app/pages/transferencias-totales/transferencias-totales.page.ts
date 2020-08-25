@@ -90,7 +90,25 @@ export class TransferenciasTotalesPage implements OnInit {
       }
     });
 
-    modal.present();
+    await modal.present();
+
+    const { data } = await modal.onDidDismiss();
+    // tslint:disable-next-line: no-string-literal
+    if (data['actualizar']) {
+      this.total = 0;
+      this.usuarioService.transferenciasRecibidas().subscribe(respuesta => {
+        if (respuesta.ok) {
+          this.animacion = false;
+          // tslint:disable-next-line: prefer-const
+          for (let i of respuesta.payments) {
+            this.total = this.total + i.balance;
+          }
+          this.payments = respuesta.payments;
+        } else {
+          this.animacion = true;
+        }
+      });
+    }
   }
 
 }

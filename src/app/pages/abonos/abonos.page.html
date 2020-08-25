@@ -39,7 +39,7 @@
   
   <ion-buttons mode="md" slot="start" class="margin_negativo_modal">
     <ion-button (click)="regresar()" class="margin_top_modal">
-      <ion-icon slot="icon-only"  mode="ios" name="arrow-back" color="light"></ion-icon>
+      <ion-icon slot="icon-only"  mode="ios" color="light" name="chevron-back-outline"></ion-icon>
     </ion-button>
   </ion-buttons>
 
@@ -55,16 +55,16 @@
 
     <ion-fab horizontal="center" vertical="top" slot="fixed" edge class="animate__animated animate__fadeInDownBig">
       <ion-fab-button color="light">
-        <ion-icon name="cloud-upload"></ion-icon>
+        <ion-icon name="cloud-upload-outline"></ion-icon>
       </ion-fab-button>
       <ion-fab-list side="end">
         <ion-fab-button color="light" (click)="libreria()">
-          <ion-icon name="images"></ion-icon>
+          <ion-icon name="images-outline"></ion-icon>
         </ion-fab-button>
       </ion-fab-list>
       <ion-fab-list side="start">
         <ion-fab-button color="light" (click)="camara()">
-          <ion-icon name="camera"></ion-icon>
+          <ion-icon name="camera-outline"></ion-icon>
         </ion-fab-button>
       </ion-fab-list>
     </ion-fab>
@@ -104,7 +104,7 @@
 
       <ion-row class="margin_top_modal">
         <ion-col size="4" offset="4" class="aligh_text_modal animate__animated animate__fadeInUpBig">
-          <ion-button shape="round" expand="block" color="success" size="default" [disabled]="abonoUser.id_station === null || abonoUser.deposit < 100" (click)="crear_abono()">
+          <ion-button shape="round" expand="block" color="success" size="default" [disabled]="abonoUser.id_station === null || abonoUser.deposit < 100 || tempImages.length < 1" (click)="crear_abono()">
             <ion-label color="light">
               Solicitar
             </ion-label>

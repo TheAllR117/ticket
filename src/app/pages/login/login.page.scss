@@ -162,15 +162,23 @@ ion-input:focus:-ms-input-placeholder {
 .seg_pos{
   position: fixed;
   z-index: 1000;
-  margin-top: 8%;
-  width: 50%;
-  margin-left: 38%;
+  width: 60vw;
+  margin-left: 35vw;
 }
 
+ion-item{
+  --background: auto;
+  --color: rgba(255,255,255,.5);
+}
+
+.bordes_re_modal {
+  border: 1px solid rgb(255 253 253 / 81%) !important;
+}
 
 .color_cha{
   --color-checked: #FFEB3B !important;
 }
+
 
 @media screen and (max-height: 699px) and (min-height: 568px) {
 

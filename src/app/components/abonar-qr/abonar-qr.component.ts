@@ -72,7 +72,9 @@ export class AbonarQrComponent implements OnInit {
   }
 
   regresar() {
-    this.modalCtrl.dismiss();
+    this.modalCtrl.dismiss({
+      actualizar: true
+    });
   }
 
 

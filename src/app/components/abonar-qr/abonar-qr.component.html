@@ -39,7 +39,7 @@
   
   <ion-buttons mode="md" slot="start" class="margin_negativo_modal">
     <ion-button (click)="regresar()" class="margin_top_modal">
-      <ion-icon slot="icon-only"  mode="ios" name="arrow-back" color="light"></ion-icon>
+      <ion-icon slot="icon-only"  mode="ios" name="chevron-back-outline" color="light"></ion-icon>
     </ion-button>
   </ion-buttons>
 
@@ -53,11 +53,11 @@
 
 </ion-toolbar>
 
-<ion-content no-border class="ion-text-center">
+<ion-content class="ion-text-center ion-no-border">
   <ion-grid>
     <ion-row>
       <ion-col size="10" offset="1">
-        <qrcode class="animate__animated animate__fadeIn" *ngIf="resp" [qrdata]="resp" [width]="330" [errorCorrectionLevel]="'M'"></qrcode>
+        <qrcode *ngIf="resp" [qrdata]="resp" cssClass="animate__animated animate__fadeInDownBig propio" [errorCorrectionLevel]="'M'"></qrcode>
       </ion-col>
     </ion-row>
     <ion-row class="ion-justify-content-center ion-text-center">

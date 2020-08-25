@@ -69,7 +69,9 @@ export class CompartidoQrComponent implements OnInit {
   }
 
   regresar() {
-    this.modalCtrl.dismiss();
+    this.modalCtrl.dismiss({
+      actualizar: true
+    });
   }
 
   async mostrarPop(

@@ -39,7 +39,7 @@
   
   <ion-buttons mode="md" slot="start" class="margin_negativo_modal">
     <ion-button (click)="regresar()" class="margin_top_modal">
-      <ion-icon slot="icon-only"  mode="ios" name="arrow-back" color="light"></ion-icon>
+      <ion-icon slot="icon-only"  mode="ios" name="chevron-back-outline" color="light"></ion-icon>
     </ion-button>
   </ion-buttons>
 
@@ -51,7 +51,7 @@
 
 </ion-toolbar>
 
-<ion-content no-border>
+<ion-content class="ion-no-border">
   <ion-fab vertical="top" slot="fixed" edge class="animate__animated animate__fadeInDownBig ancho_fab ancho_fab">
       <ion-searchbar class="border_search" animated placeholder="Membresía del usuario" debounce="700" type="number" (ionChange)="buscar($event)"></ion-searchbar>
   </ion-fab>
@@ -69,12 +69,12 @@
       Resultados de la busqueda
     </ion-list-header>
 
-    <ion-card *ngIf="usuariosNoRegistrado === false"  mode="ios" no-border class="ion-no-padding">
-      <ion-card-content no-border class="ion-no-padding" >
-        <ion-item-sliding no-border class="ion-no-padding" >
-          <ion-item no-border lines="none">
+    <ion-card *ngIf="usuariosNoRegistrado === false"  mode="ios" class="ion-no-padding ion-no-border">
+      <ion-card-content class="ion-no-padding ion-no-border" >
+        <ion-item-sliding  class="ion-no-padding ion-no-border" >
+          <ion-item class="ion-no-border" lines="none">
             <ion-grid no-border>
-              <ion-row size="12" no-border class="ion-no-padding">
+              <ion-row size="12" class="ion-no-padding ion-no-border">
                 <ion-col size="1" class="ion-justify-content-center ion-text-center">
                   <ion-icon name="person" color="success" class="opacity_text"></ion-icon>
                   <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas opacity_text" color="success"></ion-icon>
@@ -112,12 +112,12 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-card *ngIf="usuariosNoRegistrado === true"  mode="ios" no-border class="ion-no-padding">
-      <ion-card-content no-border class="ion-no-padding" >
-        <ion-item-sliding no-border class="ion-no-padding" >
-          <ion-item no-border lines="none">
-            <ion-grid no-border>
-              <ion-row size="12" no-border class="ion-no-padding">
+    <ion-card *ngIf="usuariosNoRegistrado === true"  mode="ios" class="ion-no-padding ion-no-border">
+      <ion-card-content class="ion-no-padding ion-no-border" >
+        <ion-item-sliding class="ion-no-padding ion-no-border" >
+          <ion-item lines="none">
+            <ion-grid class="ion-no-border">
+              <ion-row size="12" class="ion-no-padding ion-no-border">
                 <ion-col size="1" class="ion-justify-content-center ion-text-center">
                   <ion-icon name="person" color="success" class="opacity_text"></ion-icon>
                   <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas opacity_text" color="success"></ion-icon>
@@ -147,12 +147,12 @@
   </ion-list-header>
   
   <ion-list #contactosListaAd *ngFor="let contac of contacts">
-    <ion-card mode="ios" no-border class="ion-no-padding">
-      <ion-card-content no-border class="ion-no-padding">
-        <ion-item-sliding no-border class="ion-no-padding">
-          <ion-item no-border lines="none">
-            <ion-grid no-border>
-              <ion-row size="12" no-border class="ion-no-padding">
+    <ion-card mode="ios" class="ion-no-padding ion-no-border">
+      <ion-card-content class="ion-no-padding ion-no-border">
+        <ion-item-sliding  class="ion-no-padding ion-no-border">
+          <ion-item lines="none" class="ion-no-border ion-justify-content-center">
+            <ion-grid class="ion-no-border">
+              <ion-row size="12" class="ion-no-padding ion-no-border">
                 <ion-col size="1" class="ion-justify-content-center ion-text-center">
                   <ion-icon name="person" color="success" class="opacity_text"></ion-icon>
                   <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas opacity_text" color="success"></ion-icon>

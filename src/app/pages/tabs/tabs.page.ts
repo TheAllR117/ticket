@@ -1,9 +1,7 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, EventEmitter } from '@angular/core';
 import { LottieAnimationViewModule } from 'ng-lottie';
 import { UsuarioService } from '../../services/usuario.service';
-import { Events } from '@ionic/angular';
-import { Observable, asyncScheduler, Subject } from 'rxjs';
-import { observeOn } from 'rxjs/operators';
+// import { Events } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +15,9 @@ import { observeOn } from 'rxjs/operators';
 
 export class TabsPage {
   lottieConfig: any;
+  public actualizarUser = new EventEmitter<boolean>();
 
-  constructor(private usuarioService: UsuarioService, private events: Events) {
+  constructor(private usuarioService: UsuarioService) {
     LottieAnimationViewModule.forRoot();
     this.lottieConfig = {
       path: '../../../assets/animation/lf30_editor_5gTE8E.json',
@@ -28,6 +27,7 @@ export class TabsPage {
   }
 
   async ionViewDidEnter() {
-    this.events.publish('UpdateHome');
+    this.actualizarUser.emit(true);
+    // this.events.publish('UpdateHome');
   }
 }

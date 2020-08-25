@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { NoticiasService } from '../../services/noticias.service';
-import { Article, User } from '../../interfaces/interfaces';
-import { PostsService } from '../../services/posts.service';
+import { User } from '../../interfaces/interfaces';
 import { UsuarioService } from '../../services/usuario.service';
 import { LottieAnimationViewModule } from 'ng-lottie';
 import { MenuController, ModalController, NavController } from '@ionic/angular';
-import { Events } from '@ionic/angular';
-import { Observable, asyncScheduler } from 'rxjs';
-import { observeOn } from 'rxjs/operators';
+import { TabsPage } from '../tabs/tabs.page';
+import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-tab1',
@@ -17,8 +16,7 @@ import { observeOn } from 'rxjs/operators';
 
 export class Tab1Page implements OnInit {
 
-  noticias: Article[] = [];
-  public user: User = {};
+  user: User = {};
   animacion = false;
   // tslint:disable-next-line: ban-types
   public lottieConfig: Object;
@@ -33,13 +31,16 @@ export class Tab1Page implements OnInit {
     slideShadows: true,
     },
   };
+  currentPage: any;
 
   constructor(
     private usuarioService: UsuarioService,
     private menuCtrl: MenuController,
     private modalCtrl: ModalController,
     private navCtrl: NavController,
-    private events: Events) {
+    private tabspage: TabsPage,
+    private routerModule: RouterModule,
+    private router: Router) {
 
     LottieAnimationViewModule.forRoot();
     this.lottieConfig = {
@@ -67,15 +68,22 @@ export class Tab1Page implements OnInit {
   }
 
   async ionViewWillEnter() {
-    this.events.subscribe('UpdateHome', async () => {
-      await this.usuarioService.validaToken();
-      this.user = this.usuarioService.getUsuario();
+
+    this.tabspage.actualizarUser.subscribe(async respueta => {
+      if (respueta) {
+        await this.usuarioService.validaToken();
+        this.user = this.usuarioService.getUsuario();
+      }
     });
+
   }
 
-  navRouting(ruta: string) {
-    // this.navCtrl.consumeTransition(ruta,);
-    this.navCtrl.navigateForward(ruta);
+  async navRouting(ruta: string) {
+    await this.navCtrl.navigateForward(ruta);
+  }
+
+  navigate(ruta: string) {
+    this.router.navigateByUrl(ruta);
   }
 
   async doRefresh(event) {

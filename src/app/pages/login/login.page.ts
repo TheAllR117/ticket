@@ -3,9 +3,8 @@ import { NgForm } from '@angular/forms';
 import { IonSlides, NavController, MenuController } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
 import { UiServicesService } from '../../services/ui-services.service';
-import { LoadingController } from '@ionic/angular';
 import { PostsService } from '../../services/posts.service';
-import { User, UserRegis } from '../../interfaces/interfaces';
+import { UserRegis } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-login',
@@ -34,14 +33,11 @@ export class LoginPage implements OnInit {
 
   };
 
-  loading: any;
-
   passwordTypeInput  =  'password';
 
   constructor(
     private usuarioService: UsuarioService,
     private navCtrl: NavController,
-    private uiService: UiServicesService,
     private menuCtrl: MenuController,
     private postsService: PostsService) { }
 
@@ -60,9 +56,13 @@ export class LoginPage implements OnInit {
   }
 
   async login( fLogin: NgForm ) {
-    this.postsService.presentLoading('Espere por favor...');
+    await this.postsService.presentLoading('Espere por favor...');
 
-    if (fLogin.invalid) { this.loading.dismiss(); return; }
+    if (fLogin.invalid) {
+      await this.postsService.loading.dismiss();
+      this.postsService.mostrarPop('14331-error', 'Error al iniciar sesión', 'Verifica los campos', 1950);
+      return;
+    }
 
     // mandamos a llavar la funcion de inicio de sesion
     const valido = await this.usuarioService.login( this.loginUser.email, this.loginUser.password );
@@ -81,10 +81,12 @@ export class LoginPage implements OnInit {
   }
 
   async registro( fRegistro: NgForm ) {
-    this.postsService.presentLoading('Espere por favor...');
+    await this.postsService.presentLoading('Espere por favor...');
 
     if (fRegistro.invalid) {
-      this.loading.dismiss(); return;
+      await this.postsService.loading.dismiss();
+      this.postsService.mostrarPop('14331-error', 'Error al iniciar sesión', 'Verifica los campos', 1950);
+      return;
     }
 
     const validoR = await this.usuarioService.registro(this.registerUser);
