@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
 import { PushService } from '../../services/push.service';
+import { PostsService } from '../../services/posts.service';
 
 @Component({
   selector: 'app-confirmar-pago',
@@ -31,15 +32,23 @@ export class ConfirmarPagoComponent implements OnInit {
   @Input() id_dispatcher;
   // tslint:disable-next-line: variable-name
   @Input() id_time;
+  // tslint:disable-next-line: variable-name
+  @Input() no_island;
+  // tslint:disable-next-line: variable-name
+  @Input() no_bomb;
 
   membersh = '';
 
-  constructor(private popoverCtrl: PopoverController, private usuarioService: UsuarioService, public pushServices: PushService) { }
+  constructor(
+    private popoverCtrl: PopoverController,
+    private usuarioService: UsuarioService,
+    public pushServices: PushService,
+    private postsService: PostsService) { }
 
   ngOnInit() {}
 
   onClick() {
-    console.log(this.tr_membership);
+    // console.log(this.tr_membership);
     if (this.tr_membership === null) {
       this.membersh = '';
     } else {
@@ -57,15 +66,25 @@ export class ConfirmarPagoComponent implements OnInit {
       this.id_gasoline.toString(),
       this.id_schedule.toString(),
       'true',
-      this.id_time.toString()).subscribe(resp => {
-        console.log(resp);
+      this.id_time.toString(),
+      this.no_island.toString(),
+      this.no_bomb.toString()).subscribe(resp => {
+        // tslint:disable-next-line: no-string-literal
+        if (resp['ok']) {
+          // tslint:disable-next-line: no-string-literal
+          this.postsService.mostrarPop('21349-tick-green', 'Confirmación de pago', resp['message'], 2500);
+        } else {
+          // tslint:disable-next-line: no-string-literal
+          this.postsService.mostrarPop('14331-error', 'Confirmación de pago', resp['message'], 1950);
+        }
+
       });
     this.pushServices.abrirPop = true;
     this.popoverCtrl.dismiss();
   }
 
   cancelar() {
-    console.log(this.tr_membership);
+    // console.log(this.tr_membership);
     if (this.tr_membership === null) {
       this.membersh = '';
     } else {
@@ -82,8 +101,17 @@ export class ConfirmarPagoComponent implements OnInit {
       this.id_gasoline.toString(),
       this.id_schedule.toString(),
       'false',
-      this.id_time.toString()).subscribe(resp => {
-        console.log(resp);
+      this.id_time.toString(),
+      this.no_island.toString(),
+      this.no_bomb.toString()).subscribe(resp => {
+        // tslint:disable-next-line: no-string-literal
+        if (resp['ok']) {
+          // tslint:disable-next-line: no-string-literal
+          this.postsService.mostrarPop('21349-tick-green', 'Cancelación de pago', resp['message'], 2500);
+        } else {
+          // tslint:disable-next-line: no-string-literal
+          this.postsService.mostrarPop('14331-error', 'Cancelación de pago', resp['message'], 1950);
+        }
       });
     this.pushServices.abrirPop = true;
     this.popoverCtrl.dismiss();

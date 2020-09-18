@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { IonSlides, NavController, MenuController } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
-import { UiServicesService } from '../../services/ui-services.service';
+import { PushService } from '../../services/push.service';
 import { PostsService } from '../../services/posts.service';
 import { UserRegis } from '../../interfaces/interfaces';
 
@@ -29,9 +29,7 @@ export class LoginPage implements OnInit {
     password: ''
   };
 
-  registerUser: UserRegis = {
-
-  };
+  registerUser: UserRegis = {};
 
   passwordTypeInput  =  'password';
 
@@ -39,9 +37,11 @@ export class LoginPage implements OnInit {
     private usuarioService: UsuarioService,
     private navCtrl: NavController,
     private menuCtrl: MenuController,
-    private postsService: PostsService) { }
+    private postsService: PostsService,
+    public pushServices: PushService) { }
 
   ngOnInit() {
+    // console.log(this.pushServices.userId);
     this.datosP = true;
     this.datosC = false;
     this.datosV = false;
@@ -65,7 +65,7 @@ export class LoginPage implements OnInit {
     }
 
     // mandamos a llavar la funcion de inicio de sesion
-    const valido = await this.usuarioService.login( this.loginUser.email, this.loginUser.password );
+    const valido = await this.usuarioService.login( this.loginUser.email, this.loginUser.password, this.pushServices.userId);
 
     if (valido) {
       // navegar al tab
@@ -88,7 +88,7 @@ export class LoginPage implements OnInit {
       this.postsService.mostrarPop('14331-error', 'Error al iniciar sesión', 'Verifica los campos', 1950);
       return;
     }
-
+    this.registerUser.ids = this.pushServices.userId;
     const validoR = await this.usuarioService.registro(this.registerUser);
     if (validoR) {
       // navegar al tab

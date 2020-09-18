@@ -93,6 +93,7 @@ export class HistorialPage implements OnInit {
     });
 
     this.usuarioService.historialAbonos('balance', this.fechaActu.split('T')[0], this.fechaActu.split('T')[0]).subscribe( resp => {
+      console.log(resp);
       if (resp.ok) {
         this.balance = resp.balances;
       } else {

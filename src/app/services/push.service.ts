@@ -76,10 +76,10 @@ export class PushService {
   async confirmacionPago(noti: OSNotification) {
     const payloadPagos = noti.payload;
     if (this.idNotificacion === '') {
+
       this.idNotificacion = payloadPagos.notificationID;
-      console.log('One', payloadPagos.notificationID);
-      console.log('mio', this.idNotificacion);
       this.pushListener.emit(payloadPagos);
+
     } else if (this.idNotificacion === payloadPagos.notificationID) {
       console.log('Notificación repetida');
     } else {

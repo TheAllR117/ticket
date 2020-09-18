@@ -43,24 +43,29 @@ export class CompartidoQrComponent implements OnInit {
     });
 
     this.pushServices.pushListener.subscribe(async noti => {
+      if (noti.additionalData) {
+        if ( this.pushServices.abrirPop === true) {
+          // console.log(noti.additionalData);
+          this.pushServices.abrirPop = false;
+          await this.mostrarPop(
+            noti.additionalData.price,
+            noti.additionalData.id_gasoline,
+            noti.additionalData.liters,
+            noti.additionalData.id_station,
+            noti.additionalData.tr_membership,
+            this.pushServices.userId,
+            noti.additionalData.ids_dispatcher,
+            noti.additionalData.estacion,
+            noti.additionalData.gasoline,
+            noti.additionalData.id_schedule,
+            noti.additionalData.id_dispatcher,
+            noti.additionalData.id_time,
+            noti.additionalData.no_island,
+            noti.additionalData.no_bomb
+          );
 
-      if ( this.pushServices.abrirPop === true) {
-        console.log(noti.additionalData);
-        this.pushServices.abrirPop = false;
-
-        await this.mostrarPop(
-          noti.additionalData.price,
-          noti.additionalData.id_gasoline,
-          noti.additionalData.liters,
-          noti.additionalData.id_station,
-          noti.additionalData.tr_membership,
-          this.pushServices.userId,
-          noti.additionalData.ids_dispatcher,
-          noti.additionalData.estacion,
-          noti.additionalData.gasoline,
-          noti.additionalData.id_schedule,
-          noti.additionalData.id_dispatcher,
-          noti.additionalData.id_time);
+          this.pushServices.idNotificacion = '';
+        }
       }
 
       this.applicationRef.tick();
@@ -94,7 +99,11 @@ export class CompartidoQrComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     id_dispatcher: string,
     // tslint:disable-next-line: variable-name
-    id_time: string
+    id_time: string,
+    // tslint:disable-next-line: variable-name
+    no_island: string,
+    // tslint:disable-next-line: variable-name
+    no_bomb: string
     ) {
     const popover = await this.popoverCtrl.create({
       component: ConfirmarPagoComponent,
@@ -114,7 +123,9 @@ export class CompartidoQrComponent implements OnInit {
         gasoline,
         id_schedule,
         id_dispatcher,
-        id_time
+        id_time,
+        no_island,
+        no_bomb
       }
     });
 
