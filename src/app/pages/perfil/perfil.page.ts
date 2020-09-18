@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
-import { UserP, User } from '../../interfaces/interfaces';
+import { UserP, User, Data_car } from '../../interfaces/interfaces';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -12,6 +12,8 @@ import { NgForm } from '@angular/forms';
 export class PerfilPage implements OnInit {
 
   user: User = {};
+  // tslint:disable-next-line: variable-name
+  data_car: Data_car = {};
 
   perfil = {
     name: '',
@@ -30,9 +32,10 @@ export class PerfilPage implements OnInit {
   constructor(private navCtrl: NavController, private usuarioService: UsuarioService) { }
 
   ngOnInit() {
-    this.usuarioService.perfil().subscribe(resp => {
+    this.usuarioService.perfil().subscribe( resp => {
       if (resp.ok) {
         this.user = resp.user;
+        this.data_car = resp.user.data_car;
         console.log(this.user);
       }
     });
@@ -43,7 +46,7 @@ export class PerfilPage implements OnInit {
   }
 
   async perfilE() {
-    console.log(this.perfil);
+    // console.log(this.perfil);
     this.usuarioService.editarPerfil(
       this.perfil.name,
       this.perfil.first_surname,
@@ -59,7 +62,7 @@ export class PerfilPage implements OnInit {
     ).subscribe( resp => {
       // tslint:disable-next-line: no-string-literal
       if (resp[ 'ok' ]) {
-        console.log(resp);
+        // console.log(resp);
         this.usuarioService.perfil().subscribe(resp1 => {
           if (resp1.ok) {
             this.user = resp1.user;

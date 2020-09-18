@@ -45,8 +45,8 @@ export class UsuarioService {
     private fileTransfer: FileTransfer) { }
 
 
-  login( email: string, password: string) {
-    const data = { email, password };
+  login( email: string, password: string, ids: string) {
+    const data = { email, password, ids };
     return new Promise( resolve => {
       this.http.post<RespuestaOkToken>(`${URLP}/login`, data).subscribe( async resp => {
         if ( resp.ok) {
@@ -410,7 +410,11 @@ export class UsuarioService {
     id_schedule: string,
     authorization: string,
     // tslint:disable-next-line: variable-name
-    id_time: string
+    id_time: string,
+    // tslint:disable-next-line: variable-name
+    no_island: string,
+    // tslint:disable-next-line: variable-name
+    no_bomb: string
     ) {
 
     this.cargarToken();
@@ -432,7 +436,9 @@ export class UsuarioService {
         id_gasoline,
         id_schedule,
         authorization,
-        id_time
+        id_time,
+        no_island,
+        no_bomb
       }
     });
 
@@ -452,7 +458,7 @@ export class UsuarioService {
       // tslint:disable-next-line: object-literal-key-quotes
       'Authorization': 'Bearer ' + this.token,
     });
-    return this.http.get<RespuestaPerfil>(`${URLP}/profile`, {headers});
+    return this.http.get<RespuestaUser>(`${URLP}/profile`, {headers});
   }
 
   editarPerfil(

@@ -53,7 +53,7 @@
 
 </ion-toolbar>
 
-<ion-content no-border>
+<ion-content class="ion-no-border">
   <form>
     <ion-grid>
       <ion-row class="ion-justify-content-center">
@@ -99,7 +99,7 @@
         <ion-col size="6">
           <ion-item mode="ios" class="ion-margin-top">
             <ion-label>Fecha de nacimiento</ion-label>
-            <ion-datetime [(ngModel)]="perfil.birthdate" name="birthdate" [value]="user.birthdate" displayFormat="DD-MM-YYYY" placeholder="Select Date"></ion-datetime>
+            <ion-datetime [(ngModel)]="perfil.birthdate" name="birthdate" [value]="user.birthdate" displayFormat="DD-MM-YYYY" placeholder="Select Date" okText="Escoger" cancelText="Cancelar"></ion-datetime>
           </ion-item>
         </ion-col>
 
@@ -136,7 +136,7 @@
         <ion-col size="12">
           <ion-item mode="ios" class="ion-margin-top">
             <ion-label mode="ios">Tipo de Vehículo (opcional)</ion-label>
-            <ion-select [(ngModel)]="perfil.type_car" name="type_car" mode="ios" >
+            <ion-select [(ngModel)]="perfil.type_car" name="type_car" [value]="data_car.type_car" mode="ios" okText="Escoger" cancelText="Cancelar">
               <ion-select-option value="Transporte">Transporte</ion-select-option>
               <ion-select-option value="Carga">Carga</ion-select-option>
               <ion-select-option value="Personal">Personal</ion-select-option>
@@ -149,13 +149,13 @@
         <ion-col size="12">
           <ion-item mode="ios">
             <ion-label mode="ios" position="floating">Matricula (opcional)</ion-label>
-            <ion-input [(ngModel)]="perfil.number_plate" name="number_plate" type="text" mode="ios"></ion-input>
+            <ion-input [(ngModel)]="perfil.number_plate" name="number_plate" type="text" mode="ios" [value]="data_car.number_plate"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
 
-      <ion-row>
-        <ion-col>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="4">
           <ion-button type="submit" shape="round" expand="full" color="success" (click)="perfilE()">
             <ion-label color="light">
               Guardar

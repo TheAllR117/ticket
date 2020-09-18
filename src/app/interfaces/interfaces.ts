@@ -52,6 +52,7 @@ export interface UserRegis {
   birthdate?: string;
   number_plate?: string;
   type_car?: string;
+  ids?: string;
 }
 export interface Usuario {
   avatar?: string;
@@ -248,6 +249,7 @@ export interface Balance {
   hour?: string;
   liters?: number;
   gasoline?: string;
+  status?: string;
 }
 
 export interface Payments {
@@ -269,21 +271,21 @@ export interface RespuestaPerfil {
 }
 
 export interface UserP {
-  id: number;
-  name: string;
-  first_surname: string;
+  id?: number;
+  name?: string;
+  first_surname?: string;
   second_surname?: any;
   phone?: any;
   address?: any;
-  email: string;
-  sex: string;
+  email?: string;
+  sex?: string;
   birthdate: string;
-  data_car: Datacar;
+  data_car?: Datacar;
 }
 
 export interface Datacar {
-  number_plate: string;
-  type_car: string;
+  number_plate?: string;
+  type_car?: string;
 }
 
 // transferencias recibidas
