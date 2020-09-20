@@ -25,7 +25,7 @@ export class PopinfoComponent implements OnInit {
   ngOnInit() {
     LottieAnimationViewModule.forRoot();
     this.lottieConfig = {
-      path: '../../../assets/animation/' + this.srcAnimation + '.json',
+      path: 'assets/animation/' + this.srcAnimation + '.json',
       autoplay: true,
       loopt: true
     };

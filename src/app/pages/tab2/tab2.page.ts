@@ -18,7 +18,7 @@ export class Tab2Page implements OnInit {
   constructor() {
     LottieAnimationViewModule.forRoot();
     this.lottieConfig = {
-      path: '../../../assets/animation/26531-construction-in-process.json',
+      path: 'assets/animation/26531-construction-in-process.json',
       autoplay: true,
       loopt: true
     };
