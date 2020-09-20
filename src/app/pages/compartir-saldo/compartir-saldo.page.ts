@@ -42,7 +42,7 @@ export class CompartirSaldoPage implements OnInit {
   ngOnInit() {
     LottieAnimationViewModule.forRoot();
     this.lottieConfig = {
-      path: '../../../assets/animation/contac.json',
+      path: 'assets/animation/contac.json',
       autoplay: true,
       loopt: true
     };

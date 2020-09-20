@@ -34,7 +34,7 @@ export class TransferenciasTotalesPage implements OnInit {
     ) {
       LottieAnimationViewModule.forRoot();
       this.lottieConfig = {
-        path: '../../../assets/animation/23210-wallet-money-added.json',
+        path: 'assets/animation/23210-wallet-money-added.json',
         autoplay: true,
         loopt: true
       };

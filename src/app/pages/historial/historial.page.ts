@@ -72,7 +72,7 @@ export class HistorialPage implements OnInit {
     ) {
       LottieAnimationViewModule.forRoot();
       this.lottieConfig = {
-        path: '../../../assets/animation/3617-shopping-bag-error.json',
+        path: 'assets/animation/3617-shopping-bag-error.json',
         autoplay: true,
         loopt: true
       };

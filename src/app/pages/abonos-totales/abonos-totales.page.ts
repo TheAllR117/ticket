@@ -31,7 +31,7 @@ export class AbonosTotalesPage implements OnInit {
     ) {
       LottieAnimationViewModule.forRoot();
       this.lottieConfig = {
-        path: '../../../assets/animation/23741-home-delivery-man.json',
+        path: 'assets/animation/23741-home-delivery-man.json',
         autoplay: true,
         loopt: true
       };

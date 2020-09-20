@@ -44,7 +44,7 @@ export class Tab1Page implements OnInit {
 
     LottieAnimationViewModule.forRoot();
     this.lottieConfig = {
-      path: '../../../assets/animation/intro.json',
+      path: 'assets/animation/intro.json',
       autoplay: false,
       loopt: true
     };
