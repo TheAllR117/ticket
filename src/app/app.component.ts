@@ -26,15 +26,11 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.pushService.configuracionInicial();
-      // this.statusBar.backgroundColorByHexString('#75b952');
       setTimeout(() => {
         this.lottieSplashScreen.hide();
-        // this.statusBar.styleDefault();
         this.statusBar.overlaysWebView(true);
         this.statusBar.backgroundColorByHexString('#33000000');
-        // this.statusBar.styleBlackTranslucent();
       }, 5000);
-      // this.splashScreen.hide();
     });
   }
 }

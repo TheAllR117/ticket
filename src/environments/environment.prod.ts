@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
   url: 'http://localhost:3000',
   urlP: 'https://lealtaddigitalsoft.mx/ticket-digital/public/api'
 };
