@@ -37,6 +37,8 @@ export class CompartidoQrComponent implements OnInit {
           include_player_ids: this.pushServices.userId
         });
 
+        console.log(this.resp);
+
       } else {
         this.modalCtrl.dismiss();
       }
@@ -45,7 +47,7 @@ export class CompartidoQrComponent implements OnInit {
     this.pushServices.pushListener.subscribe(async noti => {
       if (noti.additionalData) {
         if ( this.pushServices.abrirPop === true) {
-          // console.log(noti.additionalData);
+          console.log(noti.additionalData);
           this.pushServices.abrirPop = false;
           await this.mostrarPop(
             noti.additionalData.price,
@@ -61,7 +63,8 @@ export class CompartidoQrComponent implements OnInit {
             noti.additionalData.id_dispatcher,
             noti.additionalData.id_time,
             noti.additionalData.no_island,
-            noti.additionalData.no_bomb
+            noti.additionalData.no_bomb,
+            noti.additionalData.sale
           );
 
           this.pushServices.idNotificacion = '';
@@ -103,7 +106,8 @@ export class CompartidoQrComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     no_island: string,
     // tslint:disable-next-line: variable-name
-    no_bomb: string
+    no_bomb: string,
+    sale: string
     ) {
     const popover = await this.popoverCtrl.create({
       component: ConfirmarPagoComponent,
@@ -125,7 +129,8 @@ export class CompartidoQrComponent implements OnInit {
         id_dispatcher,
         id_time,
         no_island,
-        no_bomb
+        no_bomb,
+        sale,
       }
     });
 
