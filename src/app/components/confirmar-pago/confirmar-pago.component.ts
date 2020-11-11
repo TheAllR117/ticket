@@ -36,6 +36,7 @@ export class ConfirmarPagoComponent implements OnInit {
   @Input() no_island;
   // tslint:disable-next-line: variable-name
   @Input() no_bomb;
+  @Input() sale;
 
   membersh = '';
 
@@ -52,13 +53,13 @@ export class ConfirmarPagoComponent implements OnInit {
     if (this.tr_membership === null) {
       this.membersh = '';
     } else {
-      this.membersh = this.tr_membership;
+      this.membersh = this.tr_membership.toString();
     }
 
     this.usuarioService.confirmarCancelarPago(
       this.ids_dispatcher.toString(),
       this.ids_client.toString(),
-      this.membersh.toString(),
+      this.membersh,
       this.id_station.toString(),
       this.price.toString(),
       this.liters.toString(),
@@ -68,7 +69,8 @@ export class ConfirmarPagoComponent implements OnInit {
       'true',
       this.id_time.toString(),
       this.no_island.toString(),
-      this.no_bomb.toString()).subscribe(resp => {
+      this.no_bomb.toString(),
+      this.sale.toString()).subscribe(resp => {
         // tslint:disable-next-line: no-string-literal
         if (resp['ok']) {
           // tslint:disable-next-line: no-string-literal
@@ -88,12 +90,12 @@ export class ConfirmarPagoComponent implements OnInit {
     if (this.tr_membership === null) {
       this.membersh = '';
     } else {
-      this.membersh = this.membership;
+      this.membersh = this.membership.toString();
     }
     this.usuarioService.confirmarCancelarPago(
       this.ids_dispatcher.toString(),
       this.ids_client.toString(),
-      this.membersh.toString(),
+      this.membersh,
       this.id_station.toString(),
       this.price.toString(),
       this.liters.toString(),
@@ -103,7 +105,8 @@ export class ConfirmarPagoComponent implements OnInit {
       'false',
       this.id_time.toString(),
       this.no_island.toString(),
-      this.no_bomb.toString()).subscribe(resp => {
+      this.no_bomb.toString(),
+      this.sale.toString()).subscribe(resp => {
         // tslint:disable-next-line: no-string-literal
         if (resp['ok']) {
           // tslint:disable-next-line: no-string-literal

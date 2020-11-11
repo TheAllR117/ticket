@@ -48,7 +48,7 @@ export class AbonarQrComponent implements OnInit {
 
     this.pushServices.pushListener.subscribe(async noti => {
 
-      // console.log(noti.additionalData);
+      console.log(noti.additionalData);
       if (noti.additionalData) {
         if ( this.pushServices.abrirPop === true) {
           this.pushServices.abrirPop = false;
@@ -66,7 +66,8 @@ export class AbonarQrComponent implements OnInit {
             noti.additionalData.id_dispatcher,
             noti.additionalData.id_time,
             noti.additionalData.no_island,
-            noti.additionalData.no_bomb
+            noti.additionalData.no_bomb,
+            noti.additionalData.sale
           );
           this.pushServices.idNotificacion = '';
         }
@@ -107,7 +108,8 @@ export class AbonarQrComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     no_island: string,
     // tslint:disable-next-line: variable-name
-    no_bomb: string
+    no_bomb: string,
+    sale: string
     ) {
     const popover = await this.popoverCtrl.create({
       component: ConfirmarPagoComponent,
@@ -129,7 +131,8 @@ export class AbonarQrComponent implements OnInit {
         id_dispatcher,
         id_time,
         no_island,
-        no_bomb
+        no_bomb,
+        sale
       }
     });
 

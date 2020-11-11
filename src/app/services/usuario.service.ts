@@ -414,7 +414,8 @@ export class UsuarioService {
     // tslint:disable-next-line: variable-name
     no_island: string,
     // tslint:disable-next-line: variable-name
-    no_bomb: string
+    no_bomb: string,
+    sale: string,
     ) {
 
     this.cargarToken();
@@ -438,7 +439,8 @@ export class UsuarioService {
         authorization,
         id_time,
         no_island,
-        no_bomb
+        no_bomb,
+        sale
       }
     });
 
