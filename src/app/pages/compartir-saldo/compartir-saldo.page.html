@@ -53,7 +53,7 @@
 
 <ion-content class="ion-no-border">
   <ion-fab vertical="top" slot="fixed" edge class="animate__animated animate__fadeInDownBig ancho_fab ancho_fab">
-      <ion-searchbar class="border_search" animated placeholder="Membresía del usuario" debounce="700" type="text" (ionChange)="buscar($event)"></ion-searchbar>
+      <ion-searchbar mode="md" class="border_search" animated placeholder="Membresía del usuario" debounce="700" type="text" (ionChange)="buscar($event)"></ion-searchbar>
   </ion-fab>
 
   <ion-grid class="margin_top_2_modal" *ngIf="buscando === true">
@@ -66,7 +66,7 @@
 
   <ion-list #contactosListaAd *ngIf="mostraList === true" class="animate__animated animate__fadeIn">
     <ion-list-header class="margin_top_2_modal">
-      Resultados de la busqueda
+      Resultados de la búsqueda
     </ion-list-header>
 
     <ion-card *ngIf="usuariosNoRegistrado === false"  mode="ios" class="ion-no-padding ion-no-border">
