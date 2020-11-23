@@ -1,7 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { OneSignal, OSNotification, OSNotificationPayload } from '@ionic-native/onesignal/ngx';
 import { Storage } from '@ionic/storage';
-import { async } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +27,7 @@ export class PushService {
     return [this.mensajes];
   }
 
-  configuracionInicial() {
+   async configuracionInicial() {
     this.oneSignal.startInit('91acd53f-d191-4b38-9fa9-2bbbdc95961e', '233436344393');
 
     this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
@@ -50,13 +49,17 @@ export class PushService {
       // do something when a notification is opened
       // console.log('Notificación recibida', noti);
     });
+    
+    this.oneSignal.endInit();
 
     // obtener id del suscriptor
     this.oneSignal.getIds().then( info => {
       this.userId = info.userId;
+      /*if(this.userId != '' || this.userId != null){
+        this.storage.set('ids', this.userId.toString() );
+      }*/
     });
 
-    this.oneSignal.endInit();
   }
 
   async notificacionRecibida(noti: OSNotification) {

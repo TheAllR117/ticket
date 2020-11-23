@@ -114,6 +114,7 @@ export class AbonarQrComponent implements OnInit {
     const popover = await this.popoverCtrl.create({
       component: ConfirmarPagoComponent,
       animated: true,
+      mode: 'md',
       cssClass: 'animate__animated animate__fadeIn ion-justify-content-center',
       showBackdrop: true,
       backdropDismiss: false,

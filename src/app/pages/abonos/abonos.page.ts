@@ -4,6 +4,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Station } from '../../interfaces/interfaces';
 import { UsuarioService } from '../../services/usuario.service';
 import { PostsService } from '../../services/posts.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 declare var window: any;
 
@@ -28,7 +29,8 @@ export class AbonosPage implements OnInit {
     private usuarioService: UsuarioService,
     private camera: Camera,
     private navCtrl: NavController,
-    private postsService: PostsService
+    private postsService: PostsService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -87,8 +89,8 @@ export class AbonosPage implements OnInit {
 
   procesarImagen( options: CameraOptions ) {
     this.camera.getPicture(options).then(async (imageData) => {
-      const img = window.Ionic.WebView.convertFileSrc( imageData );
-      this.tempImages.push(img);
+      const img = window.Ionic.WebView.convertFileSrc(imageData);
+      this.tempImages.push( <string>this.sanitizer.bypassSecurityTrustUrl(img) );
       this.imageDat = imageData;
 
      }, (err) => {

@@ -111,16 +111,17 @@
 
     <ion-row no-border class="quitar_margin_top ion-no-padding">
       <ion-col no-border class="ion-no-padding">
-        <ion-slides *ngIf="animacion === true;" no-border [options]="slideOpts" class="poner_margin_botton">
-          <ion-slide class="quitar_margin_left">
+        <ion-slides mode="md" *ngIf="animacion === true;" no-border [options]="slideOpts" class="poner_margin_botton">
+          <ion-slide class="quitar_margin_left" mode="md">
+            
             <ion-card mode="ios" class="quitar_margin_right box">
               <div class='wave -one color_wave1'></div>
               <div class='wave -two'></div>
               <div class='wave -three color_wave1'></div>
-              <ion-card-header>
-                <ion-icon src="assets/svg/POS.svg" class="iconos_cuadrados"></ion-icon>
+              <ion-card-header mode="md">
+                <ion-icon mode="md" src="assets/svg/POS.svg" class="iconos_cuadrados"></ion-icon>
               </ion-card-header>
-              <ion-card-content>
+              <ion-card-content mode="md">
                 <ion-button shape="round" fill="solid" color="danger" size="small" (click)="navRouting('/abonos')" class="pos_boton label_buton">
                   <ion-label class="ion-text-capitalize" color="light">Depositar</ion-label>
                 </ion-button>
@@ -128,15 +129,15 @@
             </ion-card>
           </ion-slide>
       
-          <ion-slide class="quitar_margin_left">
+          <ion-slide class="quitar_margin_left" mode="md">
             <ion-card mode="ios" class="quitar_margin_right box">
               <div class='wave -one color_wave2'></div>
               <div class='wave -two'></div>
               <div class='wave -three color_wave2'></div>
-              <ion-card-header>
-                <ion-icon src="assets/svg/002-gift-box.svg" class="iconos_cuadrados"></ion-icon>
+              <ion-card-header mode="md">
+                <ion-icon mode="md" src="assets/svg/002-gift-box.svg" class="iconos_cuadrados"></ion-icon>
               </ion-card-header>
-              <ion-card-content>
+              <ion-card-content mode="md">
                 <ion-button shape="round" fill="solid" color="success" size="small" class="pos_boton label_buton" (click)="navRouting('/compartir-saldo')" >
                   <ion-label class="ion-text-capitalize" color="light">Compartir Dinero</ion-label>
                 </ion-button>
@@ -144,15 +145,15 @@
             </ion-card>
           </ion-slide>
       
-          <ion-slide>
+          <ion-slide mode="md">
             <ion-card mode="ios" class="quitar_margin_right box">
               <div class='wave -one color_wave3'></div>
               <div class='wave -three'></div>
               <div class='wave -three color_wave3'></div>
-              <ion-card-header>
-                <ion-icon src="assets/svg/006-diagnosis.svg" class="iconos_cuadrados"></ion-icon>
+              <ion-card-header mode="md">
+                <ion-icon mode="md" src="assets/svg/006-diagnosis.svg" class="iconos_cuadrados"></ion-icon>
               </ion-card-header>
-              <ion-card-content >
+              <ion-card-content mode="md">
                 <ion-button shape="round" fill="solid" color="tertiary" size="small" class="pos_boton label_buton" (click)="navRouting('/historial')">
                   <ion-label class="ion-text-capitalize" color="light">Historial</ion-label>
                 </ion-button>

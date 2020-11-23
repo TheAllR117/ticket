@@ -107,7 +107,7 @@ ion-card-content{
   height: 100%;
   transform: translate3d(0,0,0);
   position: absolute;
-  top: -10%;
+  top: -7%;
 }
 
 ion-slide {
@@ -121,6 +121,7 @@ ion-slide {
 
 .iconos_cuadrados{
   font-size: 350%;
+  z-index: 200;
 }
 
 .pos_boton{
@@ -201,6 +202,7 @@ ion-slide {
 
 
 @media screen and (max-width: 375px) {
+
   .primerTitulo{
     font-size: 18px;
   }
