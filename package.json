@@ -26,6 +26,7 @@
     "@ionic-native/core": "^5.26.0",
     "@ionic-native/file-transfer": "^5.27.0",
     "@ionic-native/in-app-browser": "^5.26.0",
+    "@ionic-native/ionic-webview": "^5.30.0",
     "@ionic-native/lottie-splash-screen": "^5.26.0",
     "@ionic-native/onesignal": "^5.30.0",
     "@ionic-native/social-sharing": "^5.26.0",

@@ -146,13 +146,13 @@
                         <ion-label color="medium" class="titulos_card">Can. Pagada</ion-label>
                         <ion-label class="conte_text ion-text-b" color="success" [innerHTML]="pago.balance + ' Gasopesos'"></ion-label>
                         <ion-label color="medium" class="titulos_card">ID de venta</ion-label>
-                        <ion-label class="conte_text">NO</ion-label>
+                        <ion-label class="conte_text" [innerHTML]="pago.sale"></ion-label>
                         <ion-label color="medium" class="titulos_card">Estación</ion-label>
                         <ion-label class="conte_text" [innerHTML]="pago.station"></ion-label>
                         <ion-label color="medium" class="titulos_card">Litros.</ion-label>
                         <ion-label class="conte_text" [innerHTML]="pago.liters"></ion-label>
                         <ion-label color="medium" class="titulos_card">Isla</ion-label>
-                        <ion-label class="conte_text" >NO</ion-label>
+                        <ion-label class="conte_text" [innerHTML]="pago.no_island"></ion-label>
                       </ion-col>
                       <ion-col size="5">
                         <ion-label color="medium" class="titulos_card">Fecha</ion-label>
@@ -164,7 +164,7 @@
                         <ion-label color="medium" class="titulos_card">Costo</ion-label>
                         <ion-label class="conte_text" [innerHTML]="pago.balance"></ion-label>
                         <ion-label color="medium" class="titulos_card">Bomba</ion-label>
-                        <ion-label class="conte_text" >NO</ion-label>
+                        <ion-label class="conte_text" [innerHTML]="pago.no_bomb"></ion-label>
                       </ion-col>
                     </ion-row>
                   </ion-grid>
