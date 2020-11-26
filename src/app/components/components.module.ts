@@ -11,6 +11,8 @@ import { AbonarQrComponent } from './abonar-qr/abonar-qr.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { ConfirmarPagoComponent } from './confirmar-pago/confirmar-pago.component';
 import { CompartidoQrComponent } from './compartido-qr/compartido-qr.component';
+import { ScanComponent } from './scan/scan.component';
+import { from } from 'rxjs';
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { CompartidoQrComponent } from './compartido-qr/compartido-qr.component';
     PopinfoComponent,
     AbonarQrComponent,
     CompartidoQrComponent,
-    ConfirmarPagoComponent
+    ConfirmarPagoComponent,
+    ScanComponent
   ],
   declarations: [
     MenuComponent,
@@ -30,7 +33,8 @@ import { CompartidoQrComponent } from './compartido-qr/compartido-qr.component';
     PopinfoComponent,
     AbonarQrComponent,
     CompartidoQrComponent,
-    ConfirmarPagoComponent
+    ConfirmarPagoComponent,
+    ScanComponent
   ],
   exports: [
     MenuComponent,
@@ -39,7 +43,8 @@ import { CompartidoQrComponent } from './compartido-qr/compartido-qr.component';
     PopinfoComponent,
     AbonarQrComponent,
     CompartidoQrComponent,
-    ConfirmarPagoComponent
+    ConfirmarPagoComponent,
+    ScanComponent
   ],
   imports: [
     CommonModule,
