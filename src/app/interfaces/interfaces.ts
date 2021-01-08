@@ -250,6 +250,9 @@ export interface Balance {
   liters?: number;
   gasoline?: string;
   status?: string;
+  no_island?: string;
+  no_bomb?: string;
+  sale?: string;
 }
 
 export interface Payments {
