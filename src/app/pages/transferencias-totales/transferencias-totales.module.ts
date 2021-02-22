@@ -7,7 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { TransferenciasTotalesPageRoutingModule } from './transferencias-totales-routing.module';
 
 import { TransferenciasTotalesPage } from './transferencias-totales.page';
-import { LottieAnimationViewModule } from 'ng-lottie';
+import player from 'lottie-web';
+import { LottieModule } from 'ngx-lottie';
+
+export function playerFactory() {
+  return player;
+}
+
 
 @NgModule({
   imports: [
@@ -15,7 +21,8 @@ import { LottieAnimationViewModule } from 'ng-lottie';
     FormsModule,
     IonicModule,
     TransferenciasTotalesPageRoutingModule,
-    LottieAnimationViewModule.forRoot(),
+    LottieModule.forRoot({ player: playerFactory })
+    
   ],
   declarations: [TransferenciasTotalesPage]
 })

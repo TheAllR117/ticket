@@ -1,0 +1,49 @@
+<ion-content>
+  <ion-grid class="encabezado">
+    <div id="bg-wrap">
+      <app-header-animation titulo=""></app-header-animation>
+    </div>
+    <ion-row class="ion-justify-content-between grid_arriba">
+      <ion-col class="ion-no-border ion-padding-start" size="2">
+        <ion-buttons mode="ios" >
+          <ion-button (click)="regresar()" class="ion-padding-top">
+            <ion-icon  mode="ios" color="light" name="chevron-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col class="ion-no-border ion-padding-end" size="2">
+        <ion-buttons mode="md" >
+          <ion-menu-button auto-hide="false" color="light"></ion-menu-button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-margin ion-padding-bottom">
+      <ion-col class="ion-text-center ion-no-margin" color="light">
+        <h3 class="ion-no-margin color-claro">Sumar puntos</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+ 
+  <ion-grid class="cuerpo">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="8" class="ion-text-center marginCols">
+        <div class="img-wrapper">
+          <ion-icon mode="md" src="assets/svg/Escanear.svg" class="iconos_cuadrados"></ion-icon>
+        </div>
+        <ion-button color="success" (click)="scan()">
+          <ion-label color="light" class="ion-text-capitalize">Escanear</ion-label>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="8" class="ion-text-center marginColsSec">
+        <div class="img-wrapper">
+          <ion-icon mode="md" src="assets/svg/Formulario.svg" class="iconos_cuadrados"></ion-icon>
+        </div>
+        <ion-button color="success" class="ion-margin-top" (click)="navRouting('formulario')">
+          <ion-label color="light" class="ion-text-capitalize">Formulario</ion-label>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

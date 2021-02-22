@@ -54,14 +54,49 @@ const routes: Routes = [
     canLoad: [UsuarioGuard]
   },
   {
+    path: 'mapa',
+    loadChildren: () => import('./pages/mapa/mapa.module').then( m => m.MapaPageModule),
+    canLoad: [UsuarioGuard]
+  },
+  {
+    path: 'scanner',
+    loadChildren: () => import('./pages/scanner/scanner.module').then( m => m.ScannerPageModule),
+    canLoad: [UsuarioGuard]
+  },
+  {
+    path: 'canjes',
+    loadChildren: () => import('./pages/canjes/canjes.module').then( m => m.CanjesPageModule),
+    canLoad: [UsuarioGuard]
+  },
+  {
+    path: 'movimientos',
+    loadChildren: () => import('./pages/movimientos/movimientos.module').then( m => m.MovimientosPageModule),
+    canLoad: [UsuarioGuard]
+  },
+  {
+    path: 'formulario',
+    loadChildren: () => import('./pages/formulario/formulario.module').then( m => m.FormularioPageModule),
+    canLoad: [UsuarioGuard]
+  },
+  {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'main/tabs/tab1'
+    redirectTo: 'main/tabs/tab2'
   },
+  
+
+  
+
+  
+
+  
+
+  
+
 ];
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, relativeLinkResolution: 'legacy' })
   ],
   exports: [RouterModule]
 })

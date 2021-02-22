@@ -7,6 +7,11 @@ import { LottieAnimationViewModule } from 'ng-lottie';
 import { TabsPageRoutingModule } from './tabs-routing.module';
 
 import { TabsPage } from './tabs.page';
+import player from 'lottie-web';
+import { LottieModule } from 'ngx-lottie';
+export function playerFactory() {
+  return player;
+}
 
 @NgModule({
   imports: [
@@ -14,7 +19,8 @@ import { TabsPage } from './tabs.page';
     CommonModule,
     FormsModule,
     TabsPageRoutingModule,
-    LottieAnimationViewModule.forRoot()
+    LottieAnimationViewModule.forRoot(),
+    LottieModule.forRoot({ player: playerFactory })
   ],
   declarations: [TabsPage]
 })

@@ -1,0 +1,34 @@
+.marginCols{
+    margin-top: 25%;
+}
+
+.marginColsSec{
+    margin-top: 20%;
+}
+
+.iconos_cuadrados{
+    font-size: 650%;
+  }
+
+@media screen and (max-width: 375px) {
+  
+  .iconos_cuadrados{
+    font-size: 580%;
+  }
+
+}
+@media screen and (max-width: 360px) {
+  .iconos_cuadrados{
+    font-size: 480%;
+  
+  }
+}
+@media screen and (max-width: 320px) {
+  .iconos_cuadrados{
+    font-size: 380%;
+  }
+}
+
+ion-button{
+  --box-shadow:0 !important;
+}

@@ -1,0 +1,98 @@
+.grid_arriba{
+    padding-top: 6%;
+}
+
+ion-segment{
+    border: 1px solid white !important;
+    border-radius: 25px !important;
+    background-color: transparent !important;
+}
+
+ion-segment-button{
+    
+    --border-radius: 50px;
+    margin-left: -3px;
+    margin-right: -3px;
+    
+}
+
+ion-segment-button::before {
+    margin: 5px 0px;
+    transition: opacity 160ms ease-in-out 100ms;
+    border-left: 0 solid green;
+    content: "";
+    opacity: 1;
+    will-change: opacity;
+}
+
+.segment-button-checked{
+    --indicator-color: rgba(255, 255, 255, 0.7) !important;
+    color: var(--ion-color-tertiary-tint) !important;
+}
+
+
+ion-slides, ion-slide{
+    width: 100%;
+    height: 100%;
+}
+
+.tamanoIcon{
+    font-size: 6vh;
+}
+
+.colorBorde{
+    border-right: 1px solid;
+    border-color: rgb(175, 175, 175);
+    padding: 0;
+}
+
+.widthThul{
+    width: 8vh;
+}
+
+.fontWei{
+    font-weight: bold;
+}
+
+.fontSize{
+    font-size: 14px;
+}
+
+.puntos{
+    font-size: 4.7vh;
+}
+
+.paddingContent{
+    padding-top: 13px;
+    padding-bottom: 13px;
+}
+
+ion-datetime{
+    color: gainsboro;
+}
+
+.margenIcon{
+    margin-top: 8px;
+    margin-right: 7px;
+    margin-left: 7px;
+}
+
+.borderItem{
+    border: 1px solid gainsboro;
+    border-radius: 7px;
+
+}
+
+.colorBlanco{
+    color: white !important;
+    font-weight: bold;
+}
+
+.paddingSegment{
+    padding: 3px;
+}
+
+.scroll{
+    overflow: scroll;
+  }
+

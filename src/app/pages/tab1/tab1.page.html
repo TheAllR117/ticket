@@ -1,4 +1,4 @@
-<app-header titulo=""></app-header>
+<!--app-header titulo=""></app-header-->
 <ion-content class="card-background-page ion-no-border" >
 
   <ion-refresher slot="fixed" color="success" pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="doRefresh($event)">
@@ -10,10 +10,22 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <lottie-animation-view [options]="lottieConfig" class="animacion_fondo" (animCreated)="handleAnimation($event)">
-  </lottie-animation-view>
-
-  <ion-grid *ngIf="animacion === true;" class="ion-no-border ion-no-padding animate__animated animate__fadeInUpBig">
+  <!--lottie-animation-view [options]="lottieConfig" class="animacion_fondo" (animCreated)="handleAnimation($event)">
+  </lottie-animation-view-->
+  <!--ng-lottie [options]="lottieConfig" class="animacion_fondo" (animationCreated)="handleAnimation($event)"></ng-lottie-->
+  <ion-grid class="ion-no-border ion-no-padding ion-margin-top">
+    <ion-row class="ion-justify-content-center ion-margin-top">
+      <ion-col class="ion-text-center ion-margin-top">
+        <ng-lottie [options]="lottieConfig"  ></ng-lottie>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-margin-top">
+      <ion-col class="ion-text-center ion-margin-top">
+        <h1>Próximamente</h1>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="animacion" class="ion-no-border ion-no-padding animate__animated animate__fadeInUpBig">
     
     <ion-row class="ion-no-border ion-no-padding">
       <ion-col class="ion-no-border ion-no-padding" size="12">

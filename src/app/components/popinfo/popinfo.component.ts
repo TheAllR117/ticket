@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LottieAnimationViewModule } from 'ng-lottie';
 import { PopoverController } from '@ionic/angular';
 
 @Component({
@@ -23,7 +22,6 @@ export class PopinfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    LottieAnimationViewModule.forRoot();
     this.lottieConfig = {
       path: 'assets/animation/' + this.srcAnimation + '.json',
       autoplay: true,

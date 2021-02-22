@@ -1,0 +1,200 @@
+<ion-content>
+  <ion-grid class="encabezado">
+    <div id="bg-wrap">
+      <app-header-animation titulo=""></app-header-animation>
+    </div>
+    <ion-row class="ion-justify-content-between grid_arriba">
+      <ion-col class="ion-no-border ion-padding-start" size="2">
+        <ion-buttons mode="ios" >
+          <ion-button (click)="regresar()" class="ion-padding-top">
+            <ion-icon  mode="ios" color="light" name="chevron-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col class="ion-no-border ion-padding-end" size="2">
+        <ion-buttons mode="md" >
+          <ion-menu-button auto-hide="false" color="light"></ion-menu-button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-margin">
+      <ion-col class="ion-text-center ion-no-margin" color="light">
+        <h3 class="ion-no-margin color-claro">Movimientos</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-margin ion-justify-content-center">
+      <ion-col class="ion-no-margin" size="10">
+        <ion-segment (ionChange)="segmentChanged()" mode="ios"  value="0" class="ion_segment colorBlanco">
+          <ion-segment-button value="0" mode="ios" class="ion-no-margin paddingSegment">
+            Acumulados
+          </ion-segment-button>
+          <ion-segment-button value="1" mode="ios" class="ion-no-margin paddingSegment">
+            Redimidos
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="cuerpo">
+    <ion-slides (ionSlideDidChange)="onSlideDidChange()">
+
+      <!---------pagina solicitud----------->
+      <ion-slide class="ion-align-items-start ion-padding-top scroll">
+        <ion-grid>
+          <ion-row class="ion-justify-content-around">
+            <ion-col class="ion-no-padding ion-no-margin ion-margin-top" size="10">
+              <ion-label color="medium">Selecciona una fecha.</ion-label>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-around">
+            <ion-col class="ion-no-padding ion-no-margin ion-padding-top ion-margin-top" size="4">
+              <ion-item lines="none" class="ion-no-padding borderItem ion-text-center"> 
+                <ion-icon slot="start" name="calendar-clear" size="small" color="success" class="margenIcon"></ion-icon>
+                <ion-datetime color="medium" [(ngModel)]="calAcumulados.fechaIni" name="fechaIni" displayFormat="YYYY-MM-DD" [min]="minGeneral" [max]="fechaActu" placeholder="Fecha inicio" (ionChange)="vaciarFecha()"></ion-datetime>
+              </ion-item>
+            </ion-col>
+            <ion-col class="ion-no-padding ion-no-margin ion-padding-top ion-margin-top" size="4">
+              <ion-item lines="none" class="ion-no-padding borderItem ion-justify-content-center"> 
+                <ion-icon slot="start" name="calendar-clear" size="small" color="success" class="margenIcon"></ion-icon>
+                <ion-datetime color="medium" [(ngModel)]="calAcumulados.fechafin" name="fechafin" displayFormat="YYYY-MM-DD" [min]="calAcumulados.fechaIni" [max]="fechaActu" [disabled]="calAcumulados.fechaIni === '' "  placeholder="Fecha final"></ion-datetime>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-around">
+            <ion-col class="ion-no-padding ion-no-margin ion-padding-top " size="5">
+              
+            </ion-col>
+            <ion-col class="ion-no-padding ion-no-margin ion-padding-top" size="3">
+              <ion-button color="success" mode="md" expand="block" [disabled]="calAcumulados.fechaIni === '' || calAcumulados.fechafin === ''" (click)="buscarMovimientos()">
+                <ion-label color="light" class="ion-text-capitalize">
+                  Consultar
+                </ion-label>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="spiner" size="12" class="ion-justify-content-center">
+            <ion-col size="12">
+              <ion-spinner color="success"></ion-spinner>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="animacionPagos" size="12" class="ion-justify-content-center">
+            <ion-col size="12">
+              <ng-lottie [options]="lottieConfig"></ng-lottie>
+            </ion-col>
+            <ion-col>
+              <ion-label class="conte_text texto_bold">No hay movimientos.</ion-label>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="!spiner" class="ion-justify-content-center">
+            <ion-col *ngFor="let acumulado of acumulados"  class="ion-no-padding ion-no-margin ion-padding-top " size="10">
+              
+              <ion-card  mode="ios" class="ion-no-margin ion-margin-top ion-margin-bottom">
+                <ion-card-content class="paddingContent">
+                  <ion-row>
+                    <ion-col size="3" class="colorBorde ion-text-center ion-text-wrap ion-align-items-center">
+                      <ion-label color="success" class="fontWei puntos" [innerHTML]="(acumulado.points < 10) ? '0' + acumulado.points : acumulado.points">
+                      </ion-label>
+                      <ion-label class="fontSize">
+                        Puntos
+                      </ion-label>
+                    </ion-col>
+                    <ion-col size="9" class="ion-text-left ion-padding-start ion-text-wrap fontSize">
+                      <ion-label class="fontWei" color="success" [innerHTML]="'Gasolinera ' + acumulado.station"></ion-label>
+                      <div><ion-text class="fontWei" >Estatus: </ion-text><ion-label [innerHTML]=" acumulado.status"></ion-label></div>
+                      <div><ion-text class="fontWei" >ID de venta: </ion-text> <ion-label [innerHTML]=" acumulado.invoice"></ion-label></div>
+                      <ion-text color="medium"><sub [innerHTML]="acumulado.date"></sub></ion-text>
+                    </ion-col>
+                  </ion-row>
+                </ion-card-content>
+              </ion-card>
+    
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+  
+      </ion-slide>
+
+      <!---------pagina entregar------------>
+      <ion-slide class="ion-align-items-start ion-padding-top scroll">
+        <ion-grid>
+          <ion-row class="ion-justify-content-around">
+            <ion-col class="ion-no-padding ion-no-margin ion-margin-top" size="10">
+              <ion-label color="medium">Selecciona una fecha.</ion-label>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-around">
+            <ion-col class="ion-no-padding ion-no-margin ion-padding-top ion-margin-top" size="4">
+              <ion-item lines="none" class="ion-no-padding borderItem ion-text-center"> 
+                <ion-icon slot="start" name="calendar-clear" size="small" color="success" class="margenIcon"></ion-icon>
+                <ion-datetime color="medium" [(ngModel)]="calRedimidos.fechaIni" name="fechaIni" displayFormat="YYYY-MM-DD" [min]="minGeneral" [max]="fechaActu" placeholder="Fecha inicio" (ionChange)="vaciarFecha()"></ion-datetime>
+              </ion-item>
+            </ion-col>
+            <ion-col class="ion-no-padding ion-no-margin ion-padding-top ion-margin-top" size="4">
+              <ion-item lines="none" class="ion-no-padding borderItem ion-justify-content-center"> 
+                <ion-icon slot="start" name="calendar-clear" size="small" color="success" class="margenIcon"></ion-icon>
+                <ion-datetime color="medium" [(ngModel)]="calRedimidos.fechafin" name="fechafin" displayFormat="YYYY-MM-DD" [min]="calRedimidos.fechaIni" [max]="fechaActu" [disabled]="calRedimidos.fechaIni === '' "  placeholder="Fecha final"></ion-datetime>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-around">
+            <ion-col class="ion-no-padding ion-no-margin ion-padding-top ion-margin-top" size="4">
+              
+            </ion-col>
+            <ion-col class="ion-no-padding ion-no-margin ion-padding-top ion-margin-top" size="4">
+              <ion-button color="success" mode="md" expand="block" [disabled]="calRedimidos.fechaIni === '' || calRedimidos.fechafin === ''" (click)="buscarMovimientosV()">
+                <ion-label color="light" class="ion-text-capitalize">
+                  Consultar
+                </ion-label>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="spiner2" size="12" class="ion-justify-content-center">
+            <ion-col size="12">
+              <ion-spinner color="success"></ion-spinner>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="animacionPagos2" size="12" class="ion-justify-content-center">
+            <ion-col size="12">
+              <ng-lottie [options]="lottieConfig"></ng-lottie>
+            </ion-col>
+            <ion-col>
+              <ion-label class="conte_text texto_bold">No hay movimientos.</ion-label>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="!spiner2" class="ion-justify-content-center">
+            <ion-col *ngFor="let acumulado of redimidos"  class="ion-no-padding ion-no-margin ion-padding-top " size="10">
+              
+              <ion-card  mode="ios" class="ion-no-margin ion-margin-top ion-margin-bottom">
+                <ion-card-content class="paddingContent">
+                  <ion-row>
+                    <ion-col size="3" class="colorBorde ion-text-center ion-text-wrap ion-align-items-center">
+                      <ion-label color="success" class="fontWei puntos" [innerHTML]="(acumulado.points < 10) ? '0' + acumulado.points : acumulado.points">
+                      </ion-label>
+                      <ion-label class="fontSize">
+                        Puntos
+                      </ion-label>
+                    </ion-col>
+                    <ion-col size="9" class="ion-text-left ion-padding-start ion-text-wrap fontSize">
+                      <ion-label class="fontWei" color="success" [innerHTML]="'Gasolinera ' + acumulado.station"></ion-label>
+                      <div><ion-text class="fontWei" >Estatus: </ion-text><ion-label [innerHTML]=" acumulado.status"></ion-label></div>
+                      <div><ion-text class="fontWei" >ID de venta: </ion-text> <ion-label [innerHTML]=" acumulado.invoice"></ion-label></div>
+                      <ion-text color="medium"><sub [innerHTML]="acumulado.date"></sub></ion-text>
+                    </ion-col>
+                  </ion-row>
+                </ion-card-content>
+              </ion-card>
+    
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-slide>
+
+    </ion-slides>
+  </div>
+</ion-content>

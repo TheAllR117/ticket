@@ -1,0 +1,64 @@
+.grid_arriba{
+    padding-top: 6%;
+}
+
+
+#map_canvas {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    
+}
+
+ion-slides {
+    height: 200px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+.redondeo{
+    --border-radius: 50px !important;
+    width: 25px;
+    height: 25px;
+
+}
+
+.tamanoicons{
+    height: 12px;
+}
+
+.tamanofontTi{
+    font-size: 11px;
+}
+
+.tamanofont{
+    font-size: 12px;
+}
+
+.colorBorde{
+    border-right: 1px solid;
+    border-left: 1px solid;
+    border-color: rgb(218, 218, 218);
+}
+
+img{
+    object-fit: cover !important;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.input{
+    background-color: white;
+    border-radius: 25px;
+}
+.classThumb{
+    width: 50px;
+    height: 50px;
+}
+
+.bordesSelect{
+    background-color: white;
+    border-radius: 20px;
+}

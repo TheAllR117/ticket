@@ -7,7 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { AbonosTotalesPageRoutingModule } from './abonos-totales-routing.module';
 
 import { AbonosTotalesPage } from './abonos-totales.page';
-import { LottieAnimationViewModule } from 'ng-lottie';
+import player from 'lottie-web';
+import { LottieModule } from 'ngx-lottie';
+
+export function playerFactory() {
+  return player;
+}
+
 
 @NgModule({
   imports: [
@@ -15,7 +21,8 @@ import { LottieAnimationViewModule } from 'ng-lottie';
     FormsModule,
     IonicModule,
     AbonosTotalesPageRoutingModule,
-    LottieAnimationViewModule.forRoot(),
+    LottieModule.forRoot({ player: playerFactory })
+    
   ],
   declarations: [AbonosTotalesPage]
 })

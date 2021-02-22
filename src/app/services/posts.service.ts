@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { RespuestaPosts } from '../interfaces/interfaces';
 import { LoadingController, ToastController, PopoverController } from '@ionic/angular';
 import { PopinfoComponent } from '../components/popinfo/popinfo.component';
+import { NotificacionesComponent } from '../components/notificaciones/notificaciones.component';
 
 const URL = environment.url;
 
@@ -19,7 +20,7 @@ export class PostsService {
     private http: HttpClient,
     private loadingController: LoadingController,
     private toastCtrl: ToastController,
-    private popoverCtrl: PopoverController
+    private popoverCtrl: PopoverController,
     ) { }
 
   getPosts() {
@@ -62,4 +63,28 @@ export class PostsService {
 
     await popover.present();
   }
+
+  async mostrarNotificacion(srcAnimation: string, message: string, color: number) {
+    const popover = await this.popoverCtrl.create({
+      mode: 'ios',
+      component: NotificacionesComponent,
+      animated: true,
+      cssClass: 'animate__animated animate__fadeIn tran',
+      showBackdrop: true,
+      backdropDismiss: true,
+      componentProps: {
+        srcAnimation,
+        message,
+        color
+      }
+    });
+
+    await popover.present();
+
+    const {data} = await popover.onDidDismiss();
+
+    return data;
+
+  }
+
 }

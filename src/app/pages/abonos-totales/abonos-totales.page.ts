@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
 import { Payment } from '../../interfaces/interfaces';
 import { ModalController, PopoverController, NavController } from '@ionic/angular';
-import { LottieAnimationViewModule } from 'ng-lottie';
 import { AbonarQrComponent } from '../../components/abonar-qr/abonar-qr.component';
 
 @Component({
@@ -29,7 +28,7 @@ export class AbonosTotalesPage implements OnInit {
     private popoverCtrl: PopoverController,
     private navCtrl: NavController
     ) {
-      LottieAnimationViewModule.forRoot();
+      
       this.lottieConfig = {
         path: 'assets/animation/23741-home-delivery-man.json',
         autoplay: true,

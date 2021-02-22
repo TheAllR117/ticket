@@ -5,7 +5,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab2Page } from './tab2.page';
 import { ComponentsModule } from '../../components/components.module';
-import { LottieAnimationViewModule } from 'ng-lottie';
+import player from 'lottie-web';
+import { LottieModule } from 'ngx-lottie';
+export function playerFactory() {
+  return player;
+}
 
 @NgModule({
   imports: [
@@ -13,8 +17,8 @@ import { LottieAnimationViewModule } from 'ng-lottie';
     CommonModule,
     FormsModule,
     ComponentsModule,
-    LottieAnimationViewModule.forRoot(),
-    RouterModule.forChild([{ path: '', component: Tab2Page }])
+    RouterModule.forChild([{ path: '', component: Tab2Page }]),
+    LottieModule.forRoot({ player: playerFactory })
   ],
   declarations: [Tab2Page]
 })

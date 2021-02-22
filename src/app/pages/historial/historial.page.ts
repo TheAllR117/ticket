@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides, NavController } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
 import { Balance } from '../../interfaces/interfaces';
-import { LottieAnimationViewModule } from 'ng-lottie';
+import { AnimationItem } from 'lottie-web';
+import { AnimationOptions } from 'ngx-lottie';
 
 @Component({
   selector: 'app-historial',
@@ -70,7 +71,7 @@ export class HistorialPage implements OnInit {
     private navCtrl: NavController,
     private usuarioService: UsuarioService,
     ) {
-      LottieAnimationViewModule.forRoot();
+      //LottieAnimationViewModule.forRoot();
       this.lottieConfig = {
         path: 'assets/animation/3617-shopping-bag-error.json',
         autoplay: true,

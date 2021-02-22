@@ -1,0 +1,8 @@
+<ion-content [ngClass]="{'ion-no-padding ion-no-margin colorSuccess': color === 2, 'ion-no-padding ion-no-margin colorDanger': color < 2 }" >
+  <ion-icon [src]="srcUrl" class="imagePos"></ion-icon>
+  <div>
+    <p *ngFor="let item of mensajes" [innerHTML]="item"></p>
+  </div>
+  <ion-button *ngIf="color === 0" shape="round" fill="outline" color="light" class="ion-margin-bottom" (click)="denegar()">Denegar</ion-button>
+  <ion-button shape="round" fill="outline" color="light" class="ion-margin-bottom" (click)="aceptar()">Aceptar</ion-button>
+</ion-content>

@@ -123,8 +123,9 @@
 
         <ion-row *ngIf="animacionPagos" size="12" class="ion-justify-content-center">
           <ion-col size="12">
-            <lottie-animation-view [options]="lottieConfig"  (animCreated)="handleAnimation($event)">
-            </lottie-animation-view>
+            <!--lottie-animation-view [options]="lottieConfig"  (animCreated)="handleAnimation($event)">
+            </lottie-animation-view-->
+            <ng-lottie [options]="lottieConfig" (animationCreated)="handleAnimation($event)"></ng-lottie>
           </ion-col>
           <ion-col>
             <ion-label class="conte_text texto_bold">Por el momento <br>no has relizados pagos.</ion-label>
@@ -233,8 +234,9 @@
 
         <ion-row *ngIf="animacionTrans" size="12" class="ion-justify-content-center">
           <ion-col size="12">
-            <lottie-animation-view [options]="lottieConfig"  (animCreated)="handleAnimation($event)">
-            </lottie-animation-view>
+            <!--lottie-animation-view [options]="lottieConfig"  (animCreated)="handleAnimation($event)">
+            </lottie-animation-view-->
+            <ng-lottie [options]="lottieConfig" (animationCreated)="handleAnimation($event)"></ng-lottie>
           </ion-col>
           <ion-col>
             <ion-label class="conte_text texto_bold">Por el momento <br>no hay transferencias realizadas.</ion-label>
@@ -380,8 +382,9 @@
 
         <ion-row *ngIf="animacionAbonos" size="12" class="ion-justify-content-center">
           <ion-col size="12">
-            <lottie-animation-view [options]="lottieConfig"  (animCreated)="handleAnimation($event)">
-            </lottie-animation-view>
+            <!--lottie-animation-view [options]="lottieConfig"  (animCreated)="handleAnimation($event)">
+            </lottie-animation-view-->
+            <ng-lottie [options]="lottieConfig" (animationCreated)="handleAnimation($event)"></ng-lottie>
           </ion-col>
           <ion-col>
             <ion-label class="conte_text texto_bold">No hay abonos realizados.</ion-label>

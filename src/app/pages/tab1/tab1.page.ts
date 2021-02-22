@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../interfaces/interfaces';
 import { UsuarioService } from '../../services/usuario.service';
-import { LottieAnimationViewModule } from 'ng-lottie';
+//import { LottieAnimationViewModule } from 'ng-lottie';
 import { MenuController, ModalController, NavController } from '@ionic/angular';
 import { TabsPage } from '../tabs/tabs.page';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
+import { AnimationItem } from 'lottie-web';
+import { AnimationOptions } from 'ngx-lottie';
 
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  styleUrls: ['tab1.page.scss'],
 })
 
 export class Tab1Page implements OnInit {
@@ -42,26 +44,32 @@ export class Tab1Page implements OnInit {
     private routerModule: RouterModule,
     private router: Router) {
 
-    LottieAnimationViewModule.forRoot();
+    /*LottieAnimationViewModule.forRoot();*/
     this.lottieConfig = {
       path: 'assets/animation/intro.json',
       autoplay: false,
       loopt: true
     };
 
-    setTimeout(() => {
+    this.lottieConfig = {
+      path: 'assets/animation/26531-construction-in-process.json',
+      autoplay: true,
+      loopt: true
+    };
+
+    /*setTimeout(() => {
       this.anim.play();
       setTimeout(() => {
         this.anim.pause();
         this.animacion = true;
       }, 6000);
-    }, 2000);
+    }, 2000);*/
 
   }
 
   ngOnInit() {
     // habilitamos el menu lateral
-    this.menuCtrl.enable (true);
+    this.menuCtrl.enable(true);
     // cargamos la informacion del usuario
     this.user = this.usuarioService.getUsuario();
 
@@ -78,8 +86,8 @@ export class Tab1Page implements OnInit {
 
   }
 
-  async navRouting(ruta: string) {
-    await this.navCtrl.navigateForward(ruta);
+  navRouting(ruta: string) {
+    this.navCtrl.navigateForward(ruta);
   }
 
   navigate(ruta: string) {

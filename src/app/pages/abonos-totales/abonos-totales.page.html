@@ -61,8 +61,9 @@
     </ion-col>
   </ion-row>
 
-  <lottie-animation-view *ngIf="animacion" [options]="lottieConfig" class="ion-padding-top margin_top_2_modal animate__animated animate__fadeIn" (animCreated)="handleAnimation($event)">
-  </lottie-animation-view>
+  <!--lottie-animation-view *ngIf="animacion" [options]="lottieConfig" class="ion-padding-top margin_top_2_modal animate__animated animate__fadeIn" (animCreated)="handleAnimation($event)">
+  </lottie-animation-view-->
+  <ng-lottie *ngIf="animacion" [options]="lottieConfig" class="animacion_fondo" class="ion-padding-top margin_top_2_modal animate__animated animate__fadeIn" (animCreated)="handleAnimation($event)"></ng-lottie>
 
   <ion-grid >
     <ion-row>

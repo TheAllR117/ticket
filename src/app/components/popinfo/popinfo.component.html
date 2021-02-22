@@ -8,8 +8,9 @@
 
   <ion-row>
     <ion-col size="12">
-      <lottie-animation-view  [options]="lottieConfig" width="200" class="margin_top_2_modal" (animCreated)="handleAnimation($event)">
-      </lottie-animation-view>
+      <!--lottie-animation-view  [options]="lottieConfig" width="200" class="margin_top_2_modal" (animCreated)="handleAnimation($event)">
+      </lottie-animation-view-->
+      <ng-lottie [options]="lottieConfig" width="200" class="margin_top_2_modal" (animationCreated)="handleAnimation($event)"></ng-lottie>
     </ion-col>
     <ion-col size="12" class="ion-text-center">
       <ion-label [innerHTML]="message"></ion-label>

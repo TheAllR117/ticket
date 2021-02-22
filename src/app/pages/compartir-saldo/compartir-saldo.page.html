@@ -200,6 +200,7 @@
     </ion-row>
   </ion-grid>
 
-  <lottie-animation-view *ngIf="mostrarContactos === true" [options]="lottieConfig" class="margin_top_2_modal animate__animated animate__fadeIn" (animCreated)="handleAnimation($event)">
-  </lottie-animation-view>
+  <!--lottie-animation-view *ngIf="mostrarContactos === true" [options]="lottieConfig" class="margin_top_2_modal animate__animated animate__fadeIn" (animCreated)="handleAnimation($event)">
+  </lottie-animation-view-->
+  <ng-lottie *ngIf="mostrarContactos === true" [options]="lottieConfig" class="margin_top_2_modal animate__animated animate__fadeIn" (animationCreated)="handleAnimation($event)"></ng-lottie>
 </ion-content>
