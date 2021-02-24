@@ -4,7 +4,7 @@ ion-header{
 
 ion-toolbar{
     height: 100% !important;
-    --background: linear-gradient(90deg, #30790A, #75B952);
+    --background: var(--ion-color-success);
 }
 
 ion-title{

@@ -287,6 +287,7 @@ export interface Points {
   station?: string;
   invoice?: number;
   status?: string;
+  sale?:string;
   date?: string;
 }
 

@@ -59,28 +59,28 @@ export class MapaPage implements OnInit {
 
         ,
         {
-            lat: 19.047407622831866,
-            lng: -98.17238987734466,
+            lat: 19.047443, 
+            lng: -98.172072
         },
         {
-            lat: 20.008414033121575,
-            lng: -97.85466741229928,
+            lat: 20.008258, 
+            lng: -97.854740,
         },
         {
-            lat: 18.838219377789073,
-            lng: -96.82030479113446,
+            lat: 18.827072, 
+            lng: -97.160970,
         },
         {
-            lat: 18.612319515838166,
-            lng: -97.40854446014708,
+            lat: 18.612087, 
+            lng: -97.408577
         },
         {
-            lat: 18.877614799161172,
-            lng: -97.027678376182,
+            lat: 18.874889, 
+            lng: -97.026757
         },
         {
-            lat: 18.544040113542533,
-            lng: -97.19874554475788,
+            lat: 18.543673, 
+            lng: -97.198724
         }
     ];
     mapRef = null;
@@ -118,9 +118,9 @@ export class MapaPage implements OnInit {
         {
             id: 9,
             name: 'Servicio Alfa Bravo Coca, S.A. de C.V.',
-            address: 'Calle 34 Nte 2019, Vista Hermosa, Puebla, Pue., México',
+            address: 'Boulevard Xonaca, No. 3216, Col. Vista Hermosa, Puebla Pue.',
             image: 'https://lh5.googleusercontent.com/p/AF1QipPVYt8vFVS6J3SaeN200anKmjZrVRmpZ7YgZDW9=w408-h306-k-no',
-            phone: '(272)72-7-50-42',
+            phone: '(222)9458986',
             email: 'servicioalfabravococa@gmail.com',
             number_station: 9,
         },
@@ -135,17 +135,17 @@ export class MapaPage implements OnInit {
         },
         {
             id: 11,
-            name: 'Energéticos de Cordoba, S.A. de C.V.',
-            address: 'Carretera Fedederal Sin N´´umero, Desviación a Omealca, Córdoba, Ver., México',
+            name: 'Energéticos de Cordoba, S.A. de C.V. (Nogales)',
+            address: 'Av. Juárez No. 125, Col. Aurora, Nogales Ver.',
             image: 'https://geo3.ggpht.com/cbk?panoid=5_nQhQwwINqaKh5NcX5szA&output=thumbnail&cb_client=search.gws-prod.gps&thumb=2&w=408&h=240&yaw=190.5929&pitch=0&thumbfov=100',
             phone: '(272)72-7-50-42 ',
-            email: 'cajanogales@hotmail.com',
+            email: 'encargadonogales@outlook.es',
             number_station: 11,
         },
         {
             id: 12,
             name: 'Servicio Cuautlapan, S.A. de C.V. (Chapulco)',
-            address: 'Carrt. Federal, Tehuacan - Orizaba Km 14.5, 75810 Chapulco, Pue., México',
+            address: 'Carretera Fed. Tehuacán – Orizaba Km. 14.5 S/N., Chapulco Pue.',
             image: 'https://geo1.ggpht.com/cbk?panoid=tx_U96ggDu1y-tvTHnqOtA&output=thumbnail&cb_client=search.gws-prod.gps&thumb=2&w=408&h=240&yaw=107.51343&pitch=0&thumbfov=100',
             phone: '(238)37-1-42-12',
             email: 'joseluisgears@hotmail.com',
@@ -154,7 +154,7 @@ export class MapaPage implements OnInit {
         {
             id: 13,
             name: 'Servicio Cuautlapan (Cuautlapan)',
-            address: 'Campo Chico, 94464 Cuautlapan, Ver., México',
+            address: 'Km. 325 Carret. Fed. México - Veracruz S/N., Cuautlapan Ixtaczoquitlán Ver.',
             image: 'https://lh5.googleusercontent.com/p/AF1QipM0rV2LOYO9aIlLFteCOIGan7V86a9C36CZJtSS=w426-h240-k-no',
             phone: '(271)71-3-10-68 ',
             email: 'enc_scu_0673@hotmail.com',
@@ -163,7 +163,7 @@ export class MapaPage implements OnInit {
         {
             id: 14,
             name: 'Energéticos Santa María del Monte, S.A. de C.V.',
-            address: 'Calle Constitucion 131, Santa María del Monte, Pue., México',
+            address: 'Predio Atzómpa S/N., Santa Ma. del Monte Vicente Guerrero Pue.',
             image: 'https://geo0.ggpht.com/cbk?panoid=jEdeGCom1EvHIP4dtBZ7sg&output=thumbnail&cb_client=search.gws-prod.gps&thumb=2&w=408&h=240&yaw=105.51575&pitch=0&thumbfov=100',
             phone: '(236)37-4-92-39',
             email: 'enc_stama@hotmail.com',

@@ -136,13 +136,13 @@
             <ion-col class="ion-no-padding ion-no-margin ion-padding-top ion-margin-top" size="4">
               <ion-item lines="none" class="ion-no-padding borderItem ion-text-center"> 
                 <ion-icon slot="start" name="calendar-clear" size="small" color="success" class="margenIcon"></ion-icon>
-                <ion-datetime color="medium" [(ngModel)]="calHistorial.fechaIni" name="fechaIni" displayFormat="YYYY-MM-DD" [min]="minGeneral" [max]="fechaActu" placeholder="Fecha inicio" (ionChange)="vaciarFecha()"></ion-datetime>
+                <ion-datetime class="ion-no-padding" [ngClass]="{'colorSelectPla ': calHistorial.fechaIni !== '', '': calHistorial.fechaIni === '' }" color="medium" [(ngModel)]="calHistorial.fechaIni" name="fechaIni" displayFormat="YYYY-MM-DD" [min]="minGeneral" [max]="fechaActu" placeholder="Fecha inicio" (ionChange)="vaciarFecha()" cancelText="Cancelar" doneText="Aceptar" mode="ios"></ion-datetime>
               </ion-item>
             </ion-col>
             <ion-col class="ion-no-padding ion-no-margin ion-padding-top ion-margin-top" size="4">
               <ion-item lines="none" class="ion-no-padding borderItem ion-justify-content-center"> 
                 <ion-icon slot="start" name="calendar-clear" size="small" color="success" class="margenIcon"></ion-icon>
-                <ion-datetime color="medium" [(ngModel)]="calHistorial.fechafin" name="fechafin" displayFormat="YYYY-MM-DD" [min]="calHistorial.fechaIni" [max]="fechaActu" [disabled]="calHistorial.fechaIni === '' "  placeholder="Fecha final"></ion-datetime>
+                <ion-datetime class="ion-no-padding" [ngClass]="{'colorSelectPla ': calHistorial.fechafin !== '', '': calHistorial.fechafin === '' }" color="medium" [(ngModel)]="calHistorial.fechafin" name="fechafin" displayFormat="YYYY-MM-DD" [min]="calHistorial.fechaIni" [max]="fechaActu" [disabled]="calHistorial.fechaIni === '' "  placeholder="Fecha final" cancelText="Cancelar" doneText="Aceptar" mode="ios"></ion-datetime>
               </ion-item>
             </ion-col>
           </ion-row>

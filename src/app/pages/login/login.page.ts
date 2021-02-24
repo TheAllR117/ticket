@@ -5,7 +5,7 @@ import { UsuarioService } from '../../services/usuario.service';
 import { PushService } from '../../services/push.service';
 import { PostsService } from '../../services/posts.service';
 import { UserRegis } from '../../interfaces/interfaces';
-import { async } from '@angular/core/testing';
+
 
 @Component({
   selector: 'app-login',
@@ -32,6 +32,10 @@ export class LoginPage implements OnInit {
 
   loginEmail = {
     id: '',
+    email: ''
+  };
+
+  recuperarC = {
     email: ''
   };
 
@@ -112,6 +116,12 @@ export class LoginPage implements OnInit {
 
   }
 
+  recuperarContrasena(){
+    this.slides.lockSwipes(false);
+    this.slides.slideTo(3);
+    this.slides.lockSwipes(true);
+  }
+
   async registro( fRegistro: NgForm ) {
     await this.postsService.presentLoading('Espere por favor...');
 
@@ -144,6 +154,23 @@ export class LoginPage implements OnInit {
       if(resp['ok']){
         await this.postsService.mostrarNotificacion('CaritaVerde', 'Correo asignado correctamente.', 1);
         this.loginUser.email = resp['email'];
+        this.slides.lockSwipes(false);
+        this.slides.slideTo(0);
+        this.slides.lockSwipes(true);
+      }else{
+        await this.postsService.mostrarNotificacion('Triste_Mesadetrabajo1', resp['message'], 2);
+      }
+      //console.log(resp);
+    });
+  }
+
+  async recuperar(){
+    await this.postsService.presentLoading('Espere por favor...');
+    await this.usuarioService.recuperarCuenta(this.recuperarC.email).subscribe(async resp => {
+      this.postsService.loading.dismiss();
+      //console.log(resp);
+      if(resp['ok']){
+        await this.postsService.mostrarNotificacion('CaritaVerde', resp['message'], 1);
         this.slides.lockSwipes(false);
         this.slides.slideTo(0);
         this.slides.lockSwipes(true);

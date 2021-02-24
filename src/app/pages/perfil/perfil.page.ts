@@ -41,7 +41,7 @@ export class PerfilPage implements OnInit {
     });
   }
 
-  regresar(ruta: string) {
+  regresar() {
     this.navCtrl.back({ animated: true });
   }
 

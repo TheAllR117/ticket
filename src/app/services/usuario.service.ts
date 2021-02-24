@@ -582,5 +582,13 @@ export class UsuarioService {
     });*/
   }
 
+  recuperarCuenta( email: string) {
+   
+    const data = {email };
+    //console.log(email);
+    return this.http.post(`${URLP}/password/email`, data);
+  
+  }
+
 
 }
