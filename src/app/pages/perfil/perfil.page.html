@@ -74,18 +74,19 @@
     </ion-row>
     <ion-row class="ion-no-margin separar_componente_abajo">
       <ion-col class="ion-text-center ion-no-margin" color="light">
-        <h3 class="ion-no-margin color-claro">Solicitar canje</h3>
+        <h3 class="ion-no-margin color-claro">Editar perfil</h3>
       </ion-col>
     </ion-row>
   </ion-grid>
   <ion-grid class="cuerpo">
+
     <form>
       <ion-grid>
         <ion-row class="ion-justify-content-center">
           <ion-col size="12">
             <ion-item mode="ios">
               <ion-label mode="ios" position="floating">Nombre (s)</ion-label>
-              <ion-input [(ngModel)]="perfil.name" name="name" type="text" mode="ios" [value]="user.name"></ion-input>
+              <ion-input [(ngModel)]="perfil.name" name="name" type="text" mode="ios"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -94,13 +95,13 @@
           <ion-col size="6">
             <ion-item mode="ios">
               <ion-label mode="ios" position="floating">Apellido Paterno</ion-label>
-              <ion-input [(ngModel)]="perfil.first_surname" name="first_surname" type="text" mode="ios" [value]="user.first_surname"></ion-input>
+              <ion-input [(ngModel)]="perfil.first_surname" name="first_surname" type="text" mode="ios"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="6">
             <ion-item mode="ios">
               <ion-label mode="ios" position="floating">Apellido Materno</ion-label>
-              <ion-input [(ngModel)]="perfil.second_surname" name="second_surname" type="text" mode="ios" [value]="user.second_surname"></ion-input>
+              <ion-input [(ngModel)]="perfil.second_surname" name="second_surname" type="text" mode="ios" ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -109,13 +110,13 @@
           <ion-col size="6">
             <ion-item mode="ios">
               <ion-label mode="ios" position="floating">Teléfono</ion-label>
-              <ion-input [(ngModel)]="perfil.phone" name="phone" type="tel" mode="ios" [value]="user.phone"></ion-input>
+              <ion-input [(ngModel)]="perfil.phone" name="phone" type="tel" mode="ios"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="6">
             <ion-item mode="ios">
               <ion-label mode="ios" position="floating">Dirección</ion-label>
-              <ion-input [(ngModel)]="perfil.address" name="address" type="text" mode="ios" [value]="user.address"></ion-input>
+              <ion-input [(ngModel)]="perfil.address" name="address" type="text" mode="ios"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -124,14 +125,14 @@
           <ion-col size="6">
             <ion-item mode="ios" class="ion-margin-top">
               <ion-label>Fecha de nacimiento</ion-label>
-              <ion-datetime [(ngModel)]="perfil.birthdate" name="birthdate" [value]="user.birthdate" displayFormat="DD-MM-YYYY" placeholder="Select Date" okText="Escoger" cancelText="Cancelar"></ion-datetime>
+              <ion-datetime class="ion-no-padding" [(ngModel)]="perfil.birthdate" name="birthdate" displayFormat="YYYY-MM-DD" placeholder="Seleccionar" doneText="Aceptar" cancelText="Cancelar"></ion-datetime>
             </ion-item>
           </ion-col>
   
           <ion-col size="6">
             <ion-item mode="ios" class="ion-margin-top">
               <ion-label mode="ios">Sexo</ion-label>
-              <ion-select [(ngModel)]="perfil.sex" name="sex" mode="ios" [value]="user.sex">
+              <ion-select class="ion-no-padding" [(ngModel)]="perfil.sex" name="sex" mode="ios" cancelText="Cancelar" okText="Aceptar">
                 <ion-select-option value="H">Hombre</ion-select-option>
                 <ion-select-option value="M">Mujer</ion-select-option>
               </ion-select>
@@ -143,7 +144,7 @@
           <ion-col size="12">
             <ion-item mode="ios">
               <ion-label mode="ios" position="floating">Email</ion-label>
-              <ion-input [(ngModel)]="perfil.email" name="email" type="email" mode="ios" [value]="user.email"></ion-input>
+              <ion-input [(ngModel)]="perfil.email" name="email" type="email" mode="ios"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -161,7 +162,7 @@
           <ion-col size="12">
             <ion-item mode="ios" class="ion-margin-top">
               <ion-label mode="ios">Tipo de Vehículo (opcional)</ion-label>
-              <ion-select [(ngModel)]="perfil.type_car" name="type_car" [value]="data_car.type_car" mode="ios" okText="Escoger" cancelText="Cancelar">
+              <ion-select [(ngModel)]="perfil.type_car" name="type_car"  mode="ios" okText="Escoger" cancelText="Cancelar">
                 <ion-select-option value="Transporte">Transporte</ion-select-option>
                 <ion-select-option value="Carga">Carga</ion-select-option>
                 <ion-select-option value="Personal">Personal</ion-select-option>
@@ -174,7 +175,7 @@
           <ion-col size="12">
             <ion-item mode="ios">
               <ion-label mode="ios" position="floating">Matricula (opcional)</ion-label>
-              <ion-input [(ngModel)]="perfil.number_plate" name="number_plate" type="text" mode="ios" [value]="data_car.number_plate"></ion-input>
+              <ion-input [(ngModel)]="perfil.number_plate" name="number_plate" type="text" mode="ios" ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>

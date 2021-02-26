@@ -40,6 +40,16 @@ export class NotificacionesComponent implements OnInit {
           this.mensajes.push(i);
         }
       }
+      else if(this.message['first_surname']){
+        for(let i of this.message['first_surname']){
+          this.mensajes.push(i);
+        }
+      }
+      else if(this.message['name']){
+        for(let i of this.message['name']){
+          this.mensajes.push(i);
+        }
+      }
       else{
         this.mensajes.push(this.message.toString());
       }

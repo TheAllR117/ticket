@@ -175,8 +175,31 @@ ion-input:focus:-ms-input-placeholder {
 
 ion-item{
   --background: auto;
-  --color: rgba(255,255,255,.5);
+  //--color: #b2d7a8;
+  height: 42px;
+  border-radius: 18px;
 }
+
+ion-datetime{
+  --placeholder-color: #b2d7a8;
+  --color: #d0e7ca;
+  margin: auto;
+}
+.colorSelectPla{
+  color: #d0e7ca !important;
+}
+
+ion-select{
+  color: #b2d7a8 !important;
+  margin: auto;
+  width: 100%;
+  --placeholder-color: #fff;
+}
+
+.colorLabel{
+  --color: #b2d7a8 !important;
+}
+
 
 .bordes_re_modal {
   border: 1px solid rgb(255 253 253 / 81%) !important;

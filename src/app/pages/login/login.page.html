@@ -111,7 +111,14 @@
                       </ion-row>
                       <ion-row class="margin_top ion-justify-content-end">
                         <ion-col class="ion-justify-content-end">
-                          <ion-button shape="round" color="danger" (click)="mostrarDContacto()">
+                          <ion-button shape="round" color="danger" (click)="mostrarDContacto()" 
+                          [disabled]="
+                          registerUser.name == null || registerUser.name == '' || registerUser.name.length < 3 || 
+                          registerUser.first_surname == null || registerUser.first_surname == '' || registerUser.first_surname.length < 3 ||
+                          registerUser.second_surname == null || registerUser.second_surname == '' || registerUser.second_surname.length < 3 ||
+                          registerUser.email == null || registerUser.email == '' || registerUser.email.length < 6 ||
+                          registerUser.password == null || registerUser.password == '' || registerUser.password.length < 4 
+                          ">
                             <ion-icon name="arrow-forward" mode="ios"></ion-icon>
                           </ion-button>
                         </ion-col>
@@ -134,20 +141,19 @@
                       <ion-row >
                         <ion-col size="10" offset="1" >
                           <ion-item class="bordes_re_modal" lines="none">
-                            <ion-label>Fecha de nacimiento</ion-label>
-                            <ion-datetime class="ion-no-padding" [(ngModel)]="registerUser.birthdate" name="birthdate" displayFormat="DD-MM-YYYY" autocomplete="off" required></ion-datetime>
+                            <ion-datetime  [ngClass]="{'colorSelectPla': registerUser.birthdate != null }" placeholder="Fecha de nacimiento" mode="ios" cancelText="Cancelar" doneText="Aceptar" class="ion-no-padding ion-text-center" [(ngModel)]="registerUser.birthdate" name="birthdate" displayFormat="DD-MM-YYYY" autocomplete="off" required></ion-datetime>
                           </ion-item>
                         </ion-col>
                       </ion-row>
                       <ion-row>
                         <ion-col size="10" offset="1" >
                           <ion-item class="bordes_re_modal ion-text-capitalize ">
-                            <ion-label class="ion-text-capitalize" >
+                            <!--ion-label class="colorLabel" [ngClass]="{'colorSelectPla': registerUser.sex != null }" class="ion-text-capitalize" >
                               Sexo
-                            </ion-label>
-                            <ion-select name="sex" [(ngModel)]="registerUser.sex"  interface="action-sheet">
+                            </ion-label-->
+                            <ion-select placeholder="Sexo"  [ngClass]="{'colorSelectPla': registerUser.sex != null }" name="sex" [(ngModel)]="registerUser.sex"  interface="action-sheet">
                               <ion-select-option value="H">Hombre</ion-select-option>
-                              <ion-select-option value="H">Mujer</ion-select-option>
+                              <ion-select-option value="M">Mujer</ion-select-option>
                             </ion-select>
                           </ion-item>
                         </ion-col>
@@ -159,7 +165,13 @@
                           </ion-button>
                         </ion-col>
                         <ion-col class="ion-justify-content-end">
-                          <ion-button shape="round" color="danger" (click)="mostrarDVehiculo()">
+                          <ion-button shape="round" color="danger" (click)="mostrarDVehiculo()"
+                          [disabled]="
+                          registerUser.phone == null || registerUser.phone == '' || registerUser.phone.length < 10 || 
+                          registerUser.address == null || registerUser.address == '' || registerUser.address.length < 3 ||
+                          registerUser.birthdate == null || registerUser.birthdate == ''
+                          "
+                          >
                             <ion-icon name="arrow-forward" mode="ios"></ion-icon>
                           </ion-button>
                         </ion-col>
@@ -177,10 +189,10 @@
                       <ion-row >
                         <ion-col size="10" offset="1" >
                           <ion-item class="bordes_re_modal">
-                            <ion-label>
+                            <!--ion-label>
                               Tipo de vehículo
-                            </ion-label>
-                            <ion-select name="type_car" [(ngModel)]="registerUser.type_car"  interface="action-sheet">
+                            </ion-label-->
+                            <ion-select [ngClass]="{'colorSelectPla': registerUser.type_car != null }" placeholder="Tipo de vehículo" name="type_car" [(ngModel)]="registerUser.type_car"  interface="action-sheet">
                               <ion-select-option>Transporte</ion-select-option>
                               <ion-select-option>Carga</ion-select-option>
                               <ion-select-option>Personal</ion-select-option>

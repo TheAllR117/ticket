@@ -33,7 +33,7 @@ export class ScannerPage implements OnInit {
       await this.postsService.presentLoading('Espere por favor...');
       this.barcodeScanner.scan().then( barcodeData => {
         this.postsService.loading.dismiss();
-        //console.log('Barcode data', barcodeData);
+        //console.log('data qr', barcodeData);
         if (!barcodeData.cancelled) {
           this.ticketUser.qr = barcodeData.text;
           this.usuarioService.sumarPuntos(this.ticketUser.qr, this.ticketUser.code, this.ticketUser.station, this.ticketUser.sale).subscribe( resp => {
