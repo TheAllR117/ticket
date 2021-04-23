@@ -3,7 +3,6 @@ import { UsuarioService } from '../../services/usuario.service';
 import { PaymentR } from '../../interfaces/interfaces';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { Location } from '@angular/common';
-import { LottieAnimationViewModule } from 'ng-lottie';
 import { CompartidoQrComponent } from '../../components/compartido-qr/compartido-qr.component';
 
 
@@ -32,7 +31,6 @@ export class TransferenciasTotalesPage implements OnInit {
     // tslint:disable-next-line: variable-name
     private _location: Location
     ) {
-      LottieAnimationViewModule.forRoot();
       this.lottieConfig = {
         path: 'assets/animation/23210-wallet-money-added.json',
         autoplay: true,

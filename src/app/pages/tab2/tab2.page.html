@@ -1,18 +1,120 @@
-<app-header titulo=""></app-header>
-<ion-content>
+<ion-content class="card-background-page ion-no-border">
 
-    <ion-grid class="acomodar_animacion">
-      <ion-row class="ion-text-center">
-        <ion-col size="10" offset="1">
-          <lottie-animation-view [options]="lottieConfig" (animCreated)="handleAnimation($event)">
-          </lottie-animation-view>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-text-center">
-        <ion-col size="10" offset="1">
-          <h1>Próximamente</h1>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <!--img src="assets/svg/Mov_Mesa.svg" class="animacion_fondo"-->
+  <ng-lottie [options]="lottieConfig" class="animacion_fondo" (animationCreated)="handleAnimation($event)"></ng-lottie>
+  <ion-grid *ngIf="animacion === true;" class="grid_arriba_t ion-no-border ion-no-padding animate__animated animate__fadeInDownBig">
+    <ion-row class="ion-no-border ion-no-padding ion-justify-content-evenly">
+      <ion-col class="ion-no-border ion-no-padding" size="11">
+        <ion-label class="primerTituloCopy">Hola,</ion-label>
+      </ion-col>
+    </ion-row>
 
+    <ion-row class="ion-no-border ion-no-padding ion-justify-content-evenly">
+      <ion-col class="ion-no-border ion-no-padding" size="10">
+        <ion-label class="primerTitulo" [innerHTML]="user.name +' '+ user.first_surname "></ion-label><br>
+        <ion-label class="primerTitulo ion-margin-end" color="success">Membresía </ion-label> <ion-label class="primerTitulo_2" [innerHTML]=" user.client.membership"></ion-label>
+      </ion-col>
+      
+      <ion-col class="ion-no-border ion-no-padding" size="1">
+        <ion-buttons mode="md" class="margin_negativo_modal">
+          <ion-menu-button auto-hide="false" color="success"></ion-menu-button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  <ion-grid *ngIf="animacion === true;" class="grid_abajo ion-no-border ion-no-padding animate__animated animate__fadeInUpBig">
+    <ion-row class="ion-no-border ion-no-padding">
+      <ion-col class="ion-no-border ion-no-padding ion-justify-content-center ion-text-center" size="12">
+        <ion-label class="primerTitulo" color="success">Total acumulados</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-border ion-no-padding">
+      <ion-col class="ion-no-border ion-no-padding ion-justify-content-center ion-text-center" size="12">
+        <h1 class="puntos" [innerHTML]="user.client.points +' Pts.'"></h1>
+      </ion-col>
+    </ion-row>
+    <ion-row no-border class="quitar_margin_top ion-no-padding">
+      <ion-col no-border class="ion-no-padding col_slides">
+        <ion-slides  mode="md" *ngIf="animacion === true;" no-border [options]="slideOpts" class="poner_margin_botton">
+          <ion-slide  mode="md" class="quitar_margin_left">
+            <ion-card mode="ios" class="ioncard">
+              <div class="img-wrapper">
+                <ion-icon mode="md" src="assets/svg/Canje.svg" class="iconos_cuadradosRegalo"></ion-icon>
+              </div>
+              <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                  <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                  <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                  <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                  <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                  <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+                </g>
+              </svg>
+              <ion-card-content class="ion-text-center">
+                <ion-button  fill="outline" color="success" size="small" expand="block" (click)="navRouting('/canjes')">
+                  <ion-label class="ion-text-capitalize" color="success">Canje</ion-label>
+                </ion-button>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+      
+          <ion-slide  mode="md" class="quitar_margin_left">
+            <ion-card mode="ios" class="ioncard">
+              <div class="img-wrapper">
+                <ion-icon mode="md" src="assets/svg/EDC.svg" class="iconos_cuadrados"></ion-icon>
+              </div>
+              <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                  <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                  <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                  <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                  <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                  <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+                </g>
+              </svg>
+              <ion-card-content class="ion-text-center">
+                <ion-button  fill="outline" color="success" size="small" expand="block" (click)="navRouting('/movimientos')">
+                  <ion-label class="ion-text-capitalize" color="success">Movimientos</ion-label>
+                </ion-button>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+          <ion-slide  mode="md" class="quitar_margin_left">
+            <ion-card mode="ios" class="ioncard">
+              <div class="img-wrapper">
+                <ion-icon mode="md" src="assets/svg/Ubicaciones.svg" class="iconos_cuadradosMap"></ion-icon>
+              </div>
+              <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                  <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                  <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                  <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                  <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                  <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+                </g>
+              </svg>
+              <ion-card-content class="ion-text-center">
+                <ion-button  fill="outline" color="success" size="small" expand="block"  (click)="navRouting('/mapa')">
+                  <ion-label class="ion-text-capitalize" color="success">Ubicaciones</ion-label>
+                </ion-button>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+      
+          
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

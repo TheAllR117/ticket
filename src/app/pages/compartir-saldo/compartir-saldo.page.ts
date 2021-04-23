@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalController, NavController, IonList } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
 import { Contact, Contacts } from '../../interfaces/interfaces';
-import { LottieAnimationViewModule } from 'ng-lottie';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { EnviarCantidaComponent } from '../../components/enviar-cantida/enviar-cantida.component';
 import { Tab1Page } from '../tab1/tab1.page';
@@ -15,8 +14,8 @@ import { PostsService } from '../../services/posts.service';
 })
 export class CompartirSaldoPage implements OnInit {
 
-  @ViewChild('contactosListaAd', {static: false}) listaB: IonList;
-  @ViewChild('contactosLista', {static: false}) lista: IonList;
+  @ViewChild('contactosListaAd') listaB: IonList;
+  @ViewChild('contactosLista') lista: IonList;
 
   contact: Contact;
   contacts: Contacts[] = [];
@@ -40,7 +39,7 @@ export class CompartirSaldoPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    LottieAnimationViewModule.forRoot();
+    
     this.lottieConfig = {
       path: 'assets/animation/contac.json',
       autoplay: true,
@@ -110,7 +109,8 @@ export class CompartirSaldoPage implements OnInit {
           this.contacts = respuesta.contacts;
         });
       } else {
-        this.postsService.mostrarPop('14331-error', 'Error al agregar al usuario', resp.message, 1950);
+        this.postsService.mostrarNotificacion('CaritaVerde', resp.message, 1);
+        //this.postsService.mostrarPop('14331-error', 'Error al agregar al usuario', resp.message, 1950);
       }
       this.listaB.closeSlidingItems();
     });
@@ -137,7 +137,8 @@ export class CompartirSaldoPage implements OnInit {
           }
         });
       } else {
-        this.postsService.mostrarPop('14331-error', 'Error al eliminar al usuario', resp.message, 1950);
+        this.postsService.mostrarNotificacion('CaritaVerde', resp.message, 1);
+        //this.postsService.mostrarPop('14331-error', 'Error al eliminar al usuario', resp.message, 1950);
       }
     });
   }

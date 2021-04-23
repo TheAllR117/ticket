@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { OneSignal, OSNotification, OSNotificationPayload } from '@ionic-native/onesignal/ngx';
 import { Storage } from '@ionic/storage';
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,7 @@ export class PushService {
   }
 
   configuracionInicial() {
-    this.oneSignal.startInit('91acd53f-d191-4b38-9fa9-2bbbdc95961e', '233436344393');
+    this.oneSignal.startInit('62450fc4-bb2b-4f2e-a748-70e8300c6ddb', '695838362156');
 
     this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
 
@@ -38,10 +38,10 @@ export class PushService {
     // console.log('Notificación recibida', noti);
     if (noti.payload.additionalData) {
       await this.confirmacionPago(noti);
-      console.log('Notificación de pago');
+      //console.log('Notificación de pago');
     } else {
       await this.notificacionRecibida(noti);
-      console.log('Notificación normal');
+      //console.log('Notificación normal');
     }
 
     });
@@ -81,7 +81,7 @@ export class PushService {
       this.pushListener.emit(payloadPagos);
 
     } else if (this.idNotificacion === payloadPagos.notificationID) {
-      console.log('Notificación repetida');
+      //console.log('Notificación repetida');
     } else {
       this.idNotificacion = '';
     }

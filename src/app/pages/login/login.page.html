@@ -15,8 +15,6 @@
 
     <ion-slides class="mainSlide" #sliderPrincipal>
       <ion-slide>
-
-        
           <ion-grid>
             <form (ngSubmit)="login( fLogin )" #fLogin="ngForm">
               <ion-row>
@@ -26,13 +24,18 @@
               </ion-row>
               <ion-row class="ion-padding-bottom">
                 <ion-col size="8" offset="2">
-                  <ion-input name="email" type="email" placeholder="Email" [(ngModel)]="loginUser.email" required></ion-input>
+                  <ion-input name="email" type="email" placeholder="Email o membresía" [(ngModel)]="loginUser.email" required></ion-input>
                 </ion-col>
               </ion-row>
-              <ion-row class="ion-padding-bottom">
+              <ion-row>
                 <ion-col size="8" offset="2" class="col-static">
                   <ion-input class="input-cover" name="password" #passwordEyeRegister  [type]="passwordTypeInput" placeholder="Contraseña"  [(ngModel)]="loginUser.password" required></ion-input>
                   <ion-icon color="light" [name]="(passwordTypeInput === 'text')?'eye-off':'eye'" class="eye-icon" item-right (click)="togglePasswordMode()"></ion-icon>
+                </ion-col>
+              </ion-row>
+              <ion-row class="ion-no-padding ion-padding-bottom">
+                <ion-col size="8" offset="2" class="col-static ion-no-padding ion-no-margin ion-text-right">
+                  <ion-button fill="clear" color="light" size="small" class="ion-text-capitalize" (click)="recuperarContrasena()">Recuperar contraseña</ion-button>
                 </ion-col>
               </ion-row>
               <ion-row >
@@ -44,10 +47,9 @@
                 </ion-col>
               </ion-row>
             </form>
-            
           </ion-grid>
-
       </ion-slide>
+
       <ion-slide>
         <ion-grid fixed>
           <form (ngSubmit)="registro(fRegistro)" #fRegistro="ngForm">
@@ -108,7 +110,14 @@
                       </ion-row>
                       <ion-row class="margin_top ion-justify-content-end">
                         <ion-col class="ion-justify-content-end">
-                          <ion-button shape="round" color="danger" (click)="mostrarDContacto()">
+                          <ion-button shape="round" color="danger" (click)="mostrarDContacto()" 
+                          [disabled]="
+                          registerUser.name == null || registerUser.name == '' || registerUser.name.length < 3 || 
+                          registerUser.first_surname == null || registerUser.first_surname == '' || registerUser.first_surname.length < 3 ||
+                          registerUser.second_surname == null || registerUser.second_surname == '' || registerUser.second_surname.length < 3 ||
+                          registerUser.email == null || registerUser.email == '' || registerUser.email.length < 6 ||
+                          registerUser.password == null || registerUser.password == '' || registerUser.password.length < 4 
+                          ">
                             <ion-icon name="arrow-forward" mode="ios"></ion-icon>
                           </ion-button>
                         </ion-col>
@@ -131,20 +140,19 @@
                       <ion-row >
                         <ion-col size="10" offset="1" >
                           <ion-item class="bordes_re_modal" lines="none">
-                            <ion-label>Fecha de nacimiento</ion-label>
-                            <ion-datetime class="ion-no-padding" [(ngModel)]="registerUser.birthdate" name="birthdate" displayFormat="DD-MM-YYYY" autocomplete="off" required></ion-datetime>
+                            <ion-datetime  [ngClass]="{'colorSelectPla': registerUser.birthdate != null }" placeholder="Fecha de nacimiento" mode="ios" cancelText="Cancelar" doneText="Aceptar" class="ion-no-padding ion-text-center" [(ngModel)]="registerUser.birthdate" name="birthdate" displayFormat="DD-MM-YYYY" autocomplete="off" required></ion-datetime>
                           </ion-item>
                         </ion-col>
                       </ion-row>
                       <ion-row>
                         <ion-col size="10" offset="1" >
                           <ion-item class="bordes_re_modal ion-text-capitalize ">
-                            <ion-label class="ion-text-capitalize" >
+                            <!--ion-label class="colorLabel" [ngClass]="{'colorSelectPla': registerUser.sex != null }" class="ion-text-capitalize" >
                               Sexo
-                            </ion-label>
-                            <ion-select name="sex" [(ngModel)]="registerUser.sex"  interface="action-sheet">
+                            </ion-label-->
+                            <ion-select placeholder="Sexo"  [ngClass]="{'colorSelectPla': registerUser.sex != null }" name="sex" [(ngModel)]="registerUser.sex"  interface="action-sheet">
                               <ion-select-option value="H">Hombre</ion-select-option>
-                              <ion-select-option value="H">Mujer</ion-select-option>
+                              <ion-select-option value="M">Mujer</ion-select-option>
                             </ion-select>
                           </ion-item>
                         </ion-col>
@@ -156,7 +164,13 @@
                           </ion-button>
                         </ion-col>
                         <ion-col class="ion-justify-content-end">
-                          <ion-button shape="round" color="danger" (click)="mostrarDVehiculo()">
+                          <ion-button shape="round" color="danger" (click)="mostrarDVehiculo()"
+                          [disabled]="
+                          registerUser.phone == null || registerUser.phone == '' || registerUser.phone.length < 10 || 
+                          registerUser.address == null || registerUser.address == '' || registerUser.address.length < 3 ||
+                          registerUser.birthdate == null || registerUser.birthdate == ''
+                          "
+                          >
                             <ion-icon name="arrow-forward" mode="ios"></ion-icon>
                           </ion-button>
                         </ion-col>
@@ -168,16 +182,16 @@
                     <ion-grid fixed>
                       <ion-row >
                         <ion-col size="10" offset="1" >
-                          <ion-input name="number_plate" type="text" [(ngModel)]="registerUser.number_plate" placeholder="Placas" autocomplete="off" required></ion-input>
+                          <ion-input name="number_plate" type="text" [(ngModel)]="registerUser.number_plate" placeholder="Placas" autocomplete="off"></ion-input>
                         </ion-col>
                       </ion-row>
                       <ion-row >
                         <ion-col size="10" offset="1" >
                           <ion-item class="bordes_re_modal">
-                            <ion-label>
+                            <!--ion-label>
                               Tipo de vehículo
-                            </ion-label>
-                            <ion-select name="type_car" [(ngModel)]="registerUser.type_car"  interface="action-sheet">
+                            </ion-label-->
+                            <ion-select [ngClass]="{'colorSelectPla': registerUser.type_car != null }" placeholder="Tipo de vehículo" name="type_car" [(ngModel)]="registerUser.type_car"  interface="action-sheet">
                               <ion-select-option>Transporte</ion-select-option>
                               <ion-select-option>Carga</ion-select-option>
                               <ion-select-option>Personal</ion-select-option>
@@ -209,6 +223,76 @@
         </ion-grid>
         
       </ion-slide>
+
+      <ion-slide>
+        <ion-grid>
+          <form>
+            <ion-row>
+              <ion-col size="8" offset="2" class="tituloEmail">
+                <ion-label color="light" [innerHTML]="'¡'+messageEmail+'!'"></ion-label>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-padding-bottom">
+              <ion-col size="8" offset="2" class="ion-text-start">
+                <ion-label color="light" class="ion-margin-top">Ingresa tu email</ion-label><br>
+              </ion-col>
+            </ion-row>
+             <ion-row class="ion-padding-bottom">
+              <ion-col size="8" offset="2" class="ion-text-start">
+                <ion-input name="email" type="email" [(ngModel)]="loginEmail.email" required ></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row >
+              <ion-col size="5"></ion-col>
+              <ion-col size="5">
+                <ion-button type="submit" shape="round" expand="full" color="danger" class="ion-text-capitalize" [disabled]="loginEmail.email == ''" (click)="nuevoCorreo()">
+                  Aceptar
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </form>
+        </ion-grid>
+        <ion-label color="light" class="arrowPosition" (click)="mostrarRegistro()">
+          <ion-icon name="chevron-back-outline"></ion-icon>Regresar
+        </ion-label>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-grid>
+          <form>
+            <ion-row>
+              <ion-col size="8" offset="2" class="tituloEmail">
+                <ion-label color="light">¿Olvidaste tu contraseña?</ion-label>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-padding-bottom">
+              <ion-col size="8" offset="2" class="ion-text-start">
+                <ion-label color="light" class="ion-margin-top">Ingresa tu email</ion-label>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-padding-bottom">
+              <ion-col size="8" offset="2" class="ion-text-start">
+                <ion-input name="email" type="email" [(ngModel)]="recuperarC.email" required ></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row >
+              <ion-col size="5"></ion-col>
+              <ion-col size="5">
+                <ion-button type="submit" shape="round" expand="full" color="danger" class="ion-text-capitalize" [disabled]="recuperarC.email == ''" (click)="recuperar()">
+                  Aceptar
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </form>
+          
+        </ion-grid>
+
+        <ion-label color="light" class="arrowPosition" (click)="mostrarRegistro()">
+          <ion-icon name="chevron-back-outline"></ion-icon>Regresar
+        </ion-label>
+
+      </ion-slide>
+
     </ion-slides>
   </div>
   

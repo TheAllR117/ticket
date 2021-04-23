@@ -22,25 +22,25 @@
 
 <ion-tabs>  
   <ion-fab vertical="bottom" horizontal="center" translucent="true">
-    <ion-fab-button color="danger">
-      <lottie-animation-view [options]="lottieConfig" [width]="40" [height]="40"></lottie-animation-view>
-      <!--ion-icon name="qr-scanner"></ion-icon-->
+    <ion-fab-button color="danger" (click)="navRouting('/scanner')">
+      <!--lottie-animation-view [options]="lottieConfig" [width]="40" [height]="40"></lottie-animation-view-->
+      <ng-lottie [options]="lottieConfig" class="scan_size" ></ng-lottie>
     </ion-fab-button>
   </ion-fab>
   
   <ion-tab-bar slot="bottom" class="ion-no-border">
-    
-    <ion-tab-button tab="tab1" class="cash">
-      <ion-icon src="../../../assets/svg/coins.svg"></ion-icon>
-      <ion-label>Ticket</ion-label>
+    <ion-tab-button tab="tab2" class="sync">
+      <ion-icon src="../../../assets/svg/prueba-01.svg" size="large"></ion-icon>
+      <!--ion-label>Lealtad</ion-label-->
     </ion-tab-button>
-
+   
     <svg height="50" viewBox="0 0 100 50" width="100" xmlns="http://www.w3.org/2000/svg"><path d="M100 0v50H0V0c.543 27.153 22.72 49 50 49S99.457 27.153 99.99 0h.01z" fill="red" fill-rule="evenodd"></path></svg>
 
-    <ion-tab-button tab="tab2" class="sync">
-      <ion-icon src="../../../assets/svg/exchange.svg"></ion-icon>
-      <ion-label>Lealtad</ion-label>
-    </ion-tab-button>
     
+    <ion-tab-button tab="tab1" class="cash">
+      <ion-icon src="../../../assets/svg/Lealtad-02.svg" size="large"></ion-icon>
+      <!--ion-label>Ticket</ion-label-->
+    </ion-tab-button>
+
   </ion-tab-bar>
 </ion-tabs>

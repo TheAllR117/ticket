@@ -1,0 +1,116 @@
+<ion-content>
+  <ion-grid class="encabezado">
+    <div id="bg-wrap">
+      <app-header-animation titulo=""></app-header-animation>
+    </div>
+    <ion-row class="ion-justify-content-between grid_arriba">
+      <ion-col class="ion-no-border ion-padding-start" size="2">
+        <ion-buttons mode="ios" >
+          <ion-button (click)="regresar()" class="ion-padding-top">
+            <ion-icon  mode="ios" color="light" name="chevron-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col class="ion-no-border ion-padding-end" size="2">
+        <ion-buttons mode="md" >
+          <ion-menu-button auto-hide="false" color="light"></ion-menu-button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-margin">
+      <ion-col class="ion-text-center ion-no-margin" color="light">
+        <h3 class="ion-no-margin color-claro">Ubicaciones</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-margin ion-justify-content-center">
+      <ion-col class="ion-no-margin" size="10">
+        <!--ion-input color="success" class="input" placeholder="Nombre de la estación"></ion-input-->
+        <ion-select color="medium" class="bordesSelect" placeholder="Selecciona la estación" value="Estación" interface="action-sheet" (ionChange)="onSelectDidChange()">
+          <ion-select-option color="medium" *ngFor="let marker of stations; let i = index" [value]="i" [innerHTML]="marker.name" ></ion-select-option>
+          <ion-select-option color="medium" *ngFor="let marker of stationsNue; let i = index" [value]="i + 8" [innerHTML]="marker.name" ></ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="cuerpo">
+    <div id="map_canvas"></div>
+    <ion-slides (ionSlideDidChange)="onSlideDidChange()" [options]="slideOpts">
+      <ion-slide *ngFor="let marker of stations">
+        <ion-card mode="ios">
+          <ion-item lines="none" class="ion-margin-top">
+            <ion-thumbnail slot="start" class="ion-no-margin classThumb">
+              <img [src]="marker.image">
+            </ion-thumbnail>
+            <ion-label class="ion-text-wrap ion-no-margin ion-margin-bottom">
+              <p class="tamanofontTi" color="success">Estación</p>
+              <ion-label class="tamanofont" color="success">{{ marker.name }}</ion-label>
+              <p class="tamanofont">{{ marker.address }}</p>
+            </ion-label>
+          </ion-item>
+          
+            <ion-row class="ion-justify-content-between ion-no-padding ion-padding-bottom">
+              <ion-col size="4" class="ion-no-margin ion-no-padding">
+                <a [href]="urls[marker.id - 1]">
+                  <ion-button class="redondeo ion-no-padding ion-no-margin" color="success">
+                    <ion-icon name="navigate" color="light" class="tamanoicons"></ion-icon>
+                  </ion-button>
+                </a>
+              </ion-col>
+              <ion-col size="4" class="colorBorde ion-no-margin ion-no-padding">
+                <a [href]="'tel:'+ marker.phone">
+                  <ion-button class="redondeo ion-no-padding ion-no-margin" color="success">
+                    <ion-icon name="call" color="light" class="tamanoicons"></ion-icon>
+                  </ion-button>
+                </a>
+              </ion-col>
+              <ion-col size="4" class="ion-no-margin ion-no-padding">
+                <ion-button class="redondeo ion-no-padding ion-no-margin" color="success" (click)="enviarEmail(marker.email)">
+                  <ion-icon name="mail" color="light" class="tamanoicons"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+      
+        </ion-card>
+      </ion-slide>
+      <ion-slide *ngFor="let marker of stationsNue">
+        <ion-card mode="ios">
+          <ion-item lines="none" class="ion-margin-top">
+            <ion-thumbnail slot="start" class="ion-no-margin classThumb">
+              <img [src]="marker.image">
+            </ion-thumbnail>
+            <ion-label class="ion-text-wrap ion-no-margin ion-margin-bottom">
+              <p class="tamanofontTi" color="success">Estación</p>
+              <ion-label class="tamanofont" color="success">{{ marker.name }}</ion-label>
+              <p class="tamanofont">{{ marker.address }}</p>
+            </ion-label>
+          </ion-item>
+          
+            <ion-row class="ion-justify-content-between ion-no-padding ion-padding-bottom">
+              <ion-col size="4" class="ion-no-margin ion-no-padding">
+                <a [href]="urls[marker.id - 1]">
+                  <ion-button class="redondeo ion-no-padding ion-no-margin" color="success">
+                    <ion-icon name="navigate" color="light" class="tamanoicons"></ion-icon>
+                  </ion-button>
+                </a>
+              </ion-col>
+              <ion-col size="4" class="colorBorde ion-no-margin ion-no-padding">
+                <a [href]="'tel:'+ marker.phone">
+                  <ion-button class="redondeo ion-no-padding ion-no-margin" color="success">
+                    <ion-icon name="call" color="light" class="tamanoicons"></ion-icon>
+                  </ion-button>
+                </a>
+              </ion-col>
+              <ion-col size="4" class="ion-no-margin ion-no-padding">
+                <ion-button class="redondeo ion-no-padding ion-no-margin" color="success" (click)="enviarEmail(marker.email)">
+                  <ion-icon name="mail" color="light" class="tamanoicons"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+      
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+      </ion-slide>
+    </ion-slides>
+  </ion-grid>
+</ion-content>

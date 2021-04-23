@@ -1,0 +1,204 @@
+<ion-content class="colorFondoVistasSecundarias">
+  <ion-grid class="encabezado">
+    <div id="bg-wrap">
+      <app-header-animation titulo=""></app-header-animation>
+    </div>
+    <ion-row class="ion-justify-content-between grid_arriba">
+      <ion-col class="ion-no-border ion-padding-start" size="2">
+        <ion-buttons mode="ios" >
+          <ion-button (click)="regresar()" class="ion-padding-top">
+            <ion-icon  mode="ios" color="light" name="chevron-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col class="ion-no-border ion-padding-end" size="2">
+        <ion-buttons mode="md" >
+          <ion-menu-button auto-hide="false" color="light"></ion-menu-button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-margin separar_componente_abajo">
+      <ion-col class="ion-text-center ion-no-margin" color="light">
+        <h3 class="ion-no-margin color-claro">Solicitar canje</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-margin ion-justify-content-center">
+      <ion-col class="ion-no-margin" size="10">
+        <ion-segment (ionChange)="segmentChanged()" mode="ios"  value="0" class="ion_segment colorBlanco">
+          <ion-segment-button value="0" mode="ios" class="ion-no-margin paddingSegment">
+            Solicitud
+          </ion-segment-button>
+          <ion-segment-button value="1" mode="ios" class="ion-no-margin paddingSegment">
+            Por entregar
+          </ion-segment-button>
+          <ion-segment-button  value="2" mode="ios" class="ion-no-margin paddingSegment">
+            Historial
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="cuerpo">
+    <ion-slides #slidePrincipal (ionSlideDidChange)="onSlideDidChange()" class="slidePrincipal">
+      
+      <!---------pagina solicitud----------->
+      <ion-slide class="ion-padding-top sidis scroll">
+      
+        <ion-grid>
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="10">
+              <p class="fontP">El canje se recoge en la estación solicitada.</p>
+              <p class="fontP">En caso de no contar con puntos suficientes el sistema no te permitirá realizar en canje.</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-col size="12" class="ion-no-padding ion-no-margin">
+          <ion-slides [options]="slideOpts" #sliderSecundario class="sliderSecundario" (ionSlideDidChange)="onSlideDidChangeSec()">
+            <ion-slide class="" *ngFor="let station of stations; let i = index">
+              <div class="container" >
+                <div mode="ios" [ngClass]="{'card newShadow': selectSlideSec !== i, 'card cardBordes': selectSlideSec === i }">
+                  <div [ngClass]="{'cover': selectSlideSec !== i, 'cover2': selectSlideSec === i }" >
+                    <img class="ion-no-padding imageBorder" [src]="station.image" />
+                    <svg *ngIf="selectSlideSec == i" class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                      <defs>
+                        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                      </defs>
+                      <g class="parallax">
+                        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.9" />
+                        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.7)" />
+                        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.5)" />
+                        <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+                      </g>
+                    </svg>
+                  </div>
+                  <ion-card-content class="ion-padding " [ngClass]="{'content1': selectSlideSec !== i, 'content2': selectSlideSec === i }">
+                    <h2 [innerHTML]="station.name" class="fontWeiTitulos"></h2>
+                    <p [innerHTML]="station.address"></p>
+                    <ion-button *ngIf="selectSlideSec == i" mode="md" color="success" class="ion-margin"  (click)="solicitarCanje(station.id)">Aceptar</ion-button>
+                  </ion-card-content>
+                </div>
+              </div>
+            </ion-slide>
+            
+            <ion-slide></ion-slide>
+          </ion-slides>
+        </ion-col>
+  
+    
+      </ion-slide>
+      
+      <!---------pagina entregar----------->
+      <ion-slide class="ion-align-items-start ion-padding-top scroll">
+        
+          <ion-col class="ion-no-padding ion-no-margin ion-padding-top ion-margin-top" size="10">
+
+            <ion-row *ngIf="animacionEntregar" size="12" class="ion-justify-content-center">
+              <ion-col size="12">
+                <ng-lottie [options]="lottieConfig" ></ng-lottie>
+              </ion-col>
+              <ion-col>
+                <ion-label class="conte_text texto_bold">No hay canjes por entregar.</ion-label>
+              </ion-col>
+            </ion-row>
+            
+            <!--ion-padding-top ion-padding-bottom-->
+            <ion-card *ngFor="let item of exchange" mode="ios" class="ion-no-margin ion-margin-top ion-margin-bottom">
+              <ion-row>
+                <ion-col size="3" class="bord ion-text-center ion-text-wrap ion-align-items-center">
+                  <ion-icon class="tamanoIcon puntos" name="ticket-outline" color="success" mode="ios"></ion-icon>
+                </ion-col>
+                <ion-col size="9" class="ion-text-left ion-padding-start ion-text-wrap fontSize">
+                  <ion-label class="fontWei" color="success">Vale</ion-label>
+                  <div><ion-text class="fontWei" >Estación: </ion-text> <ion-label [innerHTML]=" item.station"></ion-label></div>
+                  <div><ion-text class="fontWei" >Folio: </ion-text><ion-label [innerHTML]=" item.invoice"></ion-label></div>
+                  <div><ion-text class="fontWei" >Estatus: </ion-text><ion-label [innerHTML]=" item.status"></ion-label></div>
+                  <ion-text color="medium"><sub [innerHTML]=" item.date"></sub></ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+
+          </ion-col>
+    
+            
+      </ion-slide>
+
+      <!---------pagina historial----------->
+      <ion-slide class="ion-align-items-start ion-padding-top scroll">
+        <ion-grid>
+          <ion-row class="ion-justify-content-around">
+            <ion-col class="ion-no-padding ion-no-margin ion-margin-top" size="10">
+              <ion-label color="medium">Selecciona una fecha.</ion-label>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-around">
+            <ion-col class="ion-no-padding ion-no-margin ion-padding-top ion-margin-top" size="4">
+              <ion-item lines="none" class="ion-no-padding borderItem ion-text-center"> 
+                <ion-icon slot="start" name="calendar-clear" size="small" color="success" class="margenIcon"></ion-icon>
+                <ion-datetime class="ion-no-padding" [ngClass]="{'colorSelectPla ': calHistorial.fechaIni !== '', '': calHistorial.fechaIni === '' }" color="medium" [(ngModel)]="calHistorial.fechaIni" name="fechaIni" displayFormat="YYYY-MM-DD" [min]="minGeneral" [max]="fechaActu" placeholder="Fecha inicio" (ionChange)="vaciarFecha()" cancelText="Cancelar" doneText="Aceptar" mode="ios"></ion-datetime>
+              </ion-item>
+            </ion-col>
+            <ion-col class="ion-no-padding ion-no-margin ion-padding-top ion-margin-top" size="4">
+              <ion-item lines="none" class="ion-no-padding borderItem ion-justify-content-center"> 
+                <ion-icon slot="start" name="calendar-clear" size="small" color="success" class="margenIcon"></ion-icon>
+                <ion-datetime class="ion-no-padding" [ngClass]="{'colorSelectPla ': calHistorial.fechafin !== '', '': calHistorial.fechafin === '' }" color="medium" [(ngModel)]="calHistorial.fechafin" name="fechafin" displayFormat="YYYY-MM-DD" [min]="calHistorial.fechaIni" [max]="fechaActu" [disabled]="calHistorial.fechaIni === '' "  placeholder="Fecha final" cancelText="Cancelar" doneText="Aceptar" mode="ios"></ion-datetime>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-around">
+            <ion-col class="ion-no-padding ion-no-margin ion-padding-top " size="5">
+              
+            </ion-col>
+            <ion-col class="ion-no-padding ion-no-margin ion-padding-top" size="3">
+              <ion-button color="success" mode="md" expand="block" [disabled]="calHistorial.fechaIni === '' || calHistorial.fechafin === ''" (click)="buscarPago()">
+                <ion-label color="light" class="ion-text-capitalize">
+                  Consultar
+                </ion-label>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="spiner" size="12" class="ion-justify-content-center">
+            <ion-col size="12">
+              <ion-spinner color="success"></ion-spinner>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="animacionPagos" size="12" class="ion-justify-content-center">
+            <ion-col size="12">
+              <ng-lottie [options]="lottieConfig"></ng-lottie>
+            </ion-col>
+            <ion-col>
+              <ion-label class="conte_text texto_bold">No hay canjes.</ion-label>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngFor="let item of exchangeH" class="ion-justify-content-center">
+            <ion-col *ngIf="item.status_id == 14" class="ion-no-padding ion-no-margin ion-padding-top ion-margin-top" size="10">
+
+              <ion-card  mode="ios" class="ion-no-margin ion-margin-top ion-margin-bottom">
+                <ion-row>
+                  <ion-col size="3" class="bord ion-text-center ion-text-wrap ion-align-items-center">
+                    <ion-icon class="tamanoIcon puntos" name="ticket-outline" color="success" mode="ios"></ion-icon>
+                  </ion-col>
+                  <ion-col size="9" class="ion-text-left ion-padding-start ion-text-wrap fontSize">
+                    <ion-label class="fontWei" color="success">Vale</ion-label>
+                    <div><ion-text class="fontWei" >Estación: </ion-text> <ion-label [innerHTML]=" item.station"></ion-label></div>
+                    <div><ion-text class="fontWei" >Estatus: </ion-text> <ion-label [innerHTML]=" item.status"></ion-label></div>
+                    <div><ion-text class="fontWei" >Folio: </ion-text><ion-label [innerHTML]=" item.invoice"></ion-label></div>
+                    <ion-text color="medium"><sub [innerHTML]=" item.date"></sub></ion-text>
+                  </ion-col>
+                </ion-row>
+              </ion-card>
+              
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+  
+          
+      </ion-slide>
+    </ion-slides>
+  </ion-grid>
+</ion-content>

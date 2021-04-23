@@ -36,8 +36,10 @@ export interface Post {
 
 // respuesta ok con token
 export interface RespuestaOkToken {
-  ok: boolean;
-  token: string;
+  ok?: boolean;
+  token?: string;
+  message?: string;
+  id?: number;
 }
 
 export interface UserRegis {
@@ -113,15 +115,19 @@ export interface Data_car {
 export interface respuestaStation {
   ok?: boolean;
   stations?: Station[];
+  exchanges?: Exchanges[];
 }
 
 export interface Station {
   id?: number;
   name?: string;
   address?: string;
+  image?: string;
   phone?: string;
   email?: string;
   number_station?: number;
+  lat?: number,
+  lng?: number,
 }
 
 
@@ -238,6 +244,8 @@ export interface respuestaHistorial {
   ok?: boolean;
   balances?: Balance[];
   payments?: Payments[];
+  exchanges?: Exchanges[];
+  points?: Points[];
 }
 
 export interface Balance {
@@ -250,6 +258,9 @@ export interface Balance {
   liters?: number;
   gasoline?: string;
   status?: string;
+  no_island?: string;
+  no_bomb?: string;
+  sale?: string;
 }
 
 export interface Payments {
@@ -261,6 +272,24 @@ export interface Payments {
   hour?: string;
   liters?: number;
   gasoline?: string;
+}
+
+export interface Exchanges {
+  points?: number;
+  station?: string;
+  invoice?: number;
+  status?: string;
+  date?: string;
+  status_id?: number;
+}
+
+export interface Points {
+  points?: number;
+  station?: string;
+  invoice?: number;
+  status?: string;
+  sale?:string;
+  date?: string;
 }
 
 // perfil
@@ -339,5 +368,18 @@ export interface respuestaQrCompartido {
   tr_membership: string;
   membership: string;
   station: StationQR;
+}
+
+
+
+/*-----------Mapa----------*/
+
+export interface Marker {
+  lat?: number;
+  lng?: number;
+  title?: string;
+  image?: string;
+  text?: string;
+  markerObj?: any;
 }
 

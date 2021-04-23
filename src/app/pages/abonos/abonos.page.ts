@@ -46,10 +46,12 @@ export class AbonosPage implements OnInit {
         this.abonoUser.id_station = null;
         this.abonoUser.deposit = 100;
         this.postsService.loading.dismiss();
-        this.postsService.mostrarPop('21349-tick-green', 'Solicitud de Abono', 'Abono solicitado correctamente.', 2500);
+        //this.postsService.mostrarPop('21349-tick-green', 'Solicitud de Abono', 'Abono solicitado correctamente.', 2500);
+        this.postsService.mostrarNotificacion('CaritaVerde','Abono solicitado correctamente.', 1);
       } else {
         this.postsService.loading.dismiss();
-        this.postsService.mostrarPop('14331-error', 'Solicitud de Abono', 'Ha ocurrido un error.', 1900);
+        this.postsService.mostrarNotificacion('Triste_Mesadetrabajo1', 'Ha ocurrido un error.', 2);
+        //this.postsService.mostrarPop('14331-error', 'Solicitud de Abono', 'Ha ocurrido un error.', 1900);
       }
   }
 

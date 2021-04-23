@@ -85,9 +85,11 @@ export class EnviarCantidaComponent implements OnInit {
               this.payments = respuesta.payments;
             }
           });
-          this.postsService.mostrarPop('21349-tick-green', 'Envío de saldo', respuestaEnvio.message, 2500);
+          this.postsService.mostrarNotificacion('CaritaVerde', respuestaEnvio.message, 1);
+          //this.postsService.mostrarPop('21349-tick-green', 'Envío de saldo', respuestaEnvio.message, 2500);
         } else {
-          this.postsService.mostrarPop('14331-error', 'Envío de saldo', respuestaEnvio.message, 1900);
+          this.postsService.mostrarNotificacion('Triste_Mesadetrabajo1', respuestaEnvio.message, 2);
+          //this.postsService.mostrarPop('14331-error', 'Envío de saldo', respuestaEnvio.message, 1900);
         }
 
       });

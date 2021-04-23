@@ -37,6 +37,9 @@ export class UsuarioService {
   public progress = 0;
   initUser = new EventEmitter<boolean>();
 
+  messageLogin: string = null;
+  idUser: number = null;
+
   constructor(
     private http: HttpClient,
     private storage: Storage,
@@ -46,6 +49,8 @@ export class UsuarioService {
 
 
   login( email: string, password: string, ids: string) {
+    this.messageLogin = null;
+    this.idUser = null;
     const data = { email, password, ids };
     return new Promise( resolve => {
       this.http.post<RespuestaOkToken>(`${URLP}/login`, data).subscribe( async resp => {
@@ -53,6 +58,8 @@ export class UsuarioService {
           await this.guardarToken( resp.token );
           resolve(true);
         } else {
+          this.messageLogin = resp.message;
+          this.idUser = resp.id;
           this.token = null;
           this.storage.clear();
           resolve(false);
@@ -86,12 +93,14 @@ export class UsuarioService {
   }
 
   registro(user: UserRegis) {
+    this.messageLogin = null;
     return new Promise(resolve => {
       this.http.post<RespuestaOkToken>(`${URLP}/register`, user).subscribe( async resp => {
         if ( resp.ok) {
           await this.guardarToken( resp.token );
           resolve(true);
         } else {
+          this.messageLogin = resp.message;
           this.token = null;
           this.storage.clear();
           resolve(false);
@@ -192,7 +201,7 @@ export class UsuarioService {
         }
       })
       .catch( err => {
-        console.log('error en cargar', err);
+        //console.log('error en cargar', err);
         resolve(false);
       });
 
@@ -497,6 +506,88 @@ export class UsuarioService {
 
       return this.http.post(`${URLP}/profile/update`, data, options);
 
+  }
+
+
+  // sumar puntos
+
+  sumarPuntos(qr: string, code: string, station: string, sale: string) {
+    this.cargarToken();
+    const data = { };
+    const headers = new HttpHeaders({
+      // tslint:disable-next-line: object-literal-key-quotes
+      'Authorization': 'Bearer ' + this.token,
+    });
+
+    const params = new HttpParams({
+      fromObject: {
+        qr,
+        code,
+        station,
+        sale
+      }
+    });
+
+    const options = {
+      headers,
+      params
+    };
+
+    return this.http.post<respuestaAdd>(`${URLP}/points`, data, options);
+  }
+
+
+  solicitarCanje(id: string) {
+    this.cargarToken();
+    const data = { };
+    const headers = new HttpHeaders({
+      // tslint:disable-next-line: object-literal-key-quotes
+      'Authorization': 'Bearer ' + this.token,
+    });
+
+    const params = new HttpParams({
+      fromObject: {
+        id,
+      }
+    });
+
+    const options = {
+      headers,
+      params
+    };
+
+    return this.http.post<respuestaAdd>(`${URLP}/exchange`, data, options);
+  }
+
+  // asignar nuevo correo
+
+  nuevoCorreo( email: string, id: string) {
+   
+    const data = { id, email };
+   
+    return this.http.post(`${URLP}/email`, data);
+    /*return new Promise( resolve => {
+      this.http.post<RespuestaOkToken>(`${URLP}/login`, data).subscribe( async resp => {
+        if ( resp.ok) {
+          await this.guardarToken( resp.token );
+          resolve(true);
+        } else {
+          this.messageLogin = resp.message;
+          this.idUser = resp.id;
+          this.token = null;
+          this.storage.clear();
+          resolve(false);
+        }
+      });
+    });*/
+  }
+
+  recuperarCuenta( email: string) {
+   
+    const data = {email };
+    //console.log(email);
+    return this.http.post(`${URLP}/password/email`, data);
+  
   }
 
 

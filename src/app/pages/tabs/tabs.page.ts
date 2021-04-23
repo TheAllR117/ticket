@@ -1,7 +1,5 @@
 import { Component, Injectable, EventEmitter } from '@angular/core';
-import { LottieAnimationViewModule } from 'ng-lottie';
-import { UsuarioService } from '../../services/usuario.service';
-// import { Events } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +15,10 @@ export class TabsPage {
   lottieConfig: any;
   public actualizarUser = new EventEmitter<boolean>();
 
-  constructor(private usuarioService: UsuarioService) {
-    LottieAnimationViewModule.forRoot();
+  constructor(private navCtrl: NavController) {
     this.lottieConfig = {
-      path: 'assets/animation/lf30_editor_5gTE8E.json',
-      autoplay: true,
+      path: 'assets/animation/scan_w.json',
+      autoplay: false,
       loopt: true
     };
   }
@@ -30,4 +27,9 @@ export class TabsPage {
     this.actualizarUser.emit(true);
     // this.events.publish('UpdateHome');
   }
+
+  async navRouting(ruta: string) {
+    await this.navCtrl.navigateForward(ruta);
+  }
+
 }

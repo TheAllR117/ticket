@@ -1,4 +1,4 @@
-<ion-toolbar mode="md" color="success" class="altura_tolbar_modal aligh_text_modal">
+<!--ion-toolbar mode="md" color="success" class="altura_tolbar_modal aligh_text_modal">
 
   <div class="body_modal">
     <div class="arrow arrow--top">
@@ -49,157 +49,185 @@
 
   <ion-title class="margin_top_modal margin_bottom_modal main__title" color="light"><h1 class="h1_modal text_bold_modal">ENVIAR SALDO</h1></ion-title>
 
-</ion-toolbar>
+</ion-toolbar-->
 
 <ion-content class="ion-no-border">
-  <ion-fab vertical="top" slot="fixed" edge class="animate__animated animate__fadeInDownBig ancho_fab ancho_fab">
+  <ion-grid class="encabezado">
+    <div id="bg-wrap">
+      <app-header-animation titulo=""></app-header-animation>
+    </div>
+    <ion-row class="ion-justify-content-between grid_arriba">
+      <ion-col class="ion-no-border ion-padding-start" size="2">
+        <ion-buttons mode="ios" >
+          <ion-button (click)="regresar()" class="ion-padding-top">
+            <ion-icon  mode="ios" color="light" name="chevron-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col class="ion-no-border ion-padding-end" size="2">
+        <ion-buttons mode="md" >
+          <ion-menu-button auto-hide="false" color="light"></ion-menu-button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-margin">
+      <ion-col class="ion-text-center ion-no-margin" color="light">
+        <h3 class="ion-no-margin color-claro">ENVIAR SALDO</h3>
+      </ion-col>
+    </ion-row>
+   
+  </ion-grid>
+  <ion-fab horizontal="top" edge class="acomodarBoton animate__animated animate__fadeInDownBig ancho_fab ancho_fab">
       <ion-searchbar mode="md" class="border_search" animated placeholder="Membresía del usuario" debounce="700" type="text" (ionChange)="buscar($event)"></ion-searchbar>
   </ion-fab>
-
-  <ion-grid class="margin_top_2_modal" *ngIf="buscando === true">
-    <ion-row>
-      <ion-col class="ion-text-center">
-        <ion-spinner color="success" name="crescent" ></ion-spinner>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <ion-list #contactosListaAd *ngIf="mostraList === true" class="animate__animated animate__fadeIn">
+  <ion-grid class="cuerpo scroll">
+    <ion-grid class="margin_top_2_modal" *ngIf="buscando === true">
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-spinner color="success" name="crescent" ></ion-spinner>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-list #contactosListaAd *ngIf="mostraList === true" class="animate__animated animate__fadeIn">
+      <ion-list-header class="margin_top_2_modal">
+        Resultados de la búsqueda
+      </ion-list-header>
+  
+      <ion-card *ngIf="usuariosNoRegistrado === false"  mode="ios" class="ion-no-padding ion-no-border">
+        <ion-card-content class="ion-no-padding ion-no-border" >
+          <ion-item-sliding  class="ion-no-padding ion-no-border" >
+            <ion-item class="ion-no-border" lines="none">
+              <ion-grid no-border>
+                <ion-row size="12" class="ion-no-padding ion-no-border">
+                  <ion-col size="1" class="ion-justify-content-center ion-text-center">
+                    <ion-icon name="person" color="success" class="opacity_text"></ion-icon>
+                    <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas opacity_text" color="success"></ion-icon>
+                    <!--ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas opacity_text" color="success"></ion-icon-->
+                  </ion-col>
+                  <ion-col size="7">
+                    <!--ion-label color="success" class="titulos_card opacity_text">Usuario</ion-label>
+                    <ion-label class="conte_text texto_bold" [innerHTML]="contact.user.name+' '+contact.user.first_surname+' '+contact.user.second_surname"></ion-label-->
+                    <ion-label color="success" class="titulos_card opacity_text">Membresía</ion-label>
+                    <ion-label class="conte_text texto_bold" [innerHtml]="contact.membership" ></ion-label>
+                  </ion-col>
+                  <ion-col size="4">
+                    <ion-button shape="round" expand="block" color="success" size="small" class="alinear_boton_tarjeta" (click)="modal_enviar(contact.membership)">
+                      <ion-label color="light">
+                        Enviar
+                      </ion-label>
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+    
+            <ion-item-options side="start">
+              <ion-item-option color="success" (click)="add_user(contact.id.toString())">
+                <ion-icon slot="icon-only" name="save" color="light"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+    
+            <ion-item-options side="end">
+              <ion-item-option color="success" (click)="add_user(contact.id.toString())">
+                <ion-icon slot="icon-only" name="save" color="light"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-card-content>
+      </ion-card>
+  
+      <ion-card *ngIf="usuariosNoRegistrado === true"  mode="ios" class="ion-no-padding ion-no-border">
+        <ion-card-content class="ion-no-padding ion-no-border" >
+          <ion-item-sliding class="ion-no-padding ion-no-border" >
+            <ion-item lines="none">
+              <ion-grid class="ion-no-border">
+                <ion-row size="12" class="ion-no-padding ion-no-border">
+                  <ion-col size="1" class="ion-justify-content-center ion-text-center">
+                    <ion-icon name="person" color="success" class="opacity_text"></ion-icon>
+                    <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas opacity_text" color="success"></ion-icon>
+                    <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas opacity_text" color="success"></ion-icon>
+                  </ion-col>
+                  <ion-col size="7">
+                    <ion-label color="success" class="titulos_card opacity_text">Usuario</ion-label>
+                    <!--ion-label class="conte_text texto_bold" [innerHTML]="contact['name']"></ion-label-->
+                    <ion-label color="success" class="titulos_card opacity_text">Membresía</ion-label>
+                    <ion-label class="conte_text texto_bold" [innerHtml]="contact.membership" ></ion-label>
+                  </ion-col>
+                  <ion-col size="4">
+                    <ion-button shape="round" expand="block" color="success" size="small" class="alinear_boton_tarjeta" (click)="compartirInvitacion()">
+                      <ion-icon name="share" color="light"></ion-icon>
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+          </ion-item-sliding>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  
     <ion-list-header class="margin_top_2_modal">
-      Resultados de la búsqueda
+      Usuarios guardados
     </ion-list-header>
-
-    <ion-card *ngIf="usuariosNoRegistrado === false"  mode="ios" class="ion-no-padding ion-no-border">
-      <ion-card-content class="ion-no-padding ion-no-border" >
-        <ion-item-sliding  class="ion-no-padding ion-no-border" >
-          <ion-item class="ion-no-border" lines="none">
-            <ion-grid no-border>
-              <ion-row size="12" class="ion-no-padding ion-no-border">
-                <ion-col size="1" class="ion-justify-content-center ion-text-center">
-                  <ion-icon name="person" color="success" class="opacity_text"></ion-icon>
-                  <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas opacity_text" color="success"></ion-icon>
-                  <!--ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas opacity_text" color="success"></ion-icon-->
-                </ion-col>
-                <ion-col size="7">
-                  <!--ion-label color="success" class="titulos_card opacity_text">Usuario</ion-label>
-                  <ion-label class="conte_text texto_bold" [innerHTML]="contact.user.name+' '+contact.user.first_surname+' '+contact.user.second_surname"></ion-label-->
-                  <ion-label color="success" class="titulos_card opacity_text">Membresía</ion-label>
-                  <ion-label class="conte_text texto_bold" [innerHtml]="contact.membership" ></ion-label>
-                </ion-col>
-                <ion-col size="4">
-                  <ion-button shape="round" expand="block" color="success" size="small" class="alinear_boton_tarjeta" (click)="modal_enviar(contact.membership)">
-                    <ion-label color="light">
-                      Enviar
-                    </ion-label>
-                  </ion-button>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-item>
+    
+    <ion-list #contactosListaAd *ngFor="let contac of contacts">
+      <ion-card mode="ios" class="ion-no-padding ion-no-border">
+        <ion-card-content class="ion-no-padding ion-no-border">
+          <ion-item-sliding  class="ion-no-padding ion-no-border">
+            <ion-item lines="none" class="ion-no-border ion-justify-content-center">
+              <ion-grid class="ion-no-border">
+                <ion-row size="12" class="ion-no-padding ion-no-border">
+                  <ion-col size="1" class="ion-justify-content-center ion-text-center">
+                    <ion-icon name="person" color="success" class="opacity_text"></ion-icon>
+                    <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas opacity_text" color="success"></ion-icon>
+                    <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas opacity_text" color="success"></ion-icon>
+                  </ion-col>
+                  <ion-col size="7">
+                    <!--ion-label color="success" class="titulos_card opacity_text">Usuario</ion-label>
+                    <ion-label class="conte_text texto_bold" [innerHTML]="contac.receiver.user.name+' '+contac.receiver.user.first_surname+' '+contac.receiver.user.second_surname" ></ion-label-->
+                    <ion-label color="success" class="titulos_card opacity_text">Membresía</ion-label>
+                    <ion-label class="conte_text texto_bold" [innerHTML]="contac.receiver.membership"></ion-label>
+                  </ion-col>
+                  <ion-col size="4">
+                    <ion-button shape="round" expand="block" color="success" size="small" class="alinear_boton_tarjeta" (click)="modal_enviar(contac.receiver.membership)">
+                      <ion-label color="light">
+                        Enviar
+                      </ion-label>
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+    
+            <ion-item-options side="start">
+              <ion-item-option color="danger" (click)="detele_user(contac.id)">
+                <ion-icon slot="icon-only" name="trash" color="light"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+    
+            <ion-item-options side="end">
+              <ion-item-option color="danger" (click)="detele_user(contac.id)">
+                <ion-icon slot="icon-only" name="trash" color="light"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
   
-          <ion-item-options side="start">
-            <ion-item-option color="success" (click)="add_user(contact.id.toString())">
-              <ion-icon slot="icon-only" name="save" color="light"></ion-icon>
-            </ion-item-option>
-          </ion-item-options>
+          </ion-item-sliding>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
   
-          <ion-item-options side="end">
-            <ion-item-option color="success" (click)="add_user(contact.id.toString())">
-              <ion-icon slot="icon-only" name="save" color="light"></ion-icon>
-            </ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card *ngIf="usuariosNoRegistrado === true"  mode="ios" class="ion-no-padding ion-no-border">
-      <ion-card-content class="ion-no-padding ion-no-border" >
-        <ion-item-sliding class="ion-no-padding ion-no-border" >
-          <ion-item lines="none">
-            <ion-grid class="ion-no-border">
-              <ion-row size="12" class="ion-no-padding ion-no-border">
-                <ion-col size="1" class="ion-justify-content-center ion-text-center">
-                  <ion-icon name="person" color="success" class="opacity_text"></ion-icon>
-                  <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas opacity_text" color="success"></ion-icon>
-                  <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas opacity_text" color="success"></ion-icon>
-                </ion-col>
-                <ion-col size="7">
-                  <ion-label color="success" class="titulos_card opacity_text">Usuario</ion-label>
-                  <!--ion-label class="conte_text texto_bold" [innerHTML]="contact['name']"></ion-label-->
-                  <ion-label color="success" class="titulos_card opacity_text">Membresía</ion-label>
-                  <ion-label class="conte_text texto_bold" [innerHtml]="contact.membership" ></ion-label>
-                </ion-col>
-                <ion-col size="4">
-                  <ion-button shape="round" expand="block" color="success" size="small" class="alinear_boton_tarjeta" (click)="compartirInvitacion()">
-                    <ion-icon name="share" color="light"></ion-icon>
-                  </ion-button>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-item>
-        </ion-item-sliding>
-      </ion-card-content>
-    </ion-card>
-  </ion-list>
-
-  <ion-list-header class="margin_top_2_modal">
-    Usuarios guardados
-  </ion-list-header>
+    <ion-grid class="margin_top_2_modal animate__animated animate__fadeIn" *ngIf="mostrarContactos === true">
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-label>Aquí apareceran los contactos agregados</ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   
-  <ion-list #contactosListaAd *ngFor="let contac of contacts">
-    <ion-card mode="ios" class="ion-no-padding ion-no-border">
-      <ion-card-content class="ion-no-padding ion-no-border">
-        <ion-item-sliding  class="ion-no-padding ion-no-border">
-          <ion-item lines="none" class="ion-no-border ion-justify-content-center">
-            <ion-grid class="ion-no-border">
-              <ion-row size="12" class="ion-no-padding ion-no-border">
-                <ion-col size="1" class="ion-justify-content-center ion-text-center">
-                  <ion-icon name="person" color="success" class="opacity_text"></ion-icon>
-                  <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas opacity_text" color="success"></ion-icon>
-                  <ion-icon src="../../../assets/svg/Lineas-01.svg" class="linea_de_lineas opacity_text" color="success"></ion-icon>
-                </ion-col>
-                <ion-col size="7">
-                  <!--ion-label color="success" class="titulos_card opacity_text">Usuario</ion-label>
-                  <ion-label class="conte_text texto_bold" [innerHTML]="contac.receiver.user.name+' '+contac.receiver.user.first_surname+' '+contac.receiver.user.second_surname" ></ion-label-->
-                  <ion-label color="success" class="titulos_card opacity_text">Membresía</ion-label>
-                  <ion-label class="conte_text texto_bold" [innerHTML]="contac.receiver.membership"></ion-label>
-                </ion-col>
-                <ion-col size="4">
-                  <ion-button shape="round" expand="block" color="success" size="small" class="alinear_boton_tarjeta" (click)="modal_enviar(contac.receiver.membership)">
-                    <ion-label color="light">
-                      Enviar
-                    </ion-label>
-                  </ion-button>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-item>
-  
-          <ion-item-options side="start">
-            <ion-item-option color="danger" (click)="detele_user(contac.id)">
-              <ion-icon slot="icon-only" name="trash" color="light"></ion-icon>
-            </ion-item-option>
-          </ion-item-options>
-  
-          <ion-item-options side="end">
-            <ion-item-option color="danger" (click)="detele_user(contac.id)">
-              <ion-icon slot="icon-only" name="trash" color="light"></ion-icon>
-            </ion-item-option>
-          </ion-item-options>
-
-        </ion-item-sliding>
-      </ion-card-content>
-    </ion-card>
-  </ion-list>
-
-  <ion-grid class="margin_top_2_modal animate__animated animate__fadeIn" *ngIf="mostrarContactos === true">
-    <ion-row>
-      <ion-col class="ion-text-center">
-        <ion-label>Aquí apareceran los contactos agregados</ion-label>
-      </ion-col>
-    </ion-row>
+    <!--lottie-animation-view *ngIf="mostrarContactos === true" [options]="lottieConfig" class="margin_top_2_modal animate__animated animate__fadeIn" (animCreated)="handleAnimation($event)">
+    </lottie-animation-view-->
+    <ng-lottie *ngIf="mostrarContactos === true" [options]="lottieConfig" class="margin_top_2_modal animate__animated animate__fadeIn" (animationCreated)="handleAnimation($event)"></ng-lottie>
   </ion-grid>
 
-  <lottie-animation-view *ngIf="mostrarContactos === true" [options]="lottieConfig" class="margin_top_2_modal animate__animated animate__fadeIn" (animCreated)="handleAnimation($event)">
-  </lottie-animation-view>
+  
 </ion-content>

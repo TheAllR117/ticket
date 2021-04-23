@@ -6,6 +6,8 @@ import { PushService } from '../../services/push.service';
 import { PostsService } from '../../services/posts.service';
 import { UserRegis } from '../../interfaces/interfaces';
 
+  
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -29,16 +31,30 @@ export class LoginPage implements OnInit {
     password: ''
   };
 
+  loginEmail = {
+    id: '',
+    email: ''
+  };
+
+  recuperarC = {
+    email: ''
+  };
+
   registerUser: UserRegis = {};
 
   passwordTypeInput  =  'password';
+
+  messageEmail: string = null;
 
   constructor(
     private usuarioService: UsuarioService,
     private navCtrl: NavController,
     private menuCtrl: MenuController,
     private postsService: PostsService,
-    public pushServices: PushService) { }
+    public pushServices: PushService,
+    ) { 
+      
+    }
 
   ngOnInit() {
     // console.log(this.pushServices.userId);
@@ -53,31 +69,48 @@ export class LoginPage implements OnInit {
     this.slides.lockSwipes(true);
     this.slidesSe.lockSwipes(true);
     this.menuCtrl.enable (false);
+    
+
   }
 
   async login( fLogin: NgForm ) {
+    this.loginEmail.email = '';
     await this.postsService.presentLoading('Espere por favor...');
 
     if (fLogin.invalid) {
       await this.postsService.loading.dismiss();
-      this.postsService.mostrarPop('14331-error', 'Error al iniciar sesión', 'Verifica los campos', 1950);
+      this.postsService.mostrarNotificacion('Triste_Mesadetrabajo1', 'Verifica los campos', 2);
+      //this.postsService.mostrarPop('14331-error', 'Error al iniciar sesión', 'Verifica los campos', 1950);
       return;
     }
 
     // mandamos a llavar la funcion de inicio de sesion
     const valido = await this.usuarioService.login( this.loginUser.email, this.loginUser.password, this.pushServices.userId);
-
     if (valido) {
       // navegar al tab
       this.postsService.loading.dismiss();
-      this.navCtrl.navigateRoot('/main/tabs/tab1', { animated: true });
+      this.navCtrl.navigateRoot('/main/tabs/tab2', { animated: true });
     } else {
-      // mostrar alerta de usuario y contraseña no correcto
       this.postsService.loading.dismiss();
-      // this.uiService.alertaInformativa('Credenciales incorrectas');
-      this.postsService.mostrarPop('14331-error', 'Error al iniciar sesión', 'Credenciales incorrectas', 1950);
+      this.messageEmail = this.usuarioService.messageLogin;
+      if(this.usuarioService.messageLogin == 'No existe un correo electrónico registrado. Ingrese un correo electrónico.' || this.usuarioService.messageLogin == 'Correo duplicado. Ingrese un nuevo correo.' || this.usuarioService.messageLogin == 'Su correo actual no es válido. Ingrese un nuevo correo.'){
+        this.loginEmail.id = this.usuarioService.idUser.toString();
+        this.slides.lockSwipes(false);
+        this.slides.slideTo(2);
+        this.slides.lockSwipes(true);
+      } else{
+        // mostrar alerta de usuario y contraseña no correcto
+        this.postsService.mostrarNotificacion('Triste_Mesadetrabajo1', this.usuarioService.messageLogin, 2);
+        //this.postsService.mostrarPop('14331-error', 'Error al iniciar sesión', 'Credenciales incorrectas', 1950);
+      }
     }
 
+  }
+
+  recuperarContrasena(){
+    this.slides.lockSwipes(false);
+    this.slides.slideTo(3);
+    this.slides.lockSwipes(true);
   }
 
   async registro( fRegistro: NgForm ) {
@@ -85,21 +118,58 @@ export class LoginPage implements OnInit {
 
     if (fRegistro.invalid) {
       await this.postsService.loading.dismiss();
-      this.postsService.mostrarPop('14331-error', 'Error al iniciar sesión', 'Verifica los campos', 1950);
+      this.postsService.mostrarNotificacion('Triste_Mesadetrabajo1', 'Verifica los campos', 2);
+      //this.postsService.mostrarPop('14331-error', 'Error al iniciar sesión', 'Verifica los campos', 1950);
       return;
     }
     this.registerUser.ids = this.pushServices.userId;
     const validoR = await this.usuarioService.registro(this.registerUser);
     if (validoR) {
       // navegar al tab
-      this.postsService.loading.dismiss();
-      this.navCtrl.navigateRoot('/main/tabs/tab1', { animated: true });
+      await this.postsService.loading.dismiss();
+      this.navCtrl.navigateRoot('/main/tabs/tab2', { animated: true });
     } else {
       // mostrar alerta de usuario y contraseña no correcto
-      this.postsService.loading.dismiss();
+      await this.postsService.loading.dismiss();
       // this.uiService.alertaInformativa('Credenciales incorrectas');
-      this.postsService.mostrarPop('14331-error', 'Error al completar el registro', 'Verifica los datos', 1950);
+      this.postsService.mostrarNotificacion('Triste_Mesadetrabajo1', this.usuarioService.messageLogin, 2);
+      //this.postsService.mostrarPop('14331-error', 'Error al completar el registro', 'Verifica los datos', 1950);
     }
+  }
+
+  async nuevoCorreo(){
+    await this.postsService.presentLoading('Espere por favor...');
+    await this.usuarioService.nuevoCorreo(this.loginEmail.email, this.loginEmail.id).subscribe(async resp => {
+      this.postsService.loading.dismiss();
+      //console.log(resp);
+      if(resp['ok']){
+        await this.postsService.mostrarNotificacion('CaritaVerde', 'Correo asignado correctamente.', 1);
+        this.loginUser.email = resp['email'];
+        this.slides.lockSwipes(false);
+        this.slides.slideTo(0);
+        this.slides.lockSwipes(true);
+      }else{
+        await this.postsService.mostrarNotificacion('Triste_Mesadetrabajo1', resp['message'], 2);
+      }
+      //console.log(resp);
+    });
+  }
+
+  async recuperar(){
+    await this.postsService.presentLoading('Espere por favor...');
+    await this.usuarioService.recuperarCuenta(this.recuperarC.email).subscribe(async resp => {
+      this.postsService.loading.dismiss();
+      //console.log(resp);
+      if(resp['ok']){
+        await this.postsService.mostrarNotificacion('CaritaVerde', resp['message'], 1);
+        this.slides.lockSwipes(false);
+        this.slides.slideTo(0);
+        this.slides.lockSwipes(true);
+      }else{
+        await this.postsService.mostrarNotificacion('Triste_Mesadetrabajo1', resp['message'], 2);
+      }
+      //console.log(resp);
+    });
   }
 
   mostrarRegistro() {

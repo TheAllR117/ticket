@@ -1,0 +1,24 @@
+.grid_arriba{
+    padding-top: 6%;
+}
+
+ion-button{
+    --box-shadow:0 !important;
+}
+
+ion-item::part(native){
+    padding: 0px !important;
+    padding-inline-start: 0px !important;
+}
+
+.fond{
+    font-size: 12px;
+}
+
+ion-select{
+    text-align: start;
+    margin-top: 10px;
+    border: 1px solid var(--ion-color-success);
+    border-radius: 5px;
+    font-style: italic
+}

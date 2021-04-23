@@ -47,7 +47,7 @@ export class CompartidoQrComponent implements OnInit {
     this.pushServices.pushListener.subscribe(async noti => {
       if (noti.additionalData) {
         if ( this.pushServices.abrirPop === true) {
-          console.log(noti.additionalData);
+          //console.log(noti.additionalData);
           this.pushServices.abrirPop = false;
           await this.mostrarPop(
             noti.additionalData.price,
