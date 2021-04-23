@@ -19,7 +19,7 @@ import { AnimationOptions } from 'ngx-lottie';
 export class Tab1Page implements OnInit {
 
   user: User = {};
-  animacion = false;
+  animacion = true;
   // tslint:disable-next-line: ban-types
   public lottieConfig: Object;
   private anim: any;
@@ -45,11 +45,11 @@ export class Tab1Page implements OnInit {
     private router: Router) {
 
     /*LottieAnimationViewModule.forRoot();*/
-    this.lottieConfig = {
+    /*this.lottieConfig = {
       path: 'assets/animation/intro.json',
       autoplay: false,
       loopt: true
-    };
+    };*/
 
     this.lottieConfig = {
       path: 'assets/animation/26531-construction-in-process.json',

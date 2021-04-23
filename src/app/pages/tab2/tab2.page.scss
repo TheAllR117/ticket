@@ -9,12 +9,25 @@ ion-slides{
 
 .animacion_fondo{
   position: absolute;
+  width: 100%;
+  height: 85%;
+  top: -3%;
 }
 
 .primerTitulo{
     margin: 3%;
     font-size: 20px;
     font-weight: bold;
+}
+.segundoTitulo{
+  margin: 2%;
+  font-size: 20px;
+  font-weight: bold;
+}
+.primerTituloCopy{
+  margin: 1%;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .primerTitulo_2{
@@ -128,6 +141,11 @@ ion-slides{
   .iconos_cuadradosMap{
     font-size: 600%;
     margin-top: -23%;
+  }
+
+  .animacion_fondo{
+    width: 85%;
+    margin-left: 10%;
   }
   
 }

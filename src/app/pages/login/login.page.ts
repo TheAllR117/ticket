@@ -6,6 +6,7 @@ import { PushService } from '../../services/push.service';
 import { PostsService } from '../../services/posts.service';
 import { UserRegis } from '../../interfaces/interfaces';
 
+  
 
 @Component({
   selector: 'app-login',
@@ -50,7 +51,10 @@ export class LoginPage implements OnInit {
     private navCtrl: NavController,
     private menuCtrl: MenuController,
     private postsService: PostsService,
-    public pushServices: PushService) { }
+    public pushServices: PushService,
+    ) { 
+      
+    }
 
   ngOnInit() {
     // console.log(this.pushServices.userId);
@@ -65,6 +69,8 @@ export class LoginPage implements OnInit {
     this.slides.lockSwipes(true);
     this.slidesSe.lockSwipes(true);
     this.menuCtrl.enable (false);
+    
+
   }
 
   async login( fLogin: NgForm ) {
@@ -87,29 +93,14 @@ export class LoginPage implements OnInit {
     } else {
       this.postsService.loading.dismiss();
       this.messageEmail = this.usuarioService.messageLogin;
-      if(this.usuarioService.messageLogin == 'No existe un correo electrónico registrado. Ingrese un correo electrónico.'){
-        //console.log('no hay correo');
+      if(this.usuarioService.messageLogin == 'No existe un correo electrónico registrado. Ingrese un correo electrónico.' || this.usuarioService.messageLogin == 'Correo duplicado. Ingrese un nuevo correo.' || this.usuarioService.messageLogin == 'Su correo actual no es válido. Ingrese un nuevo correo.'){
         this.loginEmail.id = this.usuarioService.idUser.toString();
         this.slides.lockSwipes(false);
         this.slides.slideTo(2);
         this.slides.lockSwipes(true);
-      }else if(this.usuarioService.messageLogin == 'Correo duplicado. Ingrese un nuevo correo.'){
-        this.loginEmail.id = this.usuarioService.idUser.toString();
-        //console.log('correo repetido');
-        this.slides.lockSwipes(false);
-        this.slides.slideTo(2);
-        this.slides.lockSwipes(true);
-      }else if(this.usuarioService.messageLogin == 'Su correo actual no es válido. Ingrese un nuevo correo.'){
-        this.loginEmail.id = this.usuarioService.idUser.toString();
-        //console.log('correo invalido');
-        this.slides.lockSwipes(false);
-        this.slides.slideTo(2);
-        this.slides.lockSwipes(true);
-      }
-      else{
+      } else{
         // mostrar alerta de usuario y contraseña no correcto
-        // this.uiService.alertaInformativa('Credenciales incorrectas');
-        this.postsService.mostrarNotificacion('Triste_Mesadetrabajo1', 'Credenciales incorrectas', 2);
+        this.postsService.mostrarNotificacion('Triste_Mesadetrabajo1', this.usuarioService.messageLogin, 2);
         //this.postsService.mostrarPop('14331-error', 'Error al iniciar sesión', 'Credenciales incorrectas', 1950);
       }
     }

@@ -1,4 +1,4 @@
-<ion-toolbar mode="md" color="success" class="altura_tolbar_modal aligh_text_modal">
+<!--ion-toolbar mode="md" color="success" class="altura_tolbar_modal aligh_text_modal">
 
   <div class="body_modal">
     <div class="arrow arrow--top">
@@ -51,120 +51,150 @@
     <h1 class="h1_modal text_bold_modal" [innerHTML]="total + '<br> Total'"></h1>
   </ion-title>
 
-</ion-toolbar>
+</ion-toolbar-->
 
 <ion-content no-border>
 
-  <ion-row class="ion-padding-top animate__animated animate__fadeIn" *ngIf="animacion">
-    <ion-col class="ion-text-center ion-padding-top" size="10" offset="1">
-      <ion-label class="texto_bold">No te han realizado transferencias por el momento.</ion-label>
-    </ion-col>
-  </ion-row>
-
-  <!--lottie-animation-view *ngIf="animacion" [options]="lottieConfig" class="ion-padding-top margin_top_2_modal animate__animated animate__fadeIn" (animCreated)="handleAnimation($event)">
-  </lottie-animation-view-->
-  <ng-lottie *ngIf="animacion" [options]="lottieConfig" class="ion-padding-top margin_top_2_modal animate__animated animate__fadeIn" (animCreated)="handleAnimation($event)"></ng-lottie>
-  <ion-grid >
-    <ion-row>
-      <ion-col size="12">
-        <ion-card  mode="ios" class="ion-margin-top animate__animated animate__fadeIn" *ngFor="let payment of payments">
-          <ion-card-content no-border>   
-            <ion-row>
-              <ion-col size="1" class="ion-justify-content-center ion-text-center ion-no-padding ion-no-margin">
-                <ion-icon src="assets/svg/station.svg" color="success" class="ion-no-padding opacity_text" no-border></ion-icon>
-                <ion-icon src="assets/svg/Lineas-01.svg" class="linea_de_lineas ion-no-padding opacity_text" color="success"></ion-icon>
-              </ion-col>
-              <ion-col size="10" class="ion-no-margin ion-no-padding ion-margin-start">
-                <ion-row class="ion-no-margin ion-no-padding">
-                  <ion-col size="12" class="ion-no-margin ion-no-padding">
-                    <ion-label color="medium" class="titulos_card" class="ion-no-margin ion-no-padding">
-                      Estación
-                    </ion-label>
-                  </ion-col>
-                  <ion-col size="12" class="ion-no-margin ion-no-padding">
-                    <ion-label color="success" class="texto_bold linea_de_lineas"  [innerHTML]="payment.station.name"></ion-label>
-                  </ion-col>
-                </ion-row>
-              </ion-col>
-              
-            </ion-row>
-
-            <ion-row>
-              <ion-col size="1" class="ion-justify-content-center ion-text-center ion-no-padding ion-no-margin">
-                <ion-icon name="cash-outline"  color="success" class="ion-no-padding opacity_text" no-border></ion-icon>
-                <ion-icon src="assets/svg/Lineas-01.svg" class="linea_de_lineas ion-no-padding opacity_text" color="success"></ion-icon>
-              </ion-col>
-              <ion-col size="10" class="ion-no-margin ion-no-padding ion-margin-start">
-                <ion-row class="ion-no-margin ion-no-padding">
-                  <ion-col size="12" class="ion-no-margin ion-no-padding">
-                    <ion-label color="medium" class="titulos_card" class="ion-no-margin ion-no-padding">
-                      Cant. Recibida
-                    </ion-label>
-                  </ion-col>
-                  <ion-col size="12" class="ion-no-margin ion-no-padding">
-                    <ion-label class="texto_bold linea_de_lineas"  [innerHTML]="payment.balance + ' Gasopesos'"></ion-label>
-                  </ion-col>
-                </ion-row>
-              </ion-col>
-              
-            </ion-row>
-
-            <ion-row>
-              <ion-col size="1" class="ion-justify-content-center ion-text-center ion-no-padding ion-no-margin">
-                <ion-icon name="person"  color="success" class="ion-no-padding opacity_text" no-border></ion-icon>
-                <ion-icon src="assets/svg/Lineas-01.svg" class="linea_de_lineas ion-no-padding opacity_text" color="success"></ion-icon>
-              </ion-col>
-              <ion-col size="10" class="ion-no-margin ion-no-padding ion-margin-start">
-                <ion-row class="ion-no-margin ion-no-padding">
-                  <ion-col size="12" class="ion-no-margin ion-no-padding">
-                    <ion-label color="medium" class="titulos_card" class="ion-no-margin ion-no-padding">
-                      Emisor
-                    </ion-label>
-                  </ion-col>
-                  <ion-col size="12" class="ion-no-margin ion-no-padding">
-                    <ion-label class="texto_bold linea_de_lineas"  [innerHTML]="payment.transmitter.user.name+' '+payment.transmitter.user.first_surname+' '+payment.transmitter.user.second_surname"></ion-label>
-                  </ion-col>
-                </ion-row>
-              </ion-col>
-              
-            </ion-row>
-
-            <ion-row>
-              <ion-col size="1" class="ion-justify-content-center ion-text-center ion-no-padding ion-no-margin">
-                <ion-icon src="assets/svg/Lineas-01.svg" class="linea_de_lineas ion-no-padding opacity_text" color="success"></ion-icon>
-              </ion-col>
-              <ion-col size="10" class="ion-no-margin ion-no-padding ion-margin-start">
-                <ion-row class="ion-no-margin ion-no-padding">
-                  <ion-col size="12" class="ion-no-margin ion-no-padding">
-                    <ion-label color="medium" class="titulos_card" class="ion-no-margin ion-no-padding">
-                      Membresía
-                    </ion-label>
-                  </ion-col>
-                  <ion-col size="12" class="ion-no-margin ion-no-padding">
-                    <ion-label class="texto_bold linea_de_lineas" [innerHTML]="payment.transmitter.membership"></ion-label>
-                  </ion-col>
-                </ion-row>
-              </ion-col>
-              
-            </ion-row>
-
-            
-
-            <ion-row class="ion-justify-content-center ">
-              <ion-col size="6">
-                <ion-button class="ion-padding-top ion-padding-bottom" shape="round" expand="block" color="success" size="default" (click)="mostarCompartir(payment.id)">
-                  <ion-label color="light" class="ion-text-capitalize">
-                    Usar
-                  </ion-label>
-                </ion-button>
-              </ion-col>
-
-            </ion-row>
-              
-          </ion-card-content>
-        </ion-card>
+  
+  <ion-grid class="encabezado">
+    <div id="bg-wrap">
+      <app-header-animation titulo=""></app-header-animation>
+    </div>
+    <ion-row class="ion-justify-content-between grid_arriba">
+      <ion-col class="ion-no-border ion-padding-start" size="2">
+        <ion-buttons mode="ios" >
+          <ion-button (click)="regresar()" class="ion-padding-top">
+            <ion-icon  mode="ios" color="light" name="chevron-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col class="ion-no-border ion-padding-end" size="2">
+        <ion-buttons mode="md" >
+          <ion-menu-button auto-hide="false" color="light"></ion-menu-button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-margin separar_componente_abajo">
+      <ion-col class="ion-text-center ion-no-margin" color="light">
+        <h3 class="ion-no-margin color-claro" [innerHTML]="total + '<br> Total'"></h3>
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-grid class="cuerpo scroll">
+    
+    <ion-row class="ion-padding-top animate__animated animate__fadeIn" *ngIf="animacion">
+      <ion-col class="ion-text-center ion-padding-top" size="10" offset="1">
+        <ion-label class="texto_bold">No te han realizado transferencias por el momento.</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <!--lottie-animation-view *ngIf="animacion" [options]="lottieConfig" class="ion-padding-top margin_top_2_modal animate__animated animate__fadeIn" (animCreated)="handleAnimation($event)">
+    </lottie-animation-view-->
+    <ng-lottie *ngIf="animacion" [options]="lottieConfig" class="ion-padding-top margin_top_2_modal animate__animated animate__fadeIn" (animCreated)="handleAnimation($event)"></ng-lottie>
+    <ion-grid >
+      <ion-row>
+        <ion-col size="12">
+          <ion-card  mode="ios" class="ion-margin-top animate__animated animate__fadeIn" *ngFor="let payment of payments">
+            <ion-card-content no-border>   
+              <ion-row>
+                <ion-col size="1" class="ion-justify-content-center ion-text-center ion-no-padding ion-no-margin">
+                  <ion-icon src="assets/svg/station.svg" color="success" class="ion-no-padding opacity_text" no-border></ion-icon>
+                  <ion-icon src="assets/svg/Lineas-01.svg" class="linea_de_lineas ion-no-padding opacity_text" color="success"></ion-icon>
+                </ion-col>
+                <ion-col size="10" class="ion-no-margin ion-no-padding ion-margin-start">
+                  <ion-row class="ion-no-margin ion-no-padding">
+                    <ion-col size="12" class="ion-no-margin ion-no-padding">
+                      <ion-label color="medium" class="titulos_card" class="ion-no-margin ion-no-padding">
+                        Estación
+                      </ion-label>
+                    </ion-col>
+                    <ion-col size="12" class="ion-no-margin ion-no-padding">
+                      <ion-label color="success" class="texto_bold linea_de_lineas"  [innerHTML]="payment.station.name"></ion-label>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+                
+              </ion-row>
+
+              <ion-row>
+                <ion-col size="1" class="ion-justify-content-center ion-text-center ion-no-padding ion-no-margin">
+                  <ion-icon name="cash-outline"  color="success" class="ion-no-padding opacity_text" no-border></ion-icon>
+                  <ion-icon src="assets/svg/Lineas-01.svg" class="linea_de_lineas ion-no-padding opacity_text" color="success"></ion-icon>
+                </ion-col>
+                <ion-col size="10" class="ion-no-margin ion-no-padding ion-margin-start">
+                  <ion-row class="ion-no-margin ion-no-padding">
+                    <ion-col size="12" class="ion-no-margin ion-no-padding">
+                      <ion-label color="medium" class="titulos_card" class="ion-no-margin ion-no-padding">
+                        Cant. Recibida
+                      </ion-label>
+                    </ion-col>
+                    <ion-col size="12" class="ion-no-margin ion-no-padding">
+                      <ion-label class="texto_bold linea_de_lineas"  [innerHTML]="payment.balance + ' Gasopesos'"></ion-label>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+                
+              </ion-row>
+
+              <ion-row>
+                <ion-col size="1" class="ion-justify-content-center ion-text-center ion-no-padding ion-no-margin">
+                  <ion-icon name="person"  color="success" class="ion-no-padding opacity_text" no-border></ion-icon>
+                  <ion-icon src="assets/svg/Lineas-01.svg" class="linea_de_lineas ion-no-padding opacity_text" color="success"></ion-icon>
+                </ion-col>
+                <ion-col size="10" class="ion-no-margin ion-no-padding ion-margin-start">
+                  <ion-row class="ion-no-margin ion-no-padding">
+                    <ion-col size="12" class="ion-no-margin ion-no-padding">
+                      <ion-label color="medium" class="titulos_card" class="ion-no-margin ion-no-padding">
+                        Emisor
+                      </ion-label>
+                    </ion-col>
+                    <ion-col size="12" class="ion-no-margin ion-no-padding">
+                      <ion-label class="texto_bold linea_de_lineas"  [innerHTML]="payment.transmitter.user.name+' '+payment.transmitter.user.first_surname+' '+payment.transmitter.user.second_surname"></ion-label>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+                
+              </ion-row>
+
+              <ion-row>
+                <ion-col size="1" class="ion-justify-content-center ion-text-center ion-no-padding ion-no-margin">
+                  <ion-icon src="assets/svg/Lineas-01.svg" class="linea_de_lineas ion-no-padding opacity_text" color="success"></ion-icon>
+                </ion-col>
+                <ion-col size="10" class="ion-no-margin ion-no-padding ion-margin-start">
+                  <ion-row class="ion-no-margin ion-no-padding">
+                    <ion-col size="12" class="ion-no-margin ion-no-padding">
+                      <ion-label color="medium" class="titulos_card" class="ion-no-margin ion-no-padding">
+                        Membresía
+                      </ion-label>
+                    </ion-col>
+                    <ion-col size="12" class="ion-no-margin ion-no-padding">
+                      <ion-label class="texto_bold linea_de_lineas" [innerHTML]="payment.transmitter.membership"></ion-label>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+                
+              </ion-row>
+
+              
+
+              <ion-row class="ion-justify-content-center ">
+                <ion-col size="6">
+                  <ion-button class="ion-padding-top ion-padding-bottom" shape="round" expand="block" color="success" size="default" (click)="mostarCompartir(payment.id)">
+                    <ion-label color="light" class="ion-text-capitalize">
+                      Usar
+                    </ion-label>
+                  </ion-button>
+                </ion-col>
+
+              </ion-row>
+                
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-grid>
+
   
 </ion-content>

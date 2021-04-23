@@ -56,6 +56,8 @@ export class CanjesPage implements OnInit {
 
   aceptarDenegar = false;
 
+  
+
   constructor(private navCtrl: NavController, private usuarioService: UsuarioService, private postsService: PostsService) { 
     this.lottieConfig = {
       path: 'assets/animation/3617-shopping-bag-error.json',
@@ -77,6 +79,17 @@ export class CanjesPage implements OnInit {
 
     this.usuarioService.historialAbonos('exchange', this.fechaActu.split('T')[0], this.fechaActu.split('T')[0]).subscribe( resp => {
       if (resp.ok) {
+        //this.animacionPagos = false;
+         // tslint:disable-next-line: prefer-const
+        for (let i of resp.exchanges) {
+          if(i.status_id == 14){
+            this.animacionPagos = false;
+            break;
+          }else{
+            this.animacionPagos = true;
+          }
+           
+        }
         this.exchangeH = resp.exchanges;
       } else {
         this.animacionPagos = true;
@@ -143,10 +156,18 @@ export class CanjesPage implements OnInit {
         this.calHistorial.fechafin.split('T')[0]
       ).subscribe( resp => {
         if (resp.ok) {
+          for (let i of resp.exchanges) {
+            if(i.status_id == 14){
+              this.animacionPagos = false;
+              break;
+            }else{
+              this.animacionPagos = true;
+            }
+          }
           this.exchangeH = resp.exchanges;
           this.spiner = false;
-          this.cardCanje = true;
-          this.animacionPagos = false;
+          //this.cardCanje = true;
+          //this.animacionPagos = false;
         } else {
           this.animacionPagos = true;
           this.cardCanje = false;

@@ -50,7 +50,7 @@ export class ConfirmarPagoComponent implements OnInit {
 
   onClick() {
     // console.log(this.tr_membership);
-    if (this.tr_membership === null) {
+    if (this.tr_membership === null || this.tr_membership === '') {
       this.membersh = '';
     } else {
       this.membersh = this.tr_membership.toString();
@@ -87,7 +87,7 @@ export class ConfirmarPagoComponent implements OnInit {
 
   cancelar() {
     // console.log(this.tr_membership);
-    if (this.tr_membership === null) {
+    if (this.tr_membership === null || this.tr_membership === '') {
       this.membersh = '';
     } else {
       this.membersh = this.membership.toString();

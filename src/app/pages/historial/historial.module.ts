@@ -9,6 +9,7 @@ import { HistorialPageRoutingModule } from './historial-routing.module';
 import { HistorialPage } from './historial.page';
 import player from 'lottie-web';
 import { LottieModule } from 'ngx-lottie';
+import { ComponentsModule } from '../../components/components.module';
 
 export function playerFactory() {
   return player;
@@ -21,7 +22,8 @@ export function playerFactory() {
     FormsModule,
     IonicModule,
     HistorialPageRoutingModule,
-    LottieModule.forRoot({ player: playerFactory })
+    LottieModule.forRoot({ player: playerFactory }),
+    ComponentsModule
   ],
   declarations: [HistorialPage]
 })

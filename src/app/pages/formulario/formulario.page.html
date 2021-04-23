@@ -51,7 +51,7 @@
     </ion-row>
     <ion-row class="ion-justify-content-center ion-margin-top">
       <ion-col class="ion-text-center" size="8">
-        <ion-button color="success" class="ion-margin-top" [disabled]="ticketUser.station === null || ticketUser.code.length < 15 || ticketUser.sale.length < 4"  (click)="solicitarSuma()">
+        <ion-button color="success" class="ion-margin-top" [disabled]="ticketUser.station === null || ticketUser.code.length < 15 || ticketUser.sale.length < 1"  (click)="solicitarSuma()">
           <ion-label color="light" class="ion-text-capitalize">Enviar</ion-label>
         </ion-button>
       </ion-col>

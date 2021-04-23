@@ -1,4 +1,4 @@
-<ion-toolbar mode="md" color="success" class="altura_tolbar_modal aligh_text_modal">
+<!--ion-toolbar mode="md" color="success" class="altura_tolbar_modal aligh_text_modal">
 
   <div class="body_modal">
     <div class="arrow arrow--top">
@@ -53,31 +53,58 @@
     <h1 class="h1_modal text_bold_modal">ESCANEE SU QR</h1>
   </ion-title>
 
-</ion-toolbar>
+</ion-toolbar-->
 
 <ion-content class="ion-text-center ion-no-border">
-  <ion-grid>
-    <ion-row class="ion-justify-content-center ion-text-center">
-      <ion-col size="12" class="ion-justify-content-center ion-text-center">
-        <qrcode cssClass="animate__animated animate__fadeInDownBig propio" *ngIf="resp" [qrdata]="resp" [width]="330" [errorCorrectionLevel]="'M'"></qrcode>
+  <ion-grid class="encabezado">
+    <div id="bg-wrap">
+      <app-header-animation titulo=""></app-header-animation>
+    </div>
+    <ion-row class="ion-justify-content-between grid_arriba">
+      <ion-col class="ion-no-border ion-padding-start" size="2">
+        <ion-buttons mode="ios" >
+          <ion-button (click)="regresar()" class="ion-padding-top">
+            <ion-icon  mode="ios" color="light" name="chevron-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col class="ion-no-border ion-padding-end" size="2">
+        <ion-buttons mode="md" >
+          <ion-menu-button auto-hide="false" color="light"></ion-menu-button>
+        </ion-buttons>
       </ion-col>
     </ion-row>
-    <ion-row class="ion-justify-content-center ion-text-center">
-      <ion-col size="4">
-        <ion-button  class="animate__animated animate__fadeIn" *ngIf="resp" shape="round" expand="block" color="success" size="default" (click)="regresar()">
-          <ion-label color="light" class="ion-text-capitalize">
-            Cancelar
+    <ion-row class="ion-no-margin separar_componente_abajo">
+      <ion-col class="ion-text-center ion-no-margin" color="light">
+        <h3 class="ion-no-margin color-claro">ESCANEE SU QR</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="cuerpo scroll">
+    <ion-grid>
+      <ion-row class="ion-justify-content-center ion-text-center">
+        <ion-col size="12" class="ion-justify-content-center ion-text-center">
+          <qrcode cssClass="animate__animated animate__fadeInDownBig propio" *ngIf="resp" [qrdata]="resp" [width]="330" [errorCorrectionLevel]="'M'"></qrcode>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center ion-text-center">
+        <ion-col size="4">
+          <ion-button  class="animate__animated animate__fadeIn" *ngIf="resp" shape="round" expand="block" color="success" size="default" (click)="regresar()">
+            <ion-label color="light" class="ion-text-capitalize">
+              Cancelar
+            </ion-label>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-margin-top ion-justify-content-center ion-text-center">
+        <ion-col class="ion-padding-top" size="10">
+          <ion-label class="ion-padding-top" color="medium">
+            Una vez escanedo su código espere en esta pantalla hasta que reciba su notificación de cobro.
           </ion-label>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row class="ion-margin-top ion-justify-content-center ion-text-center">
-      <ion-col class="ion-padding-top" size="10">
-        <ion-label class="ion-padding-top" color="medium">
-          Una vez escanedo su código espere en esta pantalla hasta que reciba su notificación de cobro.
-        </ion-label>
-      </ion-col>
-    </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-grid>
   
 </ion-content>

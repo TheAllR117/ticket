@@ -18,7 +18,7 @@ export class Tab2Page implements OnInit {
   private anim: any;
   // tslint:disable-next-line: no-inferrable-types
   private animationSpeed: number = 1;
-  animacion = true;
+  animacion = false;
 
   slideOpts = {
     slidesPerView: 2.1,
@@ -33,7 +33,7 @@ export class Tab2Page implements OnInit {
     private navCtrl: NavController,
     private tabspage: TabsPage,
     private menuCtrl: MenuController,) {
-    /*this.lottieConfig = {
+    this.lottieConfig = {
       path: 'assets/animation/intro.json',
       autoplay: false,
       loopt: true
@@ -44,7 +44,7 @@ export class Tab2Page implements OnInit {
         this.anim.pause();
         this.animacion = true;
       }, 6000);
-    }, 2000);*/
+    }, 2000);
   }
 
   ngOnInit() {

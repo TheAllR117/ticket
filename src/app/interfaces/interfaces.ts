@@ -280,6 +280,7 @@ export interface Exchanges {
   invoice?: number;
   status?: string;
   date?: string;
+  status_id?: number;
 }
 
 export interface Points {

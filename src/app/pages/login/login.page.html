@@ -47,10 +47,9 @@
                 </ion-col>
               </ion-row>
             </form>
-            
           </ion-grid>
-
       </ion-slide>
+
       <ion-slide>
         <ion-grid fixed>
           <form (ngSubmit)="registro(fRegistro)" #fRegistro="ngForm">
@@ -236,6 +235,10 @@
             <ion-row class="ion-padding-bottom">
               <ion-col size="8" offset="2" class="ion-text-start">
                 <ion-label color="light" class="ion-margin-top">Ingresa tu email</ion-label><br>
+              </ion-col>
+            </ion-row>
+             <ion-row class="ion-padding-bottom">
+              <ion-col size="8" offset="2" class="ion-text-start">
                 <ion-input name="email" type="email" [(ngModel)]="loginEmail.email" required ></ion-input>
               </ion-col>
             </ion-row>
@@ -249,6 +252,9 @@
             </ion-row>
           </form>
         </ion-grid>
+        <ion-label color="light" class="arrowPosition" (click)="mostrarRegistro()">
+          <ion-icon name="chevron-back-outline"></ion-icon>Regresar
+        </ion-label>
       </ion-slide>
 
       <ion-slide>
@@ -261,7 +267,11 @@
             </ion-row>
             <ion-row class="ion-padding-bottom">
               <ion-col size="8" offset="2" class="ion-text-start">
-                <ion-label color="light" class="ion-margin-top">Ingresa tu email</ion-label><br>
+                <ion-label color="light" class="ion-margin-top">Ingresa tu email</ion-label>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-padding-bottom">
+              <ion-col size="8" offset="2" class="ion-text-start">
                 <ion-input name="email" type="email" [(ngModel)]="recuperarC.email" required ></ion-input>
               </ion-col>
             </ion-row>
@@ -276,6 +286,10 @@
           </form>
           
         </ion-grid>
+
+        <ion-label color="light" class="arrowPosition" (click)="mostrarRegistro()">
+          <ion-icon name="chevron-back-outline"></ion-icon>Regresar
+        </ion-label>
 
       </ion-slide>
 

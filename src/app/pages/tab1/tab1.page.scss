@@ -1,3 +1,6 @@
+.grid_arriba_t{
+  margin-top: 10%;
+}
 
 .color_wave1{
   background: #DA3230;
@@ -28,20 +31,25 @@
 }
 
 .primerTitulo{
-  margin: 5%;
+  margin: 2%;
+  font-size: 20px;
+  font-weight: bold;
+}
+.primerTituloCopy{
+  margin: 0%;
   font-size: 20px;
   font-weight: bold;
 }
 
 .primerTitulo_2{
-  margin: -5%;
+  margin: 0%;
   font-size: 20px;
   font-weight: bold;
 }
 
 .segundoTitulo{
-  margin: 5%;
-  font-size: 30px;
+  margin: 2%;
+  font-size: 20px;
   font-weight: bold;
 }
 .segundoTitulo_last{
@@ -80,7 +88,7 @@ ion-card-content{
 }
 
 .bajar_cards{
-  margin-top: 32%;
+  margin-top: 40%;
 }
 
 
@@ -102,12 +110,15 @@ ion-card-content{
   margin-top: 60%;
 }
 
-.animacion_fondo{
+/*.animacion_fondo{
   width: 100%;
   height: 100%;
   transform: translate3d(0,0,0);
   position: absolute;
   top: -10%;
+}*/
+.animacion_fondo{
+  position: absolute;
 }
 
 ion-slide {

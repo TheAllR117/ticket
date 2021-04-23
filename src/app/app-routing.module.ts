@@ -79,19 +79,15 @@ const routes: Routes = [
     canLoad: [UsuarioGuard]
   },
   {
+    path: 'youtube',
+    loadChildren: () => import('./pages/youtube/youtube.module').then( m => m.YoutubePageModule),
+    canLoad: [UsuarioGuard]
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'main/tabs/tab2'
-  },
-  
-
-  
-
-  
-
-  
-
-  
+  }  
 
 ];
 @NgModule({

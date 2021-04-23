@@ -109,7 +109,8 @@ export class CompartirSaldoPage implements OnInit {
           this.contacts = respuesta.contacts;
         });
       } else {
-        this.postsService.mostrarPop('14331-error', 'Error al agregar al usuario', resp.message, 1950);
+        this.postsService.mostrarNotificacion('CaritaVerde', resp.message, 1);
+        //this.postsService.mostrarPop('14331-error', 'Error al agregar al usuario', resp.message, 1950);
       }
       this.listaB.closeSlidingItems();
     });
@@ -136,7 +137,8 @@ export class CompartirSaldoPage implements OnInit {
           }
         });
       } else {
-        this.postsService.mostrarPop('14331-error', 'Error al eliminar al usuario', resp.message, 1950);
+        this.postsService.mostrarNotificacion('CaritaVerde', resp.message, 1);
+        //this.postsService.mostrarPop('14331-error', 'Error al eliminar al usuario', resp.message, 1950);
       }
     });
   }

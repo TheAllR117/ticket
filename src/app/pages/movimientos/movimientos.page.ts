@@ -63,6 +63,15 @@ export class MovimientosPage implements OnInit {
 
     this.usuarioService.historialAbonos('exchange', this.fechaActu.split('T')[0], this.fechaActu.split('T')[0]).subscribe( resp => {
       if (resp.ok) {
+        for (let i of resp.exchanges) {
+          if(i.status_id != 14){
+            this.animacionPagos2 = false;
+            break;
+          }else{
+            this.animacionPagos2 = true;
+          }
+           
+        }
         this.redimidos = resp.exchanges;
       } else {
         this.animacionPagos2 = true;
@@ -115,6 +124,7 @@ export class MovimientosPage implements OnInit {
   async buscarMovimientosV() {
     this.spiner2 = true;
     this.animacionPagos2 = false;
+    this.redimidos=[];
     await this.usuarioService.historialAbonos(
         'exchange',
         this.calRedimidos.fechaIni.split('T')[0],
@@ -122,8 +132,16 @@ export class MovimientosPage implements OnInit {
       ).subscribe( resp => {
         //console.log(resp);
         if (resp.ok) {
+          for (let i of resp.exchanges) {
+            if(i.status_id != 14){
+              this.animacionPagos2 = false;
+              break;
+            }else{
+              this.animacionPagos2 = true;
+            }
+          }
           this.spiner2 = false;
-          this.animacionPagos2 = false;
+          //this.animacionPagos2 = false;
           this.redimidos = resp.exchanges;
         } else {
           this.spiner2 = false;

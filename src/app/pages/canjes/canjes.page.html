@@ -74,7 +74,7 @@
                       </g>
                     </svg>
                   </div>
-                  <ion-card-content class="ion-no-padding " [ngClass]="{'content1': selectSlideSec !== i, 'content2': selectSlideSec === i }">
+                  <ion-card-content class="ion-padding " [ngClass]="{'content1': selectSlideSec !== i, 'content2': selectSlideSec === i }">
                     <h2 [innerHTML]="station.name" class="fontWeiTitulos"></h2>
                     <p [innerHTML]="station.address"></p>
                     <ion-button *ngIf="selectSlideSec == i" mode="md" color="success" class="ion-margin"  (click)="solicitarCanje(station.id)">Aceptar</ion-button>
@@ -114,6 +114,7 @@
                   <ion-label class="fontWei" color="success">Vale</ion-label>
                   <div><ion-text class="fontWei" >Estación: </ion-text> <ion-label [innerHTML]=" item.station"></ion-label></div>
                   <div><ion-text class="fontWei" >Folio: </ion-text><ion-label [innerHTML]=" item.invoice"></ion-label></div>
+                  <div><ion-text class="fontWei" >Estatus: </ion-text><ion-label [innerHTML]=" item.status"></ion-label></div>
                   <ion-text color="medium"><sub [innerHTML]=" item.date"></sub></ion-text>
                 </ion-col>
               </ion-row>
@@ -174,10 +175,10 @@
             </ion-col>
           </ion-row>
 
-          <ion-row *ngIf="cardCanje" class="ion-justify-content-center">
-            <ion-col class="ion-no-padding ion-no-margin ion-padding-top ion-margin-top" size="10">
+          <ion-row *ngFor="let item of exchangeH" class="ion-justify-content-center">
+            <ion-col *ngIf="item.status_id == 14" class="ion-no-padding ion-no-margin ion-padding-top ion-margin-top" size="10">
 
-              <ion-card *ngFor="let item of exchangeH" mode="ios" class="ion-no-margin ion-margin-top ion-margin-bottom">
+              <ion-card  mode="ios" class="ion-no-margin ion-margin-top ion-margin-bottom">
                 <ion-row>
                   <ion-col size="3" class="bord ion-text-center ion-text-wrap ion-align-items-center">
                     <ion-icon class="tamanoIcon puntos" name="ticket-outline" color="success" mode="ios"></ion-icon>
@@ -185,12 +186,12 @@
                   <ion-col size="9" class="ion-text-left ion-padding-start ion-text-wrap fontSize">
                     <ion-label class="fontWei" color="success">Vale</ion-label>
                     <div><ion-text class="fontWei" >Estación: </ion-text> <ion-label [innerHTML]=" item.station"></ion-label></div>
+                    <div><ion-text class="fontWei" >Estatus: </ion-text> <ion-label [innerHTML]=" item.status"></ion-label></div>
                     <div><ion-text class="fontWei" >Folio: </ion-text><ion-label [innerHTML]=" item.invoice"></ion-label></div>
                     <ion-text color="medium"><sub [innerHTML]=" item.date"></sub></ion-text>
                   </ion-col>
                 </ion-row>
               </ion-card>
-              <!--ion-padding-top ion-padding-bottom-->
               
             </ion-col>
           </ion-row>

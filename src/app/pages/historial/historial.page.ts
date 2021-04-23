@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonSlides, NavController } from '@ionic/angular';
+import { IonSlides, NavController, IonSegment } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
 import { Balance } from '../../interfaces/interfaces';
 import { AnimationItem } from 'lottie-web';
@@ -12,6 +12,7 @@ import { AnimationOptions } from 'ngx-lottie';
 })
 export class HistorialPage implements OnInit {
   @ViewChild('sliderPrincipal', {static: true}) slides: IonSlides;
+  @ViewChild(IonSegment) segment: IonSegment;
 
   balance: Balance[] = [];
   share: Balance[] = [];
@@ -67,6 +68,9 @@ export class HistorialPage implements OnInit {
    public lottieConfigTra: Object;
    private anim: any;
 
+   currentSegment = 0;
+   currentSlide = 0;
+
   constructor(
     private navCtrl: NavController,
     private usuarioService: UsuarioService,
@@ -120,6 +124,19 @@ export class HistorialPage implements OnInit {
 
   regresar() {
     this.navCtrl.back({animationDirection: 'back'});
+  }
+
+  // funciones slide principal
+  async segmentChanged(){
+    this.currentSegment = await parseInt(this.segment.value);
+    this.slides.slideTo(this.currentSegment);
+    //console.log(this.currentSegment);
+  }
+
+  async onSlideDidChange() {
+    this.currentSlide = await this.slides.getActiveIndex();
+    this.segment.value = this.currentSlide.toString();
+    //console.log(this.currentSlide);
   }
 
   handleAnimation(anim: any) {

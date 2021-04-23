@@ -48,7 +48,7 @@ export class AbonarQrComponent implements OnInit {
 
     this.pushServices.pushListener.subscribe(async noti => {
 
-      console.log(noti.additionalData);
+      //console.log(noti.additionalData);
       if (noti.additionalData) {
         if ( this.pushServices.abrirPop === true) {
           this.pushServices.abrirPop = false;
@@ -137,6 +137,28 @@ export class AbonarQrComponent implements OnInit {
     });
 
     await popover.present();
+  }
+
+   async lalo(){
+    await this.mostrarPop(
+        '112',
+        '112.34',
+        '112.34',
+        '112.34',
+        '',
+        this.pushServices.userId,
+        '112.34',
+        '112.34',
+        '112.34',
+        '112.34',
+        '112.34',
+        '112.34',
+        '112.34',
+        '112.34',
+        '112.34',
+    );
+    
+  
   }
 
   onClick() {

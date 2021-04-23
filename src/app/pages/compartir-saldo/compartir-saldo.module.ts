@@ -9,6 +9,7 @@ import { CompartirSaldoPageRoutingModule } from './compartir-saldo-routing.modul
 import { CompartirSaldoPage } from './compartir-saldo.page';
 import player from 'lottie-web';
 import { LottieModule } from 'ngx-lottie';
+import { ComponentsModule } from '../../components/components.module';
  
 // Note we need a separate function as it's required
 // by the AOT compiler.
@@ -22,7 +23,8 @@ export function playerFactory() {
     FormsModule,
     LottieModule.forRoot({ player: playerFactory }),
     IonicModule,
-    CompartirSaldoPageRoutingModule
+    CompartirSaldoPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [CompartirSaldoPage]
 })

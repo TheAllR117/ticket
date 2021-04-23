@@ -1,12 +1,18 @@
 <ion-content class="card-background-page ion-no-border">
 
-  <img src="assets/svg/Mov_Mesa.svg" class="animacion_fondo">
+  <!--img src="assets/svg/Mov_Mesa.svg" class="animacion_fondo"-->
+  <ng-lottie [options]="lottieConfig" class="animacion_fondo" (animationCreated)="handleAnimation($event)"></ng-lottie>
   <ion-grid *ngIf="animacion === true;" class="grid_arriba_t ion-no-border ion-no-padding animate__animated animate__fadeInDownBig">
-    
+    <ion-row class="ion-no-border ion-no-padding ion-justify-content-evenly">
+      <ion-col class="ion-no-border ion-no-padding" size="11">
+        <ion-label class="primerTituloCopy">Hola,</ion-label>
+      </ion-col>
+    </ion-row>
+
     <ion-row class="ion-no-border ion-no-padding ion-justify-content-evenly">
       <ion-col class="ion-no-border ion-no-padding" size="10">
         <ion-label class="primerTitulo" [innerHTML]="user.name +' '+ user.first_surname "></ion-label><br>
-        <ion-label class="primerTitulo" color="success">Membresía</ion-label><ion-label class="primerTitulo_2" [innerHTML]=" user.client.membership"></ion-label>
+        <ion-label class="primerTitulo ion-margin-end" color="success">Membresía </ion-label> <ion-label class="primerTitulo_2" [innerHTML]=" user.client.membership"></ion-label>
       </ion-col>
       
       <ion-col class="ion-no-border ion-no-padding" size="1">

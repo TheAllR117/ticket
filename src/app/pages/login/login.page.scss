@@ -386,3 +386,8 @@ ion-select{
 .progress-wrap *:before {
    box-sizing: border-box
 }
+
+.arrowPosition{
+  position: absolute;
+  transform: translateY(1300%);
+}

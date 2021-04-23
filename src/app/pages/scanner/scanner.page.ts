@@ -33,19 +33,16 @@ export class ScannerPage implements OnInit {
       await this.postsService.presentLoading('Espere por favor...');
       this.barcodeScanner.scan().then( barcodeData => {
         this.postsService.loading.dismiss();
-        //console.log('data qr', barcodeData);
         if (!barcodeData.cancelled) {
           this.ticketUser.qr = barcodeData.text;
           this.usuarioService.sumarPuntos(this.ticketUser.qr, this.ticketUser.code, this.ticketUser.station, this.ticketUser.sale).subscribe( resp => {
-            //console.log(resp);
             this.ticketUser.qr = '';
-            (resp.ok) ? this.postsService.mostrarNotificacion('CaritaVerde', resp['points'], 1) :  this.postsService.mostrarNotificacion('Triste_Mesadetrabajo1', resp.message, 2);
+            (resp.ok) ? this.postsService.mostrarNotificacion('CaritaVerde', resp['points'], 1) : this.postsService.mostrarNotificacion('Triste_Mesadetrabajo1', resp.message, 2);
           });
         }
       }).catch(err => {
         this.postsService.loading.dismiss();
         this.postsService.mostrarNotificacion('Triste_Mesadetrabajo1', 'Ocurrio un error al escanear', 2);
-        // console.log('Error', err);
       });
   }
 

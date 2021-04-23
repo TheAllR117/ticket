@@ -9,6 +9,7 @@ import { AbonosTotalesPageRoutingModule } from './abonos-totales-routing.module'
 import { AbonosTotalesPage } from './abonos-totales.page';
 import player from 'lottie-web';
 import { LottieModule } from 'ngx-lottie';
+import { ComponentsModule } from '../../components/components.module';
 
 export function playerFactory() {
   return player;
@@ -21,7 +22,8 @@ export function playerFactory() {
     FormsModule,
     IonicModule,
     AbonosTotalesPageRoutingModule,
-    LottieModule.forRoot({ player: playerFactory })
+    LottieModule.forRoot({ player: playerFactory }),
+    ComponentsModule
     
   ],
   declarations: [AbonosTotalesPage]

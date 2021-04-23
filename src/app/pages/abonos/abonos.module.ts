@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AbonosPageRoutingModule } from './abonos-routing.module';
 
 import { AbonosPage } from './abonos.page';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AbonosPageRoutingModule
+    AbonosPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [AbonosPage]
 })
