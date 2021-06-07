@@ -84,10 +84,16 @@ const routes: Routes = [
     canLoad: [UsuarioGuard]
   },
   {
+    path: 'noticias',
+    loadChildren: () => import('./pages/noticias/noticias.module').then( m => m.NoticiasPageModule),
+    canLoad: [UsuarioGuard]
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'main/tabs/tab2'
-  }  
+  }
+ 
 
 ];
 @NgModule({

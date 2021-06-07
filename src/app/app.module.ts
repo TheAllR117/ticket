@@ -32,6 +32,7 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
 // import player from 'lottie-web';
 //import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 
  
 // Note we need a separate function as it's required
@@ -68,6 +69,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
     BarcodeScanner,
     FileTransfer,
     Camera,
+    YoutubeVideoPlayer,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
