@@ -2,7 +2,7 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LottieAnimationViewModule } from 'ng-lottie';
+//import { LottieAnimationViewModule } from 'ng-lottie';
 
 import { TabsPageRoutingModule } from './tabs-routing.module';
 
@@ -19,7 +19,7 @@ export function playerFactory() {
     CommonModule,
     FormsModule,
     TabsPageRoutingModule,
-    LottieAnimationViewModule.forRoot(),
+    //LottieAnimationViewModule.forRoot(),
     LottieModule.forRoot({ player: playerFactory })
   ],
   declarations: [TabsPage]

@@ -55,7 +55,6 @@
     "es6-promise-plugin": "^4.2.2",
     "ionicons": "^5.3.0",
     "lottie-web": "^5.7.6",
-    "ng-lottie": "^0.3.2",
     "ngx-lottie": "^6.4.0",
     "ngx-qrcode2": "^9.0.0",
     "onesignal-cordova-plugin": "^2.11.2",
