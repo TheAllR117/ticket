@@ -19,7 +19,6 @@ import { environment } from '../environments/environment';
 
 import { LottieSplashScreen } from '@ionic-native/lottie-splash-screen/ngx';
 import { ComponentsModule } from './components/components.module';
-import { LottieAnimationViewModule } from 'ng-lottie';
 
 import { Camera } from '@ionic-native/camera/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
@@ -28,17 +27,15 @@ import { FormsModule } from '@angular/forms';
 import { QRCodeModule } from 'angularx-qrcode';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 
-//import { LottieModule } from 'ngx-lottie';
-// import player from 'lottie-web';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
 //import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 
- 
-// Note we need a separate function as it's required
-// by the AOT compiler.
-/*export function playerFactory() {
+export function playerFactory() {
   return player;
-}*/
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -51,8 +48,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
     IonicStorageModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ComponentsModule,
-    LottieAnimationViewModule,
-    //LottieModule.forRoot({ player: playerFactory }),
+    LottieModule.forRoot({ player: playerFactory }),
     QRCodeModule,
     FormsModule,
   ],
@@ -68,6 +64,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
     BarcodeScanner,
     FileTransfer,
     Camera,
+    YoutubeVideoPlayer,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

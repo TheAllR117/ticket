@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { YoutubePageRoutingModule } from './youtube-routing.module';
+import { NoticiasPageRoutingModule } from './noticias-routing.module';
 
-import { YoutubePage } from './youtube.page';
+import { NoticiasPage } from './noticias.page';
 import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { ComponentsModule } from '../../components/components.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    YoutubePageRoutingModule,
+    NoticiasPageRoutingModule,
     ComponentsModule
   ],
-  declarations: [YoutubePage]
+  declarations: [NoticiasPage]
 })
-export class YoutubePageModule {}
+export class NoticiasPageModule {}

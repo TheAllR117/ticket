@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { YoutubePageRoutingModule } from './youtube-routing.module';
+import { CodePageRoutingModule } from './code-routing.module';
 
-import { YoutubePage } from './youtube.page';
+import { CodePage } from './code.page';
 import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { ComponentsModule } from '../../components/components.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    YoutubePageRoutingModule,
+    CodePageRoutingModule,
     ComponentsModule
   ],
-  declarations: [YoutubePage]
+  declarations: [CodePage]
 })
-export class YoutubePageModule {}
+export class CodePageModule {}

@@ -18,7 +18,7 @@ export class TabsPage {
   constructor(private navCtrl: NavController) {
     this.lottieConfig = {
       path: 'assets/animation/scan_w.json',
-      autoplay: false,
+      autoplay: true,
       loopt: true
     };
   }

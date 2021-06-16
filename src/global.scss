@@ -104,6 +104,23 @@ ion-segment-button::before {
   padding-bottom: 0.05vh !important;
 }
 
+figure{
+  img{
+    height: 30% !important;
+  }
+}
+
+p{
+  img{
+    height: 30% !important;
+  }
+}
+.elementor-clearfix{
+  h4{
+    font-weight: bold;
+  }
+}
+
 
 /*---------tabbar----------*/
 ion-tabs{

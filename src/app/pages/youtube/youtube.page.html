@@ -1,11 +1,68 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Video Example
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-   
+  <ion-grid class="encabezado">
+    <div id="bg-wrap">
+      <app-header-animation titulo=""></app-header-animation>
+    </div>
+    <ion-row class="ion-justify-content-between grid_arriba">
+      <ion-col class="ion-no-border ion-padding-start" size="2">
+        <ion-buttons mode="ios" >
+          <ion-button (click)="regresar()" class="ion-padding-top">
+            <ion-icon  mode="ios" color="light" name="chevron-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col class="ion-no-border ion-padding-end" size="2">
+        <ion-buttons mode="md" >
+          <ion-menu-button auto-hide="false" color="light"></ion-menu-button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-margin ion-padding-bottom">
+      <ion-col class="ion-text-center ion-no-margin" color="light">
+        <h3 class="ion-no-margin color-claro">Streaming</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="cuerpo">
+
+    
+    <ion-row *ngFor="let video of videos" class="ion-justify-content-center ion-margin-top">
+      <div class="card 1" (click)="openYouTubeVedio(video.id.videoId)">
+        <div class="card_image"> 
+          <img [src]="video.snippet.thumbnails.high.url" />
+        </div>
+        <div class="card_title title-white">
+          <p>{{video.snippet.title}}</p>
+        </div>
+      </div>
+      <!--ion-col size="10">
+        <ion-card mode="ios" class="">
+          <img [src]="video.snippet.thumbnails.high.url" />
+          <ion-card-header>
+            <ion-card-title >{{video.snippet.title}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content mode="md">
+            {{video.snippet.description.slice(0, 120)}}
+          </ion-card-content>
+        </ion-card>
+      </ion-col-->
+    </ion-row>
+
+    <!--div *ngFor="let video of videos" class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-0 shadow vh-50">
+        <a href="https://www.youtube.com/watch?v={{video.id.videoId}}" target="_blank">
+          <img [src]="video.snippet.thumbnails.medium.url" class="card-img-top" alt="...">
+        </a>
+        <div class="card-body text-center">
+          <h5 class="card-title mb-0">
+            <a href="https://www.youtube.com/watch?v={{video.id.videoId}}">{{video.snippet.title}}</a>
+          </h5>
+          <div class="card-text text-black-50">{{video.snippet.description.slice(0, 120)}}</div>
+          <!--p class="card-text">{{video.snippet.description}}</p>
+        </div>
+      </div>
+    </div-->
+    
+  </ion-grid>
 </ion-content>
