@@ -19,25 +19,15 @@
     </ion-row>
     <ion-row class="ion-no-margin ion-padding-bottom">
       <ion-col class="ion-text-center ion-no-margin" color="light">
-        <h3 class="ion-no-margin color-claro">Noticias</h3>
+        <h3 class="ion-no-margin ion-margin-start ion-margin-end color-claro" [innerHTML]="not.title.rendered"></h3>
       </ion-col>
     </ion-row>
   </ion-grid>
 
   <ion-grid class="cuerpo">
-    <ion-row *ngFor="let new of news" class="ion-justify-content-center" class="ion-margin">
-      <ion-card mode="ios" (click)="navRouting('noticia',new)">
-        <img [src]="new.jetpack_featured_media_url" />
-        <ion-card-header>
-          <ion-card-title [innerHTML]="new.title.rendered"></ion-card-title>
-        </ion-card-header>
-        <ion-card-content [innerHTML]="new.excerpt.rendered">
-         
-        </ion-card-content>
-      </ion-card>
-      <!--ion-col size="10">
-        <div [innerHTML]="new.content.rendered"></div>
-      </ion-col-->
+    <ion-row class="ion-justify-content-center ion-margin">
+      <ion-col size="10" [innerHTML]="not.content.rendered">
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

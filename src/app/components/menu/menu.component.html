@@ -45,19 +45,23 @@
         </ion-item>
         <ion-menu-toggle>
           <ion-item (click)="navRouting('/perfil')" detail lines="full">
-            <ion-icon color="success" slot="start" name="person-circle-sharp"></ion-icon>
+            <ion-icon color="success" slot="start" name="person-circle-outline"></ion-icon>
             <ion-label>Perfil</ion-label>
           </ion-item>
           <ion-item (click)="navRouting('/youtube')" detail lines="full">
-            <ion-icon color="success" slot="start" name="logo-youtube"></ion-icon>
+            <ion-icon color="success" slot="start" name="play-outline"></ion-icon>
             <ion-label>Streaming</ion-label>
           </ion-item>
           <ion-item (click)="navRouting('/noticias')" detail lines="full">
-            <ion-icon color="success" name="newspaper" slot="start"></ion-icon>
+            <ion-icon color="success" name="newspaper-outline" slot="start"></ion-icon>
             <ion-label>Noticias</ion-label>
           </ion-item>
+          <ion-item (click)="navRouting('/code')" detail lines="full">
+            <ion-icon color="success" name="pricetag-outline" slot="start"></ion-icon>
+            <ion-label>Código</ion-label>
+          </ion-item>
           <ion-item (click)="logout()" detail lines="full">
-            <ion-icon color="success" slot="start" name="exit"></ion-icon>
+            <ion-icon color="success" slot="start" name="exit-outline"></ion-icon>
             <ion-label>Cerrar sesión</ion-label>
           </ion-item>
         </ion-menu-toggle>

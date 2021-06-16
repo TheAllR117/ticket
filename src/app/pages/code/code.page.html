@@ -1,0 +1,52 @@
+<ion-content class="ion-no-border">
+  <ion-grid class="encabezado">
+    <div id="bg-wrap">
+      <app-header-animation titulo=""></app-header-animation>
+    </div>
+    <ion-row class="ion-justify-content-between grid_arriba">
+      <ion-col class="ion-no-border ion-padding-start" size="2">
+        <ion-buttons mode="ios" >
+          <ion-button (click)="regresar()" class="ion-padding-top">
+            <ion-icon  mode="ios" color="light" name="chevron-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col class="ion-no-border ion-padding-end" size="2">
+        <ion-buttons mode="md" >
+          <ion-menu-button auto-hide="false" color="light"></ion-menu-button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-margin">
+      <ion-col class="ion-text-center ion-no-margin" color="light">
+        <h3 class="ion-no-margin color-claro">Código de referencia</h3>
+      </ion-col>
+    </ion-row>
+   
+  </ion-grid>
+  
+  <ion-grid class="cuerpo scroll">
+    <ion-row class="ion-justify-content-center grid_arriba">
+      <ion-col class="ion-no-padding ion-no-margin ion-margin-top ion-text-center" size="10">
+        <ion-label color="medium">Ingresa el código de referencia de tu promotor.</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center grid_arriba">
+      <ion-col size="8" class="ion-text-center marginCols">
+        <ion-item>
+          <ion-label position="floating" color="success" class="fond">Código</ion-label>
+          <ion-input ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-margin-top">
+      <ion-col class="ion-text-center" size="8">
+        <ion-button color="success" class="ion-margin-top" >
+          <ion-label color="light" class="ion-text-capitalize">Enviar</ion-label>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  
+</ion-content>

@@ -89,10 +89,23 @@ const routes: Routes = [
     canLoad: [UsuarioGuard]
   },
   {
+    path: 'noticia',
+    loadChildren: () => import('./pages/noticia/noticia.module').then( m => m.NoticiaPageModule),
+    canLoad: [UsuarioGuard]
+  },
+  {
+    path: 'code',
+    loadChildren: () => import('./pages/code/code.module').then( m => m.CodePageModule),
+    canLoad: [UsuarioGuard]
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'main/tabs/tab2'
-  }
+  },
+  
+  
+
  
 
 ];
