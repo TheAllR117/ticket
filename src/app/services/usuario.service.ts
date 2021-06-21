@@ -14,7 +14,7 @@ import {
   RepuestaEnvio} from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
-import { RespuestaPerfil } from '../interfaces/interfaces';
+import { RespuestaPerfil, Code } from '../interfaces/interfaces';
 import {
   RespuestaUser,
   respuestaHistorial,
@@ -588,6 +588,28 @@ export class UsuarioService {
     //console.log(email);
     return this.http.post(`${URLP}/password/email`, data);
   
+  }
+
+
+  codigoReferencia(code: string) {
+    this.cargarToken();
+    const data = { };
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.token,
+    });
+
+    const params = new HttpParams({
+      fromObject: {
+        code,
+      }
+    });
+
+    const options = {
+      headers,
+      params
+    };
+
+    return this.http.post<Code>(`${URLP}/code`, data, options);
   }
 
 

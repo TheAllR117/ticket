@@ -35,14 +35,14 @@
       <ion-col size="8" class="ion-text-center marginCols">
         <ion-item>
           <ion-label position="floating" color="success" class="fond">Código</ion-label>
-          <ion-input ></ion-input>
+          <ion-input [(ngModel)]="codeUser.code"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
     <ion-row class="ion-justify-content-center ion-margin-top">
       <ion-col class="ion-text-center" size="8">
-        <ion-button color="success" class="ion-margin-top" >
-          <ion-label color="light" class="ion-text-capitalize">Enviar</ion-label>
+        <ion-button color="success" class="ion-margin-top" [disabled]="codeUser.code.length < 8 || codeUser.code.length > 10" (click)="code()">
+          <ion-label color="light" class="ion-text-capitalize" >Enviar</ion-label>
         </ion-button>
       </ion-col>
     </ion-row>
