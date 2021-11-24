@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.oest.usereucomb" version="59.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Grupo Eucomb</name>
+<widget id="com.oest.usereucomb" version="59.1.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Eucomb</name>
     <description>Grupo Eucomb</description>
     <author email="digitalsoftmx@gmail.com" href="https://lealtaddigitalsoft.mx">Digitalsoft</author>
     <content src="index.html" />

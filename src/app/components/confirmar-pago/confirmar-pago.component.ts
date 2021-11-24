@@ -74,10 +74,12 @@ export class ConfirmarPagoComponent implements OnInit {
         // tslint:disable-next-line: no-string-literal
         if (resp['ok']) {
           // tslint:disable-next-line: no-string-literal
-          this.postsService.mostrarPop('21349-tick-green', 'Confirmación de pago', resp['message'], 2500);
+          this.postsService.mostrarNotificacion('CaritaVerde', 'Cobro realizado correctamente', 1);
+          //this.postsService.mostrarPop('21349-tick-green', 'Confirmación de pago', resp['message'], 2500);
         } else {
           // tslint:disable-next-line: no-string-literal
-          this.postsService.mostrarPop('14331-error', 'Confirmación de pago', resp['message'], 1950);
+          //this.postsService.mostrarPop('14331-error', 'Confirmación de pago', resp['message'], 1950);
+          this.postsService.mostrarNotificacion('Triste_Mesadetrabajo1', resp['message'], 2);
         }
 
       });
@@ -110,10 +112,12 @@ export class ConfirmarPagoComponent implements OnInit {
         // tslint:disable-next-line: no-string-literal
         if (resp['ok']) {
           // tslint:disable-next-line: no-string-literal
-          this.postsService.mostrarPop('21349-tick-green', 'Cancelación de pago', resp['message'], 2500);
+          //this.postsService.mostrarPop('21349-tick-green', 'Cancelación de pago', resp['message'], 2500);
+          this.postsService.mostrarNotificacion('CaritaVerde', 'Cancelación de cobro realizado correctamente', 1);
         } else {
           // tslint:disable-next-line: no-string-literal
-          this.postsService.mostrarPop('14331-error', 'Cancelación de pago', resp['message'], 1950);
+          //this.postsService.mostrarPop('14331-error', 'Cancelación de pago', resp['message'], 1950);
+          this.postsService.mostrarNotificacion('Triste_Mesadetrabajo1', resp['message'], 2);
         }
       });
     this.pushServices.abrirPop = true;

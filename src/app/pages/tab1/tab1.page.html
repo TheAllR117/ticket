@@ -9,9 +9,8 @@
       refreshingText="Actualizando...">
     </ion-refresher-content>
   </ion-refresher>
-  <!--img src="assets/svg/Mov_Mesa.svg" class="animacion_fondo"-->
-  <!--ng-lottie [options]="lottieConfig" class="animacion_fondo" (animationCreated)="handleAnimation($event)"></ng-lottie-->
-  <ion-grid class="ion-no-border ion-no-padding ion-margin-top vertical-center">
+  <img src="assets/svg/Mov_Mesa.svg" class="animacion_fondo">
+  <!--ion-grid class="ion-no-border ion-no-padding ion-margin-top vertical-center">
     <ion-row class="ion-justify-content-center ion-margin-top">
       <ion-col class="ion-text-center ion-margin-top">
         <ng-lottie [options]="lottieConfig"  ></ng-lottie>
@@ -22,16 +21,10 @@
         <h1>Próximamente</h1>
       </ion-col>
     </ion-row>
-  </ion-grid>
-  <!--ion-grid *ngIf="animacion" class="grid_arriba_t ion-no-border ion-no-padding animate__animated animate__fadeInUpBig"-->
-    
-    <!--ion-row class="ion-no-border ion-no-padding ion-justify-content-evenly">
-      <ion-col class="ion-no-border ion-no-padding" size="11">
-        <ion-label class="primerTituloCopy">Hola,</ion-label>
-      </ion-col>
-    </ion-row-->
+  </ion-grid-->
+  <ion-grid *ngIf="animacion" class="grid_arriba_t ion-no-border ion-no-padding animate__animated animate__fadeInUpBig">
 
-    <!--ion-row class="ion-no-border ion-no-padding ion-justify-content-evenly">
+    <ion-row class="ion-no-border ion-no-padding ion-justify-content-evenly">
       <ion-col class="ion-no-border ion-no-padding" size="10">
         <ion-label class="segundoTitulo" [innerHTML]="user.name +' '+ user.first_surname "></ion-label><br>
         <ion-label class="primerTitulo ion-margin-end" color="success">Membresía </ion-label> <ion-label class="primerTitulo_2" [innerHTML]=" user.client.membership"></ion-label>
@@ -42,21 +35,10 @@
           <ion-menu-button auto-hide="false" color="success"></ion-menu-button>
         </ion-buttons>
       </ion-col>
-    </ion-row-->
-
-    <!--ion-row class="ion-no-border ion-no-padding">
-      <ion-col class="ion-no-border ion-no-padding" size="12">
-        <ion-label class="segundoTitulo" [innerHTML]="user.name +' '+ user.first_surname "></ion-label>
-      </ion-col>
     </ion-row>
 
-    <ion-row class="ion-no-border ion-no-padding">
-      <ion-col class="ion-no-border ion-no-padding" size="12">
-        <ion-label class="primerTitulo" color="success">Membresía </ion-label><ion-label class="primerTitulo_2" [innerHTML]="user.client.membership"></ion-label>
-      </ion-col>
-    </ion-row-->
-
-    <!--ion-row class="ion-no-border bajar_cards ion-no-padding">
+  
+    <ion-row class="ion-no-border bajar_cards ion-no-padding">
       <ion-col class="ion-no-padding" >
         <ion-card mode="ios">        
           <ion-card-content>
@@ -186,6 +168,6 @@
         </ion-slides>
       </ion-col>
     </ion-row>
-  </ion-grid-->
+  </ion-grid>
   
 </ion-content>
