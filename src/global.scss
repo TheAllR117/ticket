@@ -207,6 +207,19 @@ app-notificaciones{
   }
 }
 
+app-notificaciones-galeoncito{
+  height: 32vh;
+  text-align: center;
+  color: white;
+  --background: transparent !important;
+  ion-content::part(background){
+    background-color: transparent !important;
+  }
+  ion-content::part(scroll){
+    overflow: visible !important;
+  }
+}
+
 .sc-ion-popover-ios-h{
   --background: transparent !important;
 }

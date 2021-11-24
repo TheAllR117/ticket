@@ -1,0 +1,118 @@
+<ion-content class="ion-text-center ion-no-border">
+  <ion-grid class="encabezado">
+    <div id="bg-wrap">
+      <app-header-animation titulo=""></app-header-animation>
+    </div>
+    <ion-row class="ion-justify-content-between grid_arriba">
+      <ion-col class="ion-no-border ion-padding-start" size="2">
+        <ion-buttons mode="ios" >
+          <ion-button (click)="regresar()" class="ion-padding-top">
+            <ion-icon  mode="ios" color="light" name="chevron-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col class="ion-no-border ion-padding-end" size="2">
+        <ion-buttons mode="md" >
+          
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-margin">
+      <ion-col class="ion-text-center ion-no-margin" color="light">
+        <h3 class="ion-no-margin color-claro">Seleccione la<br> cantidad</h3>
+      </ion-col>
+    </ion-row>
+   
+  </ion-grid>
+  <ion-grid class="cuerpo scroll">
+    <ion-grid>
+      <ion-row class="ion-justify-content-center ion-text-center ion-margin-top">
+        <ion-col size="12" color="medium" class="ion-margin-top">
+         <ion-label class="ion-margin-top textto" color="medium" [innerHTML]="nameStation"></ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center ion-text-center ion-no-margin ion-no-padding">
+        <ion-col size="6" *ngIf="balanceInit >= 100">
+          <ion-card class="ion-no-margin ion-margin-top ion-margin-start" (click)="changeValue(100)">
+            <ion-card-header>
+              <ion-row class="ion-align-items-center ion-no-margin ion-no-padding" >
+                <ion-col size="3" class="ion-no-margin ion-no-padding">
+                  <ion-icon src="assets/svg/gasopeso.svg" class="ion-no-margin ion-no-padding gasopeso" [color]="valorSelect == 100 ? 'success' : 'medium'"></ion-icon>
+                </ion-col>
+                <ion-col size="9" class="ion-no-margin ion-no-padding">
+                  <!-- [color]="balanceInit > 100 ? 'success' : 'medium'"!-->
+                  <ion-label class="ion-no-margin ion-no-padding textto" [color]="valorSelect == 100 ? 'success' : 'medium'" >100.00</ion-label>
+                </ion-col>
+              </ion-row>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6" *ngIf="balanceInit >= 300">
+          <ion-card class="ion-no-margin ion-margin-top ion-margin-end" (click)="changeValue(300)"> 
+            <ion-card-header>
+              <ion-row class="ion-align-items-center ion-no-margin ion-no-padding" >
+                <ion-col size="3" class="ion-no-margin ion-no-padding">
+                  <ion-icon src="assets/svg/gasopeso.svg" class="ion-no-margin ion-no-padding gasopeso" [color]="valorSelect == 300 ? 'success' : 'medium'"></ion-icon>
+                </ion-col>
+                <ion-col size="9" class="ion-no-margin ion-no-padding">
+                  <ion-label class="ion-no-margin ion-no-padding textto" [color]="valorSelect == 300 ? 'success' : 'medium'">300.00</ion-label>
+                </ion-col>
+              </ion-row>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center ion-text-center ion-no-margin ion-no-padding">
+        <ion-col size="6" *ngIf="balanceInit >= 500">
+          <ion-card class="ion-no-margin ion-margin-top ion-margin-start" (click)="changeValue(500)">
+            <ion-card-header>
+              <ion-row class="ion-align-items-center ion-no-margin ion-no-padding" >
+                <ion-col size="3" class="ion-no-margin ion-no-padding">
+                  <ion-icon src="assets/svg/gasopeso.svg" class="ion-no-margin ion-no-padding gasopeso" [color]="valorSelect == 500 ? 'success' : 'medium'"></ion-icon>
+                </ion-col>
+                <ion-col size="9" class="ion-no-margin ion-no-padding">
+                  <ion-label class="ion-no-margin ion-no-padding textto" [color]="valorSelect == 500 ? 'success' : 'medium'">500.00</ion-label>
+                </ion-col>
+              </ion-row>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6" *ngIf="balanceInit >= 800">
+          <ion-card class="ion-no-margin ion-margin-top ion-margin-end" (click)="changeValue(800)">
+            <ion-card-header>
+              <ion-row class="ion-align-items-center ion-no-margin ion-no-padding" >
+                <ion-col size="3" class="ion-no-margin ion-no-padding">
+                  <ion-icon src="assets/svg/gasopeso.svg" class="ion-no-margin ion-no-padding gasopeso" [color]="valorSelect == 800 ? 'success' : 'medium'"></ion-icon>
+                </ion-col>
+                <ion-col size="9" class="ion-no-margin ion-no-padding">
+                  <ion-label class="ion-no-margin ion-no-padding textto" [color]="valorSelect == 800 ? 'success' : 'medium'">800.00</ion-label>
+                </ion-col>
+              </ion-row>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-margin-top ion-justify-content-center">
+        <ion-col size="11" class="ion-padding-left">
+          <ion-list mode="md" lines="line" class="ion-no-margin ion-padding-left">
+            <ion-item mode="md">
+              <ion-label mode="md" position="floating" class="textoInput" color="success">Otra cantidad:</ion-label>
+              <ion-input mode="md" color="success" type="number" name="valorSelect" min="100" step="100" [(ngModel)]="valorSelect"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center ">
+        <ion-col size="6">
+          <ion-button class="ion-padding-top ion-padding-bottom" shape="round" size="large" color="success" [disabled]="valorSelect < 100  || valorSelect > balanceInit || ( valorSelect % 100 ) != 0" (click)="confirmarCantidad(valorSelect.toString())">
+            <ion-label color="light" class="ion-text-capitalize">
+              Aceptar
+            </ion-label>
+          </ion-button>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </ion-grid>
+  
+</ion-content>

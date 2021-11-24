@@ -15,6 +15,7 @@ import { ConfirmarPagoComponent } from '../confirmar-pago/confirmar-pago.compone
 export class AbonarQrComponent implements OnInit {
   // tslint:disable-next-line: variable-name
   @Input() id_payment;
+  @Input() balance;
 
   station: StationQR[] = [];
   resp: any;
@@ -31,15 +32,19 @@ export class AbonarQrComponent implements OnInit {
   ngOnInit() {
     this.pushServices.abrirPop = true;
 
-    this.usuarioService.informacionQrAbono(this.id_payment).subscribe( respuesta => {
+    this.usuarioService.informacionQrAbono(this.id_payment, this.balance).subscribe( respuesta => {
       if (respuesta.ok) {
-
+        
+       
         this.resp = JSON.stringify({
           membership: respuesta.membership,
           tr_membership: '',
           id_station: respuesta.station.id,
-          include_player_ids: this.pushServices.userId
+          balance: respuesta.balance,
+          include_player_ids: this.pushServices.userId,
         });
+
+        console.log(respuesta);
 
       } else {
         this.modalCtrl.dismiss();
@@ -67,7 +72,8 @@ export class AbonarQrComponent implements OnInit {
             noti.additionalData.id_time,
             noti.additionalData.no_island,
             noti.additionalData.no_bomb,
-            noti.additionalData.sale
+            noti.additionalData.sale,
+            noti.additionalData.balance
           );
           this.pushServices.idNotificacion = '';
         }
@@ -109,7 +115,8 @@ export class AbonarQrComponent implements OnInit {
     no_island: string,
     // tslint:disable-next-line: variable-name
     no_bomb: string,
-    sale: string
+    sale: string,
+    balance:string
     ) {
     const popover = await this.popoverCtrl.create({
       component: ConfirmarPagoComponent,
@@ -132,7 +139,8 @@ export class AbonarQrComponent implements OnInit {
         id_time,
         no_island,
         no_bomb,
-        sale
+        sale,
+        balance
       }
     });
 
@@ -156,6 +164,7 @@ export class AbonarQrComponent implements OnInit {
         '112.34',
         '112.34',
         '112.34',
+       ''
     );
     
   

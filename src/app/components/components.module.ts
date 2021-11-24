@@ -14,6 +14,8 @@ import player from 'lottie-web';
 import { LottieModule } from 'ngx-lottie';
 import { HeaderAnimationComponent } from './header-animation/header-animation.component';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
+import { CantidadAPagarComponent } from './cantidad-a-pagar/cantidad-a-pagar.component';
+import { NotificacionesGaleoncitoComponent } from './notificaciones-galeoncito/notificaciones-galeoncito.component';
 export function playerFactory() {
   return player;
 }
@@ -29,7 +31,9 @@ export function playerFactory() {
     CompartidoQrComponent,
     ConfirmarPagoComponent,
     HeaderAnimationComponent,
-    NotificacionesComponent
+    NotificacionesComponent,
+    CantidadAPagarComponent,
+    NotificacionesGaleoncitoComponent
   ],
   declarations: [
     MenuComponent,
@@ -40,7 +44,9 @@ export function playerFactory() {
     CompartidoQrComponent,
     ConfirmarPagoComponent,
     HeaderAnimationComponent,
-    NotificacionesComponent
+    NotificacionesComponent,
+    CantidadAPagarComponent,
+    NotificacionesGaleoncitoComponent
   ],
   exports: [
     MenuComponent,
@@ -51,7 +57,9 @@ export function playerFactory() {
     CompartidoQrComponent,
     ConfirmarPagoComponent,
     HeaderAnimationComponent,
-    NotificacionesComponent
+    NotificacionesComponent,
+    CantidadAPagarComponent,
+    NotificacionesGaleoncitoComponent
   ],
   imports: [
     CommonModule,

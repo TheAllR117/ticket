@@ -50,7 +50,7 @@ export class AbonosPage implements OnInit {
         this.postsService.mostrarNotificacion('CaritaVerde','Abono solicitado correctamente.', 1);
       } else {
         this.postsService.loading.dismiss();
-        this.postsService.mostrarNotificacion('Triste_Mesadetrabajo1', 'Ha ocurrido un error.', 2);
+        this.postsService.mostrarNotificacion('Triste_Mesadetrabajo1', this.usuarioService.messageLogin, 2);
         //this.postsService.mostrarPop('14331-error', 'Solicitud de Abono', 'Ha ocurrido un error.', 1900);
       }
   }

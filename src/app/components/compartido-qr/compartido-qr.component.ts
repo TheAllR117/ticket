@@ -14,6 +14,7 @@ export class CompartidoQrComponent implements OnInit {
 
   // tslint:disable-next-line: variable-name
   @Input() id_payment;
+  @Input() balance;
 
   resp: any;
 
@@ -28,16 +29,17 @@ export class CompartidoQrComponent implements OnInit {
   ngOnInit() {
     this.pushServices.abrirPop = true;
 
-    this.usuarioService.informacionQrAbonoCompartido(this.id_payment).subscribe( respuesta => {
+    this.usuarioService.informacionQrAbonoCompartido(this.id_payment, this.balance).subscribe( respuesta => {
       if (respuesta.ok) {
         this.resp = JSON.stringify({
           membership: respuesta.membership,
           tr_membership: respuesta.tr_membership,
           id_station: respuesta.station.id,
+          balance:respuesta.balance,
           include_player_ids: this.pushServices.userId
         });
 
-        console.log(this.resp);
+        //console.log(this.resp);
 
       } else {
         this.modalCtrl.dismiss();
