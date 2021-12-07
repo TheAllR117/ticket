@@ -5,6 +5,7 @@ import { RespuestaPosts } from '../interfaces/interfaces';
 import { LoadingController, ToastController, PopoverController } from '@ionic/angular';
 import { PopinfoComponent } from '../components/popinfo/popinfo.component';
 import { NotificacionesComponent } from '../components/notificaciones/notificaciones.component';
+import { NotificacionesGaleoncitoComponent } from '../components/notificaciones-galeoncito/notificaciones-galeoncito.component';
 
 const URL = environment.url;
 
@@ -82,6 +83,30 @@ export class PostsService {
     await popover.present();
 
     const {data} = await popover.onDidDismiss();
+
+    return data;
+
+  }
+
+  async mostrarNotificacionGaleoncito(message: string, color: number) {
+    const popover = await this.popoverCtrl.create({
+      mode: 'ios',
+      component: NotificacionesGaleoncitoComponent,
+      animated: true,
+      cssClass: 'animate__animated animate__fadeIn tran',
+      showBackdrop: true,
+      backdropDismiss: true,
+      componentProps: {
+        message,
+        color
+      }
+    });
+
+    await popover.present();
+
+    const {data} = await popover.onDidDismiss();
+
+    //console.log(data);
 
     return data;
 

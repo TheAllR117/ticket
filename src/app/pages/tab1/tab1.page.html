@@ -10,18 +10,7 @@
     </ion-refresher-content>
   </ion-refresher>
   <img src="assets/svg/Mov_Mesa.svg" class="animacion_fondo">
-  <!--ion-grid class="ion-no-border ion-no-padding ion-margin-top vertical-center">
-    <ion-row class="ion-justify-content-center ion-margin-top">
-      <ion-col class="ion-text-center ion-margin-top">
-        <ng-lottie [options]="lottieConfig"  ></ng-lottie>
-      </ion-col>
-    </ion-row>
-    <ion-row class="ion-justify-content-center ion-margin-top">
-      <ion-col class="ion-text-center ion-margin-top">
-        <h1>Próximamente</h1>
-      </ion-col>
-    </ion-row>
-  </ion-grid-->
+ 
   <ion-grid *ngIf="animacion" class="grid_arriba_t ion-no-border ion-no-padding animate__animated animate__fadeInUpBig">
 
     <ion-row class="ion-no-border ion-no-padding ion-justify-content-evenly">
@@ -44,14 +33,14 @@
           <ion-card-content>
             <ion-row class="ion-no-margin ion-no-padding">
               <ion-col size="12" class="ion-no-margin ion-no-padding">
-                <ion-label class="tercerTitulo">Saldo Total</ion-label>
+                <ion-label class="tercerTitulo">Total gasopesos</ion-label>
               </ion-col>
             </ion-row>
             <ion-row class="ion-no-margin ion-no-padding">
               <ion-col size="8" class="ion-no-margin ion-no-padding">
                 <ion-label class="ion-no-margin ion-no-padding cuartoTitulo" [innerHTML]="(user.client.current_balance).toLocaleString('en')"></ion-label>
               </ion-col>
-              <ion-col size="4" class="ion-no-margin ion-no-padding">
+              <ion-col size="4" class="ion-no-margin ion-no-padding ion-padding-bottom">
                 <ion-button class="ion-no-margin ion-no-padding" shape="round" expand="block" color="success" size="small" (click)="navRouting('/abonos-totales')" >
                   <ion-label class="ion-text-capitalize" color="light">
                     Usar
@@ -59,13 +48,7 @@
                 </ion-button>
               </ion-col>
             </ion-row>
-            <ion-row class="ion-no-margin ion-no-padding">
-              <ion-col size="12" class="ion-no-margin ion-no-padding">
-                <ion-label class="ion-no-margin ion-no-padding tercerTitulo boldtextos">
-                  Gasopesos
-                </ion-label>
-              </ion-col>
-            </ion-row>
+        
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -75,23 +58,40 @@
       <ion-col no-border class="ion-no-padding" >
         <ion-card mode="ios">        
           <ion-card-content>
-            <ion-row class="ion-no-margin ion-no-padding">
-              <ion-col size="4" class="ion-no-margin ion-no-padding">
-                <ion-label class="tercerTitulo">Total Recibido</ion-label>
+            <ion-row class="ion-align-items-center ion-justify-content-around">
+              <ion-col size="8" class="ion-justify-content-center ion-no-margin ion-no-padding">
+                <ion-row class="ion-no-margin ion-no-padding">
+                  <ion-label class="tercerTitulo">Gasopesos recibidos</ion-label>
+                </ion-row>
+                <ion-row class="ion-no-margin ion-no-padding">
+                  <ion-label class="cuartoTitulo ion-no-margin ion-no-padding" [innerHTML]="(user.client.shared_balance).toLocaleString('en')"></ion-label>
+                </ion-row>
+                <ion-row class="ion-no-margin ion-no-padding">
+                  <ion-col size="12">
+                    <ion-label class="ion-no-margin ion-no-padding tercerTitulo" color="success" >Número de estaciones: <ion-label class="ion-no-margin ion-no-padding" [innerHTML]="user.client.total_shared_balance" color="dark"></ion-label></ion-label>
+                  </ion-col>
+                </ion-row>
               </ion-col>
-              <ion-col size="4" class="ion-no-margin ion-no-padding">
-                <ion-label class="tercerTitulo">Estaciones</ion-label>
-              </ion-col>
-              <ion-col size="4" class="ion-no-margin ion-no-padding">
+              <ion-col size="4" >
+                <ion-button class="ion-no-margin ion-no-padding" shape="round" expand="block" color="success" size="small" (click)="navRouting('/transferencias-totales')" >
+                  <ion-label class="ion-text-capitalize" color="light">
+                    Usar
+                  </ion-label>
+                </ion-button>
               </ion-col>
             </ion-row>
+
+            <!--ion-row class="ion-no-margin ion-no-padding">
+              <ion-col size="6" class="ion-no-margin ion-no-padding">
+                <ion-label class="tercerTitulo">Gasopesos recibidos</ion-label>
+              </ion-col>
+            </ion-row>
+
             <ion-row class="ion-no-margin ion-no-padding">
               <ion-col size="4" class="ion-no-margin ion-no-padding">
                 <ion-label class="cuartoTitulo ion-no-margin ion-no-padding" [innerHTML]="(user.client.shared_balance).toLocaleString('en')"></ion-label>
               </ion-col>
-              <ion-col size="4" class="ion-no-margin ion-no-padding">
-                <ion-label class="ion-no-margin ion-no-padding ion-padding-start cuartoTitulo" [innerHTML]="user.client.total_shared_balance"></ion-label>
-              </ion-col>
+             
               <ion-col size="4" class="ion-no-margin ion-no-padding">
                 <ion-button class="ion-no-margin ion-no-padding" shape="round" expand="block" color="success" size="small" (click)="navRouting('/transferencias-totales')" >
                   <ion-label class="ion-text-capitalize" color="light">
@@ -102,13 +102,13 @@
             </ion-row>
             <ion-row class="ion-no-margin ion-no-padding">
               <ion-col size="4" class="ion-no-margin ion-no-padding">
-                <ion-label class="ion-no-margin ion-no-padding tercerTitulo boldtextos">
-                  Gasopesos
-                </ion-label>
+                <ion-col size="4" class="ion-no-margin ion-no-padding">
+                  <ion-label class="ion-no-margin ion-no-padding ion-padding-start cuartoTitulo" [innerHTML]="user.client.total_shared_balance"></ion-label>
+                </ion-col>
               </ion-col>
               <ion-col size="4" class="ion-no-margin ion-no-padding">
               </ion-col>
-            </ion-row>
+            </ion-row-->
           </ion-card-content>
         </ion-card>
       </ion-col>

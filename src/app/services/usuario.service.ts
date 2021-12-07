@@ -197,6 +197,7 @@ export class UsuarioService {
         if ( this.respuestaAbono['ok'] ) {
           resolve(true);
         } else {
+          this.messageLogin = this.respuestaAbono['message'];
           resolve(false);
         }
       })
@@ -352,7 +353,7 @@ export class UsuarioService {
   }
 
   // tslint:disable-next-line: variable-name
-  informacionQrAbono(id_payment: string) {
+  informacionQrAbono(id_payment: string,balance: string) {
     this.cargarToken();
 
     const headers = new HttpHeaders({
@@ -362,7 +363,8 @@ export class UsuarioService {
 
     const params = new HttpParams({
       fromObject: {
-        id_payment
+        id_payment,
+        balance
       }
     });
 
@@ -376,7 +378,7 @@ export class UsuarioService {
   }
 
   // tslint:disable-next-line: variable-name
-  informacionQrAbonoCompartido(id_payment: string) {
+  informacionQrAbonoCompartido(id_payment: string, balance: string) {
     this.cargarToken();
 
     const headers = new HttpHeaders({
@@ -386,7 +388,8 @@ export class UsuarioService {
 
     const params = new HttpParams({
       fromObject: {
-        id_payment
+        id_payment,
+        balance
       }
     });
 
@@ -425,6 +428,7 @@ export class UsuarioService {
     // tslint:disable-next-line: variable-name
     no_bomb: string,
     sale: string,
+    balance: string,
     ) {
 
     this.cargarToken();
@@ -449,7 +453,8 @@ export class UsuarioService {
         id_time,
         no_island,
         no_bomb,
-        sale
+        sale,
+        balance
       }
     });
 

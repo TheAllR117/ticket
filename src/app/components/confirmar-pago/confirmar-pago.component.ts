@@ -37,6 +37,7 @@ export class ConfirmarPagoComponent implements OnInit {
   // tslint:disable-next-line: variable-name
   @Input() no_bomb;
   @Input() sale;
+  @Input() balance;
 
   membersh = '';
 
@@ -70,7 +71,9 @@ export class ConfirmarPagoComponent implements OnInit {
       this.id_time.toString(),
       this.no_island.toString(),
       this.no_bomb.toString(),
-      this.sale.toString()).subscribe(resp => {
+      this.sale.toString(),
+      this.balance.toString()
+      ).subscribe(resp => {
         // tslint:disable-next-line: no-string-literal
         if (resp['ok']) {
           // tslint:disable-next-line: no-string-literal
@@ -108,7 +111,8 @@ export class ConfirmarPagoComponent implements OnInit {
       this.id_time.toString(),
       this.no_island.toString(),
       this.no_bomb.toString(),
-      this.sale.toString()).subscribe(resp => {
+      this.sale.toString(),
+      this.balance.toString()).subscribe(resp => {
         // tslint:disable-next-line: no-string-literal
         if (resp['ok']) {
           // tslint:disable-next-line: no-string-literal

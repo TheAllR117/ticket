@@ -1,0 +1,70 @@
+.imagePos{
+    font-size: 1000%;
+    position: absolute;
+    left: 50%;
+    //top: -40px;
+    transform: translate(-50%, -80.25%);
+    
+}
+
+div{
+    margin: 0;
+    padding-top: 28%;
+    padding-bottom: 10%;
+    padding-left: 3%;
+    padding-right: 3%;
+    color: white;
+}
+
+ol{
+    padding-left: 9%;
+}
+
+ion-content{
+    border-radius: 20px !important;
+}
+
+.colorSuccess{
+    background-color: #F75C68;
+}
+
+.colorDanger{
+    background-color: #fff;
+}
+
+.divCircle{
+    position: absolute;
+    width: 100%;
+    transform: translate(0%, 3%);
+    background-color: #b9f097;
+    height: 74%;
+    clip-path: circle(70.0% at 50% 0);
+    border-radius: 20px;
+}
+.divCircle2{
+    position: absolute;
+    width: 100%;
+    transform: translate(0%, 0%);
+    background-color: #A2DB7F;
+    height: 74%;
+    clip-path: circle(70.0% at 50% 0);
+    border-radius: 20px;
+}
+
+.divMessages{
+    position: relative;
+    transform: translate(0%, -25%);
+    font-size: 18px;
+    height: 24vh;
+    margin: 5px;
+}
+.pCantidad{
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.gasopeso{
+    font-size: 3.2vh;
+    padding-top: 5px;
+    color: #fff;
+}

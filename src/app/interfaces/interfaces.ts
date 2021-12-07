@@ -353,6 +353,7 @@ export interface StationR {
 export interface respuestaQrAbono {
   ok?: boolean;
   membership?: string;
+  balance?: string;
   station?: StationQR;
 }
 
@@ -367,6 +368,7 @@ export interface respuestaQrCompartido {
   ok: boolean;
   tr_membership: string;
   membership: string;
+  balance?: string;
   station: StationQR;
 }
 

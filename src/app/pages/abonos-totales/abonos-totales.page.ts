@@ -3,6 +3,7 @@ import { UsuarioService } from '../../services/usuario.service';
 import { Payment } from '../../interfaces/interfaces';
 import { ModalController, PopoverController, NavController } from '@ionic/angular';
 import { AbonarQrComponent } from '../../components/abonar-qr/abonar-qr.component';
+import { CantidadAPagarComponent } from '../../components/cantidad-a-pagar/cantidad-a-pagar.component';
 
 @Component({
   selector: 'app-abonos-totales',
@@ -21,6 +22,7 @@ export class AbonosTotalesPage implements OnInit {
   private anim: any;
   // tslint:disable-next-line: no-inferrable-types
   private animationSpeed: number = 1;
+  tempp: any;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -106,6 +108,55 @@ export class AbonosTotalesPage implements OnInit {
             this.animacion = true;
           }
         });
+      }
+    }
+
+    async mostarCantidadAPagar(id_payment: string, nameStation: string, balanceInit: string) {
+      const modal = await this.modalCtrl.create({
+        component: CantidadAPagarComponent,
+        componentProps: {
+          id_payment,
+          nameStation,
+          balanceInit
+        }
+      });
+  
+      await modal.present();
+  
+      const { data } = await modal.onDidDismiss();
+      this.tempp = data;
+      // tslint:disable-next-line: no-string-literal
+     if(this.tempp['cobrar']){
+        const modal = await this.modalCtrl.create({
+          component: AbonarQrComponent,
+          componentProps: {
+            id_payment : this.tempp['id_payment'],
+            balance : this.tempp['balance'],
+          }
+        });
+    
+        await modal.present();
+    
+        const { data } = await modal.onDidDismiss();
+  
+        if (data['actualizar']) {
+          this.total = 0;
+          this.payments = [];
+  
+          this.usuarioService.obtener_puntos_por_estacion().subscribe(respuesta => {
+            if (respuesta.ok) {
+              this.animacion = false;
+              // tslint:disable-next-line: prefer-const
+              for (let i of respuesta.payments) {
+                this.total = this.total + i.balance;
+              }
+              this.payments = respuesta.payments;
+  
+            } else {
+              this.animacion = true;
+            }
+          });
+        }
       }
     }
 

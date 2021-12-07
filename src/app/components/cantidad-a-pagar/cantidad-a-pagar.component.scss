@@ -1,18 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 .textto{
-    font-size: 20px;
     font-family: 'Roboto', sans-serif !important;
     font-stretch: condensed;
     font-weight: bold;
+    font-size: 3vh;
 }
 
-.linea_de_lineas{
-    font-size: 20px;
-}
-
-.texto_bold{
+.textoInput{
     font-family: 'Roboto', sans-serif !important;
     font-stretch: condensed;
     font-weight: bold;
+    font-size: 2vh;
 }
+
+.gasopeso{
+    font-size: 3.2vh;
+    padding-top: 1px;
+}
+
+
