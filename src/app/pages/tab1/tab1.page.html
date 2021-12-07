@@ -13,12 +13,16 @@
  
   <ion-grid *ngIf="animacion" class="grid_arriba_t ion-no-border ion-no-padding animate__animated animate__fadeInUpBig">
 
-    <ion-row class="ion-no-border ion-no-padding ion-justify-content-evenly">
-      <ion-col class="ion-no-border ion-no-padding" size="10">
+    <ion-row class="ion-no-border ion-no-padding ion-justify-content-evenly ion-align-items-center">
+      <ion-col class="ion-no-border ion-no-padding" size="9">
         <ion-label class="segundoTitulo" [innerHTML]="user.name +' '+ user.first_surname "></ion-label><br>
-        <ion-label class="primerTitulo ion-margin-end" color="success">Membresía </ion-label> <ion-label class="primerTitulo_2" [innerHTML]=" user.client.membership"></ion-label>
+        <ion-label class="primerTitulo ion-margin-end" color="success">Membresía</ion-label> <ion-label class="primerTitulo_2" [innerHTML]=" user.client.membership"></ion-label>
       </ion-col>
-      
+      <ion-col class="ion-no-border" size="1">
+        <ion-buttons mode="md"  (click)="navRouting('notificaciones')">
+          <ion-icon color="danger" name="notifications"></ion-icon>
+        </ion-buttons>
+      </ion-col>
       <ion-col class="ion-no-border ion-no-padding" size="1">
         <ion-buttons mode="md" class="margin_negativo_modal">
           <ion-menu-button auto-hide="false" color="success"></ion-menu-button>

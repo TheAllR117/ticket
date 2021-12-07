@@ -35,7 +35,7 @@ export class CompartidoQrComponent implements OnInit {
           membership: respuesta.membership,
           tr_membership: respuesta.tr_membership,
           id_station: respuesta.station.id,
-          balance:respuesta.balance,
+          balance: respuesta.balance,
           include_player_ids: this.pushServices.userId
         });
 
@@ -47,7 +47,7 @@ export class CompartidoQrComponent implements OnInit {
     });
 
     this.pushServices.pushListener.subscribe(async noti => {
-      if (noti.additionalData) {
+      if (noti.additionalData && noti.title == 'Pago con QR') {
         if ( this.pushServices.abrirPop === true) {
           //console.log(noti.additionalData);
           this.pushServices.abrirPop = false;
@@ -66,7 +66,8 @@ export class CompartidoQrComponent implements OnInit {
             noti.additionalData.id_time,
             noti.additionalData.no_island,
             noti.additionalData.no_bomb,
-            noti.additionalData.sale
+            noti.additionalData.sale,
+            this.balance
           );
 
           this.pushServices.idNotificacion = '';
@@ -109,7 +110,8 @@ export class CompartidoQrComponent implements OnInit {
     no_island: string,
     // tslint:disable-next-line: variable-name
     no_bomb: string,
-    sale: string
+    sale: string,
+    balance: string
     ) {
     const popover = await this.popoverCtrl.create({
       component: ConfirmarPagoComponent,
@@ -133,6 +135,7 @@ export class CompartidoQrComponent implements OnInit {
         no_island,
         no_bomb,
         sale,
+        balance
       }
     });
 
