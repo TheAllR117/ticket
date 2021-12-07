@@ -51,10 +51,9 @@ export class AbonarQrComponent implements OnInit {
       }
     });
 
-    this.pushServices.pushListener.subscribe(async noti => {
-
+    this.pushServices.pushListener.subscribe(async noti  => {
       //console.log(noti.additionalData);
-      if (noti.additionalData) {
+      if (noti.additionalData && noti.title == 'Pago con QR') {
         if ( this.pushServices.abrirPop === true) {
           this.pushServices.abrirPop = false;
           await this.mostrarPop(

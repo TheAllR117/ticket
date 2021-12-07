@@ -31,9 +31,9 @@
          <ion-label class="ion-margin-top textto" color="medium" [innerHTML]="nameStation"></ion-label>
         </ion-col>
       </ion-row>
-      <ion-row class="ion-justify-content-center ion-text-center ion-no-margin ion-no-padding">
-        <ion-col size="6" *ngIf="balanceInit >= 100">
-          <ion-card class="ion-no-margin ion-margin-top ion-margin-start" (click)="changeValue(100)">
+      <ion-row class="ion-justify-content-around ion-text-center ion-no-margin ion-no-padding">
+        <ion-col size="5" *ngIf="balanceInit >= 100">
+          <ion-card class="ion-no-margin ion-margin-top ion-margin-start " (click)="changeValue(100)">
             <ion-card-header>
               <ion-row class="ion-align-items-center ion-no-margin ion-no-padding" >
                 <ion-col size="3" class="ion-no-margin ion-no-padding">
@@ -47,7 +47,7 @@
             </ion-card-header>
           </ion-card>
         </ion-col>
-        <ion-col size="6" *ngIf="balanceInit >= 300">
+        <ion-col size="5" *ngIf="balanceInit >= 300">
           <ion-card class="ion-no-margin ion-margin-top ion-margin-end" (click)="changeValue(300)"> 
             <ion-card-header>
               <ion-row class="ion-align-items-center ion-no-margin ion-no-padding" >
@@ -62,8 +62,8 @@
           </ion-card>
         </ion-col>
       </ion-row>
-      <ion-row class="ion-justify-content-center ion-text-center ion-no-margin ion-no-padding">
-        <ion-col size="6" *ngIf="balanceInit >= 500">
+      <ion-row class="ion-justify-content-around ion-text-center ion-no-margin ion-no-padding">
+        <ion-col size="5" *ngIf="balanceInit >= 500">
           <ion-card class="ion-no-margin ion-margin-top ion-margin-start" (click)="changeValue(500)">
             <ion-card-header>
               <ion-row class="ion-align-items-center ion-no-margin ion-no-padding" >
@@ -77,7 +77,7 @@
             </ion-card-header>
           </ion-card>
         </ion-col>
-        <ion-col size="6" *ngIf="balanceInit >= 800">
+        <ion-col size="5" *ngIf="balanceInit >= 800">
           <ion-card class="ion-no-margin ion-margin-top ion-margin-end" (click)="changeValue(800)">
             <ion-card-header>
               <ion-row class="ion-align-items-center ion-no-margin ion-no-padding" >

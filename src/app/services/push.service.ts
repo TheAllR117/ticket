@@ -36,7 +36,8 @@ export class PushService {
     this.oneSignal.handleNotificationReceived().subscribe(async (noti) => {
     // do something when notification is received
     // console.log('Notificación recibida', noti);
-    if (noti.payload.additionalData) {
+    //if (noti.payload.additionalData) {
+    if (noti.payload.title.toString() === 'Pago con QR') {
       await this.confirmacionPago(noti);
       //console.log('Notificación de pago');
     } else {
@@ -81,6 +82,7 @@ export class PushService {
       this.pushListener.emit(payloadPagos);
 
     } else if (this.idNotificacion === payloadPagos.notificationID) {
+      this.idNotificacion = '';
       //console.log('Notificación repetida');
     } else {
       this.idNotificacion = '';
